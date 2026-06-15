@@ -42,7 +42,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary-light shadow-md shadow-brand-primary/20 overflow-hidden">
-              <img src="/logo.png" alt="Chamba Logo" className="w-full h-full object-cover" />
+              <img src="/images/icon.png" alt="Chamba Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-xl font-bold tracking-tight text-white bg-clip-text">
               Chamba

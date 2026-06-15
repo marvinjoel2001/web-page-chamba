@@ -36,19 +36,19 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Empresa</h4>
               <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><a href="#" className="hover:text-brand-primary transition">Sobre nosotros</a></li>
-                <li><a href="#" className="hover:text-brand-primary transition">Prensa</a></li>
-                <li><a href="#" className="hover:text-brand-primary transition">Blog</a></li>
-                <li><a href="#" className="hover:text-brand-primary transition">Carreras</a></li>
+                <li><a href="#inicio" className="hover:text-brand-primary transition">Sobre nosotros</a></li>
+                <li><a href="#testimonios" className="hover:text-brand-primary transition">Testimonios</a></li>
+                <li><a href="#como-funciona" className="hover:text-brand-primary transition">Cómo funciona</a></li>
+                <li><a href="#contacto" className="hover:text-brand-primary transition">Contacto</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Recursos</h4>
               <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><a href="#" className="hover:text-brand-primary transition">Soporte técnico</a></li>
-                <li><a href="#" className="hover:text-brand-primary transition">Centro de ayuda</a></li>
-                <li><a href="#" className="hover:text-brand-primary transition">Términos</a></li>
-                <li><a href="#" className="hover:text-brand-primary transition">Privacidad</a></li>
+                <li><a href="mailto:soporte@chamba.app" className="hover:text-brand-primary transition">Soporte técnico</a></li>
+                <li><a href="#faq" className="hover:text-brand-primary transition">Centro de ayuda</a></li>
+                <li><a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition">Acuerdo Legal (Términos)</a></li>
+                <li><a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition">Privacidad</a></li>
               </ul>
             </div>
           </div>
@@ -81,11 +81,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Chamba App Inc. Todos los derechos reservados.
           </p>
           <div className="flex gap-4 text-[11px] text-slate-500">
-            <a href="#" className="hover:text-slate-300">Términos de servicio</a>
+            <a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300">Términos de servicio</a>
             <span>•</span>
-            <a href="#" className="hover:text-slate-300">Políticas de privacidad</a>
+            <a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300">Políticas de privacidad</a>
             <span>•</span>
-            <a href="#" className="hover:text-slate-300">Cookies</a>
+            <a href="#cookies" className="hover:text-slate-300">Cookies</a>
           </div>
         </div>
       </div>

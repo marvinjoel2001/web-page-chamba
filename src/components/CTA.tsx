@@ -58,9 +58,7 @@ export default function CTA({ activeRole }: CTAProps) {
                 href="#"
                 className="flex items-center justify-center gap-3 bg-slate-950 hover:bg-slate-900 border border-white/10 hover:border-brand-primary/40 rounded-2xl px-6 py-3 transition shadow-lg group"
               >
-                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 22C14.32 22.05 13.89 21.24 12.37 21.24C10.84 21.24 10.37 21.97 9.1 22C7.81 22.02 6.81 20.69 5.97 19.48C4.26 17 2.95 12.39 4.7 9.35C5.57 7.84 7.13 6.88 8.82 6.85C10.1 6.82 11.31 7.71 12.09 7.71C12.87 7.71 14.34 6.64 15.9 6.8C16.56 6.83 18.39 7.07 19.57 8.8C19.47 8.86 17.39 10.07 17.41 12.5C17.44 15.39 19.89 16.36 19.92 16.37C19.9 16.42 19.52 17.73 18.71 19.5M15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C15.99 1.04 14.83 1.64 14.14 2.45C13.55 3.12 13.03 4.23 13.18 5.48C14.25 5.56 15.32 4.96 15.97 4.17Z" />
-                </svg>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="Apple App Store" className="w-5 h-5 object-contain" />
                 <span className="text-xs font-semibold text-white group-hover:text-brand-primary transition-colors">iOS App Store</span>
               </a>
 
@@ -68,9 +66,7 @@ export default function CTA({ activeRole }: CTAProps) {
                 href="#"
                 className="flex items-center justify-center gap-3 bg-slate-950 hover:bg-slate-900 border border-white/10 hover:border-brand-highlight/40 rounded-2xl px-6 py-3 transition shadow-lg group"
               >
-                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M17.5,12L8,6.5V17.5L17.5,12Z" />
-                </svg>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Store" className="w-5 h-5 object-contain" />
                 <span className="text-xs font-semibold text-white group-hover:text-brand-highlight transition-colors">Google Play Store</span>
               </a>
             </div>
