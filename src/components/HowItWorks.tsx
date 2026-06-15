@@ -10,17 +10,17 @@ interface HowItWorksProps {
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const clientSteps = [
     {
-      icon: <Edit3 className="w-6 h-6 text-brand-orange" />,
+      icon: <Edit3 className="w-6 h-6 text-brand-primary" />,
       title: "1. Describe lo que necesitas",
       desc: "Especifica la categoría, sube fotos y propone un presupuesto de referencia. Tardas menos de un minuto.",
     },
     {
-      icon: <Users className="w-6 h-6 text-brand-teal" />,
+      icon: <Users className="w-6 h-6 text-brand-highlight" />,
       title: "2. Recibe presupuestos en vivo",
       desc: "Chamberos calificados en tu área reciben la alerta geo y te envían sus cotizaciones en tiempo real.",
     },
     {
-      icon: <MessageSquare className="w-6 h-6 text-amber-500" />,
+      icon: <MessageSquare className="w-6 h-6 text-brand-primary-light" />,
       title: "3. Negocia y confirma",
       desc: "Usa el chat integrado de la app para aclarar dudas, proponer contraofertas y aceptar al profesional perfecto.",
     },
@@ -33,17 +33,17 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
   const workerSteps = [
     {
-      icon: <UserCheck className="w-6 h-6 text-brand-teal" />,
+      icon: <UserCheck className="w-6 h-6 text-brand-highlight" />,
       title: "1. Completa tu perfil",
       desc: "Regístrate con tus datos, selecciona tus habilidades técnicas e ingresa tus certificaciones u oficios.",
     },
     {
-      icon: <Compass className="w-6 h-6 text-brand-orange" />,
+      icon: <Compass className="w-6 h-6 text-brand-primary" />,
       title: "2. Configura tu zona",
       desc: "Determina tu radio de notificaciones (ej: 5km). Te llegarán alertas de trabajos solo en esa área.",
     },
     {
-      icon: <Send className="w-6 h-6 text-amber-500" />,
+      icon: <Send className="w-6 h-6 text-brand-primary-light" />,
       title: "3. Envía tus ofertas",
       desc: "Revisa las solicitudes locales, calcula tus costos de mano de obra y envía tu oferta directamente al cliente.",
     },
@@ -58,7 +58,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
   return (
     <section id="como-funciona" className="py-20 bg-[#090d16] relative overflow-hidden">
-      <div className="absolute right-0 bottom-0 w-80 h-80 rounded-full bg-brand-teal/5 blur-[100px] pointer-events-none" />
+      <div className="absolute right-0 bottom-0 w-80 h-80 rounded-full bg-brand-highlight/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -85,7 +85,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
             {steps.map((st, index) => (
               <div key={index} className="flex flex-col items-center text-center relative z-10 group">
                 {/* Icon wrapper */}
-                <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-slate-800 flex items-center justify-center mb-6 group-hover:border-brand-orange group-hover:scale-105 transition-all duration-300 shadow shadow-black">
+                <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-slate-800 flex items-center justify-center mb-6 group-hover:border-brand-primary group-hover:scale-105 transition-all duration-300 shadow shadow-black">
                   {st.icon}
                 </div>
                 

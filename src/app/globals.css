@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-orange: #ff7a00;
-  --color-brand-orange-hover: #e06c00;
-  --color-brand-teal: #00f0ff;
-  --color-brand-teal-hover: #00d6e6;
-  --color-dark-bg: #090d16;
-  --color-dark-card: #121824;
-  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-brand-primary: #8B5CF6;
+  --color-brand-primary-light: #A78BFA;
+  --color-brand-primary-dark: #6D28D9;
+  --color-brand-highlight: #EAB308;
+  
+  --color-dark-bg: #07111F;
+  --color-dark-card: #0B172A;
+  --color-dark-border: rgba(255, 255, 255, 0.12);
   --color-light-bg: #f8fafc;
   --color-light-card: #ffffff;
   --color-light-border: #e2e8f0;
@@ -21,10 +22,10 @@
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.2), 0 0 20px rgba(0, 240, 255, 0.2);
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.2);
   }
   to {
-    text-shadow: 0 0 20px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 240, 255, 0.4);
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.4);
   }
 }
 
@@ -35,8 +36,8 @@
 
 /* Force dark class since we want the landing page to be dark theme by default */
 :root, .dark {
-  --background: #090d16;
-  --foreground: #f8fafc;
+  --background: #07111F;
+  --foreground: #F8FAFC;
 }
 
 /* Custom scrollbar */
@@ -77,11 +78,11 @@ body {
 }
 
 /* Glow effects */
-.glow-teal {
-  box-shadow: 0 0 40px -5px rgba(0, 240, 255, 0.15);
+.glow-primary {
+  box-shadow: 0 0 40px -5px rgba(139, 92, 246, 0.3);
 }
-.glow-orange {
-  box-shadow: 0 0 40px -5px rgba(255, 122, 0, 0.15);
+.glow-highlight {
+  box-shadow: 0 0 40px -5px rgba(234, 179, 8, 0.15);
 }
 
 .bg-grid-pattern {

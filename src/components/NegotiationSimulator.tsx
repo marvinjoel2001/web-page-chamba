@@ -43,7 +43,7 @@ export default function NegotiationSimulator() {
   return (
     <section id="simulador" className="py-20 bg-slate-950 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute left-0 top-1/2 w-80 h-80 rounded-full bg-brand-orange/5 blur-[100px] pointer-events-none" />
+      <div className="absolute left-0 top-1/2 w-80 h-80 rounded-full bg-brand-primary/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -60,7 +60,7 @@ export default function NegotiationSimulator() {
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="bg-[#121824] border border-white/5 rounded-3xl p-6 shadow-md">
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-brand-orange" />
+                <TrendingUp className="w-5 h-5 text-brand-primary" />
                 Flujo de Negociación
               </h3>
               
@@ -77,7 +77,7 @@ export default function NegotiationSimulator() {
                       onClick={() => setStage(index as Stage)}
                       className={`flex gap-4 text-left p-3 rounded-2xl transition-all duration-300 relative z-10 ${
                         isActive
-                          ? "bg-slate-900 border border-brand-orange/30 shadow-lg"
+                          ? "bg-slate-900 border border-brand-primary/30 shadow-lg"
                           : "hover:bg-slate-900/40 border border-transparent"
                       }`}
                     >
@@ -85,9 +85,9 @@ export default function NegotiationSimulator() {
                       <div
                         className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm shrink-0 transition-all duration-300 border ${
                           isActive
-                            ? "bg-brand-orange text-white border-brand-orange shadow shadow-brand-orange/40"
+                            ? "bg-brand-primary text-white border-brand-primary shadow shadow-brand-primary/40"
                             : isCompleted
-                            ? "bg-brand-teal/20 text-brand-teal border-brand-teal"
+                            ? "bg-brand-highlight/20 text-brand-highlight border-brand-highlight"
                             : "bg-slate-950 text-slate-500 border-slate-800"
                         }`}
                       >
@@ -115,7 +115,7 @@ export default function NegotiationSimulator() {
             {/* Quick action helper button */}
             <button
               onClick={() => setStage(((stage + 1) % 5) as Stage)}
-              className="w-full py-3.5 bg-gradient-to-r from-brand-orange to-amber-500 hover:from-brand-orange-hover hover:to-amber-600 text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 transition-all duration-300"
+              className="w-full py-3.5 bg-gradient-to-r from-brand-primary to-brand-primary-light hover:from-brand-primary-dark hover:to-amber-600 text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-primary/20 transition-all duration-300"
             >
               <span>Siguiente Paso</span>
               <ArrowRight className="w-4 h-4" />
@@ -155,7 +155,7 @@ export default function NegotiationSimulator() {
                         exit={{ opacity: 0, y: -15 }}
                         className="flex flex-col gap-3"
                       >
-                        <div className="self-end max-w-[85%] bg-brand-orange text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-md">
+                        <div className="self-end max-w-[85%] bg-brand-primary text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-md">
                           <p className="font-bold border-b border-white/10 pb-1 mb-1">Nueva Solicitud: Cliente</p>
                           <p className="font-medium text-[11px]">Necesito reparar el grifo de la cocina que tiene una fuga constante.</p>
                           <div className="mt-2 flex items-center justify-between text-[10px] bg-black/15 p-1.5 rounded-lg">
@@ -186,7 +186,7 @@ export default function NegotiationSimulator() {
                             <img
                               src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
                               alt="Roberto"
-                              className="w-6 h-6 rounded-full object-cover border border-brand-orange"
+                              className="w-6 h-6 rounded-full object-cover border border-brand-primary"
                             />
                             <div>
                               <p className="font-bold text-[11px] leading-tight">Roberto G. (Pintor/Plomero)</p>
@@ -196,7 +196,7 @@ export default function NegotiationSimulator() {
                           <p className="text-[11px]">Hola, puedo ir en 20 mins. Cobro $65 por mano de obra e inspección.</p>
                           <div className="mt-2.5 flex items-center justify-between text-[10px] bg-slate-950 p-1.5 rounded-lg border border-white/5">
                             <span className="text-slate-400">Oferta de Roberto</span>
-                            <span className="font-bold text-brand-teal">$65.00</span>
+                            <span className="font-bold text-brand-highlight">$65.00</span>
                           </div>
                         </div>
                       </motion.div>
@@ -216,7 +216,7 @@ export default function NegotiationSimulator() {
                         </div>
 
                         {/* Client Counteroffer */}
-                        <div className="self-end max-w-[85%] bg-brand-orange text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-md">
+                        <div className="self-end max-w-[85%] bg-brand-primary text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-md">
                           <p className="font-bold border-b border-white/10 pb-1 mb-1">Tú (Cliente)</p>
                           <p className="font-medium text-[11px]">¿Qué tal $55? Es un trabajo simple y tengo las herramientas necesarias en casa.</p>
                           <div className="mt-2 flex items-center justify-between text-[10px] bg-black/15 p-1.5 rounded-lg">
@@ -246,7 +246,7 @@ export default function NegotiationSimulator() {
                             <img
                               src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
                               alt="Roberto"
-                              className="w-6 h-6 rounded-full object-cover border border-brand-orange"
+                              className="w-6 h-6 rounded-full object-cover border border-brand-primary"
                             />
                             <div>
                               <p className="font-bold text-[11px] leading-tight">Roberto Gomez</p>
@@ -255,8 +255,8 @@ export default function NegotiationSimulator() {
                           </div>
                           <p className="text-[11px]">Trato hecho por $60. Yo llevo el teflón y las gomas de repuesto para que quede perfecto.</p>
                           <div className="mt-2.5 flex items-center justify-between text-[10px] bg-slate-950 p-1.5 rounded-lg border border-white/5">
-                            <span className="text-brand-orange">Re-oferta de Roberto</span>
-                            <span className="font-bold text-brand-teal">$60.00</span>
+                            <span className="text-brand-primary">Re-oferta de Roberto</span>
+                            <span className="font-bold text-brand-highlight">$60.00</span>
                           </div>
                         </div>
                       </motion.div>
@@ -268,9 +268,9 @@ export default function NegotiationSimulator() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-col items-center justify-center text-center p-4 bg-slate-900/60 border border-brand-teal/20 rounded-3xl"
+                        className="flex flex-col items-center justify-center text-center p-4 bg-slate-900/60 border border-brand-highlight/20 rounded-3xl"
                       >
-                        <div className="w-12 h-12 rounded-full bg-brand-teal/15 flex items-center justify-center text-brand-teal mb-3">
+                        <div className="w-12 h-12 rounded-full bg-brand-highlight/15 flex items-center justify-center text-brand-highlight mb-3">
                           <CheckCircle className="w-6 h-6 animate-bounce" />
                         </div>
                         <h4 className="text-sm font-bold text-white">¡Trato Confirmado!</h4>
@@ -281,7 +281,7 @@ export default function NegotiationSimulator() {
                         {/* Live GPS Card */}
                         <div className="mt-4 w-full bg-slate-950 border border-white/5 rounded-2xl p-2.5 flex items-center justify-between text-left">
                           <div className="flex items-center gap-2">
-                            <div className="w-7 h-7 bg-brand-teal/15 rounded-lg flex items-center justify-center text-brand-teal">
+                            <div className="w-7 h-7 bg-brand-highlight/15 rounded-lg flex items-center justify-center text-brand-highlight">
                               <Hammer className="w-4 h-4" />
                             </div>
                             <div>
@@ -312,7 +312,7 @@ export default function NegotiationSimulator() {
                     <button
                       disabled={stage === 4}
                       onClick={() => setStage((stage + 1) as Stage)}
-                      className="px-3 py-1 text-[9px] font-bold bg-brand-teal hover:bg-brand-teal-hover text-slate-950 rounded-lg shadow shadow-brand-teal/20 transition"
+                      className="px-3 py-1 text-[9px] font-bold bg-brand-highlight hover:bg-brand-highlight text-slate-950 rounded-lg shadow shadow-brand-highlight/20 transition"
                     >
                       Continuar
                     </button>

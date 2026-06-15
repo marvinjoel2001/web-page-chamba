@@ -20,13 +20,13 @@ export default function Categories() {
       id: "pintura",
       name: "Pintura",
       desc: "Pintado interior y exterior, retoques de fachadas y acabados.",
-      icon: <Paintbrush className="w-6 h-6 text-brand-orange" />,
+      icon: <Paintbrush className="w-6 h-6 text-brand-primary" />,
     },
     {
       id: "plomeria",
       name: "Plomería",
       desc: "Reparación de tuberías, griferías, fugas de agua y sanitarios.",
-      icon: <Droplet className="w-6 h-6 text-brand-teal" />,
+      icon: <Droplet className="w-6 h-6 text-brand-highlight" />,
     },
     {
       id: "electricidad",
@@ -95,7 +95,7 @@ export default function Categories() {
   return (
     <section id="categorias" className="py-20 bg-[#090d16] relative overflow-hidden">
       {/* Visual background gradient glow */}
-      <div className="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-brand-teal/5 blur-[120px] pointer-events-none" />
+      <div className="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-brand-highlight/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -128,7 +128,7 @@ export default function Categories() {
                 <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center border border-white/5 mb-4 group-hover:scale-110 transition-transform duration-300">
                   {category.icon}
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 group-hover:text-brand-orange transition-colors">
+                <h3 className="text-base font-bold text-white mb-2 group-hover:text-brand-primary transition-colors">
                   {category.name}
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -137,7 +137,7 @@ export default function Categories() {
               </div>
 
               {/* Arrow Indicator */}
-              <div className="mt-5 flex items-center text-xs font-bold text-brand-teal group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+              <div className="mt-5 flex items-center text-xs font-bold text-brand-highlight group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
                 <span>Ver ofertas</span>
                 <span className="ml-1">→</span>
               </div>

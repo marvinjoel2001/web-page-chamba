@@ -45,7 +45,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonios" className="py-20 bg-slate-950 relative overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-72 h-72 rounded-full bg-brand-teal/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-72 h-72 rounded-full bg-brand-highlight/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -68,13 +68,13 @@ export default function Testimonials() {
               className="group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 rounded-3xl p-6 transition-all duration-300 shadow-md flex flex-col justify-between"
             >
               {/* Decorative Quote Mark */}
-              <Quote className="absolute right-6 top-6 w-8 h-8 text-white/5 group-hover:text-brand-orange/10 transition-colors" />
+              <Quote className="absolute right-6 top-6 w-8 h-8 text-white/5 group-hover:text-brand-primary/10 transition-colors" />
 
               <div>
                 {/* Rating */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(rev.stars)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-brand-orange fill-brand-orange" />
+                    <Star key={i} className="w-4 h-4 text-brand-primary fill-brand-primary" />
                   ))}
                 </div>
 
@@ -91,7 +91,7 @@ export default function Testimonials() {
                   className="w-11 h-11 rounded-full object-cover border border-white/10"
                 />
                 <div>
-                  <h4 className="text-sm font-bold text-white group-hover:text-brand-teal transition-colors">
+                  <h4 className="text-sm font-bold text-white group-hover:text-brand-highlight transition-colors">
                     {rev.name}
                   </h4>
                   <p className="text-xs text-slate-400">{rev.title}</p>

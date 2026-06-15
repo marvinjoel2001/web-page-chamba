@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Briefcase, Menu, X, Smartphone, User, Hammer } from "lucide-react";
+import { Briefcase, Menu, X, Smartphone, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
@@ -41,8 +41,8 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
         <div className="flex items-center justify-between h-12">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-amber-500 shadow-md shadow-brand-orange/20">
-              <Hammer className="w-5 h-5 text-white" />
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary-light shadow-md shadow-brand-primary/20 overflow-hidden">
+              <img src="/logo.png" alt="Chamba Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-xl font-bold tracking-tight text-white bg-clip-text">
               Chamba
@@ -55,7 +55,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors duration-200"
+                className="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors duration-200"
               >
                 {item.name}
               </a>
@@ -67,7 +67,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             {/* Role Switcher */}
             <div className="relative flex p-1 bg-slate-900/60 border border-white/5 rounded-full">
               <div
-                className={`absolute top-1 bottom-1 w-[88px] bg-gradient-to-r from-brand-orange to-amber-500 rounded-full transition-transform duration-300 ease-out ${
+                className={`absolute top-1 bottom-1 w-[88px] bg-gradient-to-r from-brand-primary to-brand-primary-light rounded-full transition-transform duration-300 ease-out ${
                   activeRole === "worker" ? "translate-x-[88px]" : "translate-x-0"
                 }`}
               />
@@ -93,7 +93,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               href="#descargar"
               className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200"
             >
-              <Smartphone className="w-4 h-4 text-brand-teal" />
+              <Smartphone className="w-4 h-4 text-brand-highlight" />
               <span>Instalar App</span>
             </a>
           </div>
@@ -103,7 +103,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             {/* Quick switcher in mobile navbar */}
             <button
               onClick={() => setActiveRole(activeRole === "client" ? "worker" : "client")}
-              className="p-2 bg-slate-900 border border-white/5 rounded-xl text-xs font-bold text-brand-orange flex items-center gap-1"
+              className="p-2 bg-slate-900 border border-white/5 rounded-xl text-xs font-bold text-brand-primary flex items-center gap-1"
             >
               <User className="w-3.5 h-3.5" />
               <span>{activeRole === "client" ? "Cliente" : "Chambero"}</span>
@@ -135,7 +135,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="px-3 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-brand-orange transition-colors"
+                  className="px-3 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-brand-primary transition-colors"
                 >
                   {item.name}
                 </a>
@@ -150,7 +150,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                     onClick={() => setActiveRole("client")}
                     className={`px-4 py-1 text-xs font-semibold rounded-full transition-all ${
                       activeRole === "client"
-                        ? "bg-brand-orange text-white"
+                        ? "bg-brand-primary text-white"
                         : "text-slate-400"
                     }`}
                   >
@@ -160,7 +160,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                     onClick={() => setActiveRole("worker")}
                     className={`px-4 py-1 text-xs font-semibold rounded-full transition-all ${
                       activeRole === "worker"
-                        ? "bg-brand-orange text-white"
+                        ? "bg-brand-primary text-white"
                         : "text-slate-400"
                     }`}
                   >
@@ -172,7 +172,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               <a
                 href="#descargar"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-brand-orange to-amber-500 text-white shadow-lg shadow-brand-orange/20"
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-brand-primary to-brand-primary-light text-white shadow-lg shadow-brand-primary/20"
               >
                 <Smartphone className="w-5 h-5" />
                 <span>Descargar la App</span>

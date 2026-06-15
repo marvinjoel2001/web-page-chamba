@@ -19,17 +19,17 @@ interface FeaturesProps {
 export default function Features({ activeRole }: FeaturesProps) {
   const clientFeatures = [
     {
-      icon: <Zap className="w-6 h-6 text-brand-orange" />,
+      icon: <Zap className="w-6 h-6 text-brand-primary" />,
       title: "Publica Gratis en Segundos",
       desc: "Describe tu problema, pon un presupuesto referencial y sube fotos desde la app. Sin comisiones de publicación.",
     },
     {
-      icon: <DollarSign className="w-6 h-6 text-brand-teal" />,
+      icon: <DollarSign className="w-6 h-6 text-brand-highlight" />,
       title: "Negociación en Tiempo Real",
       desc: "Compara presupuestos de múltiples chamberos en minutos. Ofrece contraofertas y acuerden un precio justo.",
     },
     {
-      icon: <MapPin className="w-6 h-6 text-amber-500" />,
+      icon: <MapPin className="w-6 h-6 text-brand-primary-light" />,
       title: "Seguimiento en Vivo",
       desc: "Mira el trayecto de tu profesional en tiempo real en el mapa para saber exactamente a qué hora llegará a tu puerta.",
     },
@@ -42,17 +42,17 @@ export default function Features({ activeRole }: FeaturesProps) {
 
   const workerFeatures = [
     {
-      icon: <Compass className="w-6 h-6 text-brand-teal" />,
+      icon: <Compass className="w-6 h-6 text-brand-highlight" />,
       title: "Radio de Trabajo Ajustable",
       desc: "Elige cuántos kilómetros a la redonda quieres cubrir (ej: 5km). Solo te notificamos solicitudes dentro de tu zona.",
     },
     {
-      icon: <DollarSign className="w-6 h-6 text-brand-orange" />,
+      icon: <DollarSign className="w-6 h-6 text-brand-primary" />,
       title: "Tú defines tus Tarifas",
       desc: "Envía ofertas personalizadas según la dificultad: cobra por trabajo completo (precio fijo), por hora o por día.",
     },
     {
-      icon: <MessageSquare className="w-6 h-6 text-amber-500" />,
+      icon: <MessageSquare className="w-6 h-6 text-brand-primary-light" />,
       title: "Chat Directo con Clientes",
       desc: "Aclara dudas, pide más fotos y ponte de acuerdo en detalles y materiales directamente en el chat privado.",
     },
@@ -82,7 +82,7 @@ export default function Features({ activeRole }: FeaturesProps) {
   return (
     <section id="como-funciona" className="py-20 bg-slate-950 relative overflow-hidden">
       {/* Visual background element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-orange/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-primary/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -100,26 +100,43 @@ export default function Features({ activeRole }: FeaturesProps) {
             variants={containerVariants}
             initial="hidden"
             animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="flex flex-col lg:flex-row gap-12 items-center"
           >
-            {currentFeatures.map((feat, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                className="group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 hover:border-white/10 rounded-3xl p-6 transition-all duration-300 shadow-md flex flex-col items-start"
-              >
-                {/* Glowing border hover effect */}
-                <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-orange/20 transition-all duration-300 pointer-events-none" />
-                
-                {/* Icon wrapper */}
-                <div className="p-3 bg-slate-900 rounded-2xl border border-white/5 mb-5 group-hover:scale-110 transition-transform duration-300">
-                  {feat.icon}
-                </div>
+            {/* Features Image (Dynamic based on role) */}
+            <motion.div 
+              className={`w-full lg:w-1/2 flex justify-center ${activeRole === 'worker' ? 'lg:order-2' : ''}`}
+              initial={{ opacity: 0, x: activeRole === 'worker' ? 50 : -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <img 
+                src={activeRole === 'client' ? "/images/feature1.png" : "/images/feature2.png"} 
+                alt="App Feature Showcase" 
+                className="w-full max-w-sm lg:max-w-md rounded-3xl shadow-2xl glow-primary"
+              />
+            </motion.div>
 
-                <h3 className="text-lg font-bold text-white mb-2">{feat.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{feat.desc}</p>
-              </motion.div>
-            ))}
+            {/* Features Grid */}
+            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {currentFeatures.map((feat, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={itemVariants}
+                  className="group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 hover:border-white/10 rounded-3xl p-6 transition-all duration-300 shadow-md flex flex-col items-start"
+                >
+                  {/* Glowing border hover effect */}
+                  <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-primary/20 transition-all duration-300 pointer-events-none" />
+                  
+                  {/* Icon wrapper */}
+                  <div className="p-3 bg-slate-900 rounded-2xl border border-white/5 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {feat.icon}
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white mb-2">{feat.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">{feat.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
