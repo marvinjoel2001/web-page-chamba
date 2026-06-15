@@ -61,22 +61,28 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
       <div className="absolute right-0 bottom-0 w-80 h-80 rounded-full bg-brand-highlight/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             ¿Cómo funciona Chamba?
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
             Un proceso simplificado paso a paso para que alcances tus metas rápidamente.
           </p>
-        </div>
+        </motion.div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={activeRole}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, staggerChildren: 0.1 }}
             className="grid grid-cols-1 md:grid-cols-4 gap-8 relative"
           >
             {/* Visual connector bar for timeline (desktop only) */}

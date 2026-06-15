@@ -11,6 +11,8 @@ import {
   Award,
   TrendingUp,
 } from "lucide-react";
+import PhoneFrame from "./mockups/PhoneFrame";
+import ChatMockup from "./mockups/ChatMockup";
 
 interface FeaturesProps {
   activeRole: "client" | "worker";
@@ -85,35 +87,41 @@ export default function Features({ activeRole }: FeaturesProps) {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-primary/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Todo lo que necesitas en una sola App
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
             Diseñada especialmente para hacer el trabajo local más ágil, seguro y transparente.
           </p>
-        </div>
+        </motion.div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={activeRole}
             variants={containerVariants}
             initial="hidden"
-            animate="show"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col lg:flex-row gap-12 items-center"
           >
             {/* Features Image (Dynamic based on role) */}
             <motion.div 
               className={`w-full lg:w-1/2 flex justify-center ${activeRole === 'worker' ? 'lg:order-2' : ''}`}
               initial={{ opacity: 0, x: activeRole === 'worker' ? 50 : -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
             >
-              <img 
-                src={activeRole === 'client' ? "/images/feature1.png" : "/images/feature2.png"} 
-                alt="App Feature Showcase" 
-                className="w-full max-w-sm lg:max-w-md rounded-3xl shadow-2xl glow-primary"
-              />
+              <PhoneFrame className="scale-90 shadow-2xl">
+                <ChatMockup />
+              </PhoneFrame>
             </motion.div>
 
             {/* Features Grid */}

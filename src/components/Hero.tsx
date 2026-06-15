@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, MapPin, Hammer, Users, Clock, ShieldCheck } from "lucide-react";
+import PhoneFrame from "./mockups/PhoneFrame";
+import ExploreMockup from "./mockups/ExploreMockup";
 
 interface HeroProps {
   activeRole: "client" | "worker";
@@ -155,13 +157,11 @@ export default function Hero({ activeRole }: HeroProps) {
               initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative z-10 w-full max-w-md glow-primary rounded-[2rem] overflow-hidden"
+              className="relative z-10 w-full flex justify-center hover:scale-[1.02] transition-transform duration-500"
             >
-              <img 
-                src="/images/hero-image.png" 
-                alt="Chamba App Preview" 
-                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
-              />
+              <PhoneFrame className="shadow-[0_0_60px_rgba(109,40,217,0.3)]">
+                <ExploreMockup />
+              </PhoneFrame>
             </motion.div>
           </div>
         </div>

@@ -1,8 +1,32 @@
 "use client";
 
-import { Hammer } from "lucide-react";
+import { useState } from "react";
+import { Hammer, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { subscribeEmail } from "../actions/subscribe";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setStatus("loading");
+    setMessage("");
+
+    const result = await subscribeEmail(email);
+    
+    if (result.success) {
+      setStatus("success");
+      setMessage(result.message!);
+      setEmail("");
+    } else {
+      setStatus("error");
+      setMessage(result.error!);
+    }
+  };
   return (
     <footer className="bg-[#090d16] border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,10 +69,10 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Recursos</h4>
               <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><a href="mailto:soporte@chamba.app" className="hover:text-brand-primary transition">Soporte técnico</a></li>
-                <li><a href="#faq" className="hover:text-brand-primary transition">Centro de ayuda</a></li>
-                <li><a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition">Acuerdo Legal (Términos)</a></li>
-                <li><a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition">Privacidad</a></li>
+                <li><a href="/help" className="hover:text-brand-primary transition">Soporte técnico</a></li>
+                <li><a href="/help" className="hover:text-brand-primary transition">Centro de ayuda</a></li>
+                <li><a href="/terms" className="hover:text-brand-primary transition">Acuerdo Legal (Términos)</a></li>
+                <li><a href="/privacy" className="hover:text-brand-primary transition">Privacidad</a></li>
               </ul>
             </div>
           </div>
@@ -59,18 +83,46 @@ export default function Footer() {
             <p className="text-xs text-slate-400 leading-relaxed">
               Recibe notificaciones sobre nuevas especialidades en tu zona y lanzamientos de nuevas versiones de la aplicación.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex gap-2 w-full">
-              <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                className="flex-1 bg-slate-900 border border-white/5 text-xs text-white rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-primary transition"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2.5 bg-brand-primary hover:bg-brand-primary-dark text-white font-bold text-xs rounded-xl shadow shadow-brand-primary/20 transition"
-              >
-                Suscribirse
-              </button>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full relative">
+              <div className="flex gap-2 w-full">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status !== "idle") setStatus("idle");
+                  }}
+                  placeholder="Tu correo electrónico"
+                  required
+                  disabled={status === "loading" || status === "success"}
+                  className="flex-1 bg-slate-900 border border-white/5 text-xs text-white rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-primary transition disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className="px-4 py-2.5 flex items-center justify-center min-w-[100px] bg-brand-primary hover:bg-brand-primary-dark disabled:bg-brand-primary/50 text-white font-bold text-xs rounded-xl shadow shadow-brand-primary/20 transition"
+                >
+                  {status === "loading" ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : status === "success" ? (
+                    <CheckCircle2 className="w-4 h-4" />
+                  ) : (
+                    "Suscribirse"
+                  )}
+                </button>
+              </div>
+              
+              {/* Status Message */}
+              {status !== "idle" && message && (
+                <div className={`flex items-center gap-1.5 text-[11px] mt-1 ${status === "success" ? "text-green-400" : "text-red-400"}`}>
+                  {status === "success" ? (
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  ) : (
+                    <AlertCircle className="w-3.5 h-3.5" />
+                  )}
+                  {message}
+                </div>
+              )}
             </form>
           </div>
         </div>
@@ -81,11 +133,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Chamba App Inc. Todos los derechos reservados.
           </p>
           <div className="flex gap-4 text-[11px] text-slate-500">
-            <a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300">Términos de servicio</a>
+            <a href="/terms" className="hover:text-slate-300 transition-colors">Términos de servicio</a>
             <span>•</span>
-            <a href="/legal/terminos.txt" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300">Políticas de privacidad</a>
+            <a href="/privacy" className="hover:text-slate-300 transition-colors">Políticas de privacidad</a>
             <span>•</span>
-            <a href="#cookies" className="hover:text-slate-300">Cookies</a>
+            <a href="/help" className="hover:text-slate-300 transition-colors">Ayuda</a>
           </div>
         </div>
       </div>
