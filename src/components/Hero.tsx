@@ -154,13 +154,25 @@ export default function Hero({ activeRole }: HeroProps) {
 
             {/* Image Container */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.9, rotate: 2, y: 0 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0, y: [0, -15, 0] }}
+              transition={{ 
+                duration: 0.8, 
+                ease: "easeOut",
+                y: {
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+              }}
               className="relative z-10 w-full flex justify-center hover:scale-[1.02] transition-transform duration-500"
             >
               <PhoneFrame className="shadow-[0_0_60px_rgba(109,40,217,0.3)]">
-                <ExploreMockup />
+                <img 
+                  src="/images/app_screenshot.png" 
+                  alt="Chamba App Screenshot" 
+                  className="w-full h-full object-cover" 
+                />
               </PhoneFrame>
             </motion.div>
           </div>
