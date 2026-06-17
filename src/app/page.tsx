@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Categories from "@/components/Categories";
-import NegotiationSimulator from "@/components/NegotiationSimulator";
+import AboutUs from "@/components/AboutUs";
 import HowItWorks from "@/components/HowItWorks";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
@@ -31,9 +31,6 @@ export default function Home() {
         {/* Categories Grid */}
         <Categories />
 
-        {/* Live Interactive Negotiation Simulator */}
-        <NegotiationSimulator />
-
         {/* Step-by-Step Instructions */}
         <HowItWorks activeRole={activeRole} />
 
@@ -42,6 +39,9 @@ export default function Home() {
 
         {/* Client & Worker Testimonials */}
         <Testimonials />
+
+        {/* About Us (Founder Story) */}
+        <AboutUs />
 
         {/* Call to Action for Installation */}
         <CTA activeRole={activeRole} />

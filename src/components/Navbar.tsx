@@ -26,9 +26,9 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
     { name: "Inicio", href: "/" },
     { name: "Cómo funciona", href: "/#como-funciona" },
     { name: "Categorías", href: "/#categorias" },
-    { name: "Simulador", href: "/#simulador" },
     { name: "Estadísticas", href: "/#estadisticas" },
     { name: "Testimonios", href: "/#testimonios" },
+    { name: "Sobre Nosotros", href: "/#nosotros" },
   ];
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { MessageCircleQuestion, Mail, ShieldAlert } from "lucide-react";
@@ -21,6 +21,21 @@ export default function HelpPage() {
     }
   ];
 
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  const [reportStatus, setReportStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const handleReportSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setReportStatus("submitting");
+    setTimeout(() => {
+      setReportStatus("success");
+      setTimeout(() => {
+        setIsReportModalOpen(false);
+        setReportStatus("idle");
+      }, 3000);
+    }, 1500);
+  };
+
   return (
     <div className="bg-[#090d16] min-h-screen pt-24 text-slate-300">
       <Navbar activeRole="client" setActiveRole={() => {}} />
@@ -39,7 +54,12 @@ export default function HelpPage() {
             <ShieldAlert className="w-8 h-8 text-brand-highlight" />
             <h3 className="text-lg font-bold text-white">Reportar un problema</h3>
             <p className="text-sm text-slate-400">Si un usuario o trabajador incumplió nuestras normas de comunidad, por favor repórtalo inmediatamente.</p>
-            <button className="text-brand-highlight text-sm font-semibold hover:underline mt-auto text-left">Llenar formulario de reporte</button>
+            <button 
+              onClick={() => setIsReportModalOpen(true)}
+              className="text-brand-highlight text-sm font-semibold hover:underline mt-auto text-left"
+            >
+              Llenar formulario de reporte
+            </button>
           </div>
         </div>
 
@@ -56,6 +76,64 @@ export default function HelpPage() {
           ))}
         </div>
       </div>
+
+      {/* Report Modal */}
+      {isReportModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-slate-900 border border-white/10 rounded-2xl p-6 w-full max-w-md shadow-2xl relative">
+            <button 
+              onClick={() => setIsReportModalOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+            >
+              ✕
+            </button>
+            
+            {reportStatus === "success" ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-brand-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">✓</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">¡Reporte Enviado!</h3>
+                <p className="text-slate-400">Gracias por ayudarnos a mantener la comunidad segura. Revisaremos tu caso lo antes posible.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleReportSubmit} className="flex flex-col gap-4">
+                <h3 className="text-xl font-bold text-white mb-2">Reportar Problema</h3>
+                
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-sm font-medium text-slate-300">Tipo de Problema</label>
+                  <select required className="bg-slate-950 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-brand-highlight">
+                    <option value="">Selecciona una opción</option>
+                    <option value="usuario">Comportamiento inadecuado de un usuario</option>
+                    <option value="estafa">Posible estafa o fraude</option>
+                    <option value="bug">Falla técnica en la aplicación</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-sm font-medium text-slate-300">Tu correo electrónico</label>
+                  <input required type="email" placeholder="Para poder contactarte..." className="bg-slate-950 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-brand-highlight" />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-sm font-medium text-slate-300">Descripción detallada</label>
+                  <textarea required rows={4} placeholder="Cuéntanos qué sucedió exactamente..." className="bg-slate-950 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-brand-highlight resize-none" />
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={reportStatus === "submitting"}
+                  className="mt-2 w-full bg-brand-highlight hover:bg-brand-highlight/90 text-white font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-50"
+                >
+                  {reportStatus === "submitting" ? "Enviando..." : "Enviar Reporte"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
