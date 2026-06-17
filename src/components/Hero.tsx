@@ -170,7 +170,7 @@ export default function Hero({ activeRole }: HeroProps) {
               <img 
                 src="/images/app_screenshot.png" 
                 alt="Chamba App Screenshot" 
-                className="w-full h-auto max-w-[320px] sm:max-w-[360px] lg:max-w-[400px] object-contain drop-shadow-[0_0_60px_rgba(109,40,217,0.4)]" 
+                className="w-full h-auto max-w-[360px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[550px] xl:max-w-[600px] object-contain drop-shadow-[0_0_60px_rgba(109,40,217,0.4)]" 
               />
             </motion.div>
           </div>
