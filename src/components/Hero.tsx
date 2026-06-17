@@ -167,13 +167,11 @@ export default function Hero({ activeRole }: HeroProps) {
               }}
               className="relative z-10 w-full flex justify-center hover:scale-[1.02] transition-transform duration-500"
             >
-              <PhoneFrame className="shadow-[0_0_60px_rgba(109,40,217,0.3)]">
-                <img 
-                  src="/images/app_screenshot.png" 
-                  alt="Chamba App Screenshot" 
-                  className="w-full h-full object-cover" 
-                />
-              </PhoneFrame>
+              <img 
+                src="/images/app_screenshot.png" 
+                alt="Chamba App Screenshot" 
+                className="w-full h-auto max-w-[320px] sm:max-w-[360px] lg:max-w-[400px] object-contain drop-shadow-[0_0_60px_rgba(109,40,217,0.4)]" 
+              />
             </motion.div>
           </div>
         </div>
