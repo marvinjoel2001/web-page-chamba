@@ -92,6 +92,15 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             </div>
 
             <Link
+              href="/unete"
+              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-brand-primary-light bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 rounded-xl transition-all duration-200"
+            >
+              <Briefcase className="w-4 h-4" />
+              <span className="hidden lg:inline">Trabaja con nosotros</span>
+              <span className="lg:hidden">Únete</span>
+            </Link>
+
+            <Link
               href="/#descargar"
               className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200"
             >
@@ -170,6 +179,15 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                   </button>
                 </div>
               </div>
+
+              <Link
+                href="/unete"
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-brand-primary/10 text-brand-primary-light border border-brand-primary/30"
+              >
+                <Briefcase className="w-5 h-5" />
+                <span>Trabaja con nosotros</span>
+              </Link>
 
               <Link
                 href="/#descargar"
