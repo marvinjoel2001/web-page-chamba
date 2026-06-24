@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, MapPin, Hammer, Users, Clock, ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 import PhoneFrame from "./mockups/PhoneFrame";
 import ExploreMockup from "./mockups/ExploreMockup";
 
@@ -10,31 +11,31 @@ interface HeroProps {
 }
 
 export default function Hero({ activeRole }: HeroProps) {
+  const t = useTranslations("Hero");
+
   // Client variants
   const clientTitle = (
     <>
-      Encuentra profesionales locales{" "}
+      {t("client_title_1")}
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-primary-light">
-        de confianza
-      </span>{" "}
-      en minutos
+        {t("client_title_2")}
+      </span>
+      {t("client_title_3")}
     </>
   );
-  const clientDesc =
-    "Publica tu necesidad (plomería, pintura, limpieza y más), recibe múltiples ofertas de trabajadores locales calificados en tu zona, negocia tarifas en tiempo real y págalos de forma directa.";
+  const clientDesc = t("client_desc");
 
   // Worker variants
   const workerTitle = (
     <>
-      Haz trabajos locales{" "}
+      {t("worker_title_1")}
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary-dark">
-        a tu propio ritmo
-      </span>{" "}
-      y gana dinero
+        {t("worker_title_2")}
+      </span>
+      {t("worker_title_3")}
     </>
   );
-  const workerDesc =
-    "Únete como Chambero, configura tu radio de trabajo y recibe notificaciones de solicitudes de clientes en tu zona al instante. Envía ofertas, chatea directo con los clientes y crece tu reputación.";
+  const workerDesc = t("worker_desc");
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-grid-pattern">
@@ -62,7 +63,7 @@ export default function Hero({ activeRole }: HeroProps) {
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900 border border-white/5 text-xs font-semibold text-slate-300 mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-              <span>Chamba App v1.5 está disponible</span>
+              <span>{t("badge_new")}</span>
             </motion.div>
 
             {/* Dynamic Title */}
@@ -105,8 +106,8 @@ export default function Hero({ activeRole }: HeroProps) {
                 {/* Apple App Store Icon */}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="Apple" className="w-6 h-6 object-contain" />
                 <div className="text-left">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-wider">Descargar en</p>
-                  <p className="text-sm font-semibold text-white group-hover:text-brand-primary transition-colors">App Store</p>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-wider">{t("download_on")}</p>
+                  <p className="text-sm font-semibold text-white group-hover:text-brand-primary transition-colors">{t("app_store")}</p>
                 </div>
               </a>
 
@@ -117,8 +118,8 @@ export default function Hero({ activeRole }: HeroProps) {
                 {/* Google Play Icon */}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play" className="w-6 h-6 object-contain" />
                 <div className="text-left">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-wider">Disponible en</p>
-                  <p className="text-sm font-semibold text-white group-hover:text-brand-highlight transition-colors">Google Play</p>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-wider">{t("available_on")}</p>
+                  <p className="text-sm font-semibold text-white group-hover:text-brand-highlight transition-colors">{t("google_play")}</p>
                 </div>
               </a>
             </div>
@@ -128,19 +129,19 @@ export default function Hero({ activeRole }: HeroProps) {
               <div className="flex flex-col">
                 <span className="text-2xl font-black text-white">4.9★</span>
                 <span className="text-xs text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-brand-highlight" /> Calidad
+                  <ShieldCheck className="w-3.5 h-3.5 text-brand-highlight" /> {t("stat_quality")}
                 </span>
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-black text-white">+10k</span>
                 <span className="text-xs text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-1">
-                  <Users className="w-3.5 h-3.5 text-brand-primary" /> Solicitudes
+                  <Users className="w-3.5 h-3.5 text-brand-primary" /> {t("stat_requests")}
                 </span>
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-black text-white">&lt; 5 min</span>
                 <span className="text-xs text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-1">
-                  <Clock className="w-3.5 h-3.5 text-brand-primary-light" /> Respuestas
+                  <Clock className="w-3.5 h-3.5 text-brand-primary-light" /> {t("stat_responses")}
                 </span>
               </div>
             </div>

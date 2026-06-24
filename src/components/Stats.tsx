@@ -2,31 +2,33 @@
 
 import { motion } from "framer-motion";
 import { Star, ShieldAlert, BadgeDollarSign, ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Stats() {
+  const t = useTranslations("Stats");
   const statsList = [
     {
       value: "+15,000",
-      label: "Trabajos Realizados",
-      desc: "Servicios domésticos y reparaciones ejecutados exitosamente en la plataforma.",
+      label: t("stat_1_label"),
+      desc: t("stat_1_desc"),
       icon: <ShieldCheck className="w-5 h-5 text-brand-highlight" />,
     },
     {
       value: "4.9★",
-      label: "Valoración Promedio",
-      desc: "Excelente reputación construida gracias al compromiso y calidad de nuestros chamberos.",
+      label: t("stat_2_label"),
+      desc: t("stat_2_desc"),
       icon: <Star className="w-5 h-5 text-brand-primary fill-brand-primary" />,
     },
     {
       value: "< 5 min",
-      label: "Tiempo de Respuesta",
-      desc: "Nuestra red de geolocalización asegura ofertas instantáneas de técnicos cercanos.",
+      label: t("stat_3_label"),
+      desc: t("stat_3_desc"),
       icon: <ShieldAlert className="w-5 h-5 text-brand-primary-light" />,
     },
     {
       value: "$0.00",
-      label: "Comisión de Publicación",
-      desc: "Publica solicitudes de forma totalmente gratuita y paga directo al profesional acordado.",
+      label: t("stat_4_label"),
+      desc: t("stat_4_desc"),
       icon: <BadgeDollarSign className="w-5 h-5 text-emerald-500" />,
     },
   ];

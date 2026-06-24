@@ -2,55 +2,58 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Edit3, Users, MessageSquare, ShieldCheck, UserCheck, Compass, Send, CheckSquare } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface HowItWorksProps {
   activeRole: "client" | "worker";
 }
 
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
+  const t = useTranslations("HowItWorks");
+
   const clientSteps = [
     {
       icon: <Edit3 className="w-6 h-6 text-brand-primary" />,
-      title: "1. Describe lo que necesitas",
-      desc: "Especifica la categoría, sube fotos y propone un presupuesto de referencia. Tardas menos de un minuto.",
+      title: t("client_step_1_title"),
+      desc: t("client_step_1_desc"),
     },
     {
       icon: <Users className="w-6 h-6 text-brand-highlight" />,
-      title: "2. Recibe presupuestos en vivo",
-      desc: "Chamberos calificados en tu área reciben la alerta geo y te envían sus cotizaciones en tiempo real.",
+      title: t("client_step_2_title"),
+      desc: t("client_step_2_desc"),
     },
     {
       icon: <MessageSquare className="w-6 h-6 text-brand-primary-light" />,
-      title: "3. Negocia y confirma",
-      desc: "Usa el chat integrado de la app para aclarar dudas, proponer contraofertas y aceptar al profesional perfecto.",
+      title: t("client_step_3_title"),
+      desc: t("client_step_3_desc"),
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-emerald-500" />,
-      title: "4. Completa con seguridad",
-      desc: "El profesional realiza el trabajo, tú liberas el pago al estar satisfecho y dejas una valoración.",
+      title: t("client_step_4_title"),
+      desc: t("client_step_4_desc"),
     },
   ];
 
   const workerSteps = [
     {
       icon: <UserCheck className="w-6 h-6 text-brand-highlight" />,
-      title: "1. Completa tu perfil",
-      desc: "Regístrate con tus datos, selecciona tus habilidades técnicas e ingresa tus certificaciones u oficios.",
+      title: t("worker_step_1_title"),
+      desc: t("worker_step_1_desc"),
     },
     {
       icon: <Compass className="w-6 h-6 text-brand-primary" />,
-      title: "2. Configura tu zona",
-      desc: "Determina tu radio de notificaciones (ej: 5km). Te llegarán alertas de trabajos solo en esa área.",
+      title: t("worker_step_2_title"),
+      desc: t("worker_step_2_desc"),
     },
     {
       icon: <Send className="w-6 h-6 text-brand-primary-light" />,
-      title: "3. Envía tus ofertas",
-      desc: "Revisa las solicitudes locales, calcula tus costos de mano de obra y envía tu oferta directamente al cliente.",
+      title: t("worker_step_3_title"),
+      desc: t("worker_step_3_desc"),
     },
     {
       icon: <CheckSquare className="w-6 h-6 text-emerald-500" />,
-      title: "4. Haz el trabajo y gana",
-      desc: "Realiza el trabajo contratado, confirma tu llegada vía GPS, completa la tarea y recibe tu dinero directo.",
+      title: t("worker_step_4_title"),
+      desc: t("worker_step_4_desc"),
     },
   ];
 
@@ -69,10 +72,10 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            ¿Cómo funciona Chamba?
+            {t("title")}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
-            Un proceso simplificado paso a paso para que alcances tus metas rápidamente.
+            {t("subtitle")}
           </p>
         </motion.div>
 

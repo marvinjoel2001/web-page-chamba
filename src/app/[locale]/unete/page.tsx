@@ -3,7 +3,12 @@ import Footer from "@/components/Footer";
 import WorkerRegistrationForm from "@/components/WorkerRegistrationForm";
 import { Wrench, ShieldCheck, DollarSign, Clock } from "lucide-react";
 
-export default function JoinUsPage() {
+export default async function JoinUsPage({
+  params
+}: {
+  params: Promise<{locale: string}>;
+}) {
+  const {locale} = await params;
   return (
     <div className="min-h-screen flex flex-col bg-[#090d16] font-sans selection:bg-brand-primary selection:text-white antialiased">
       {/* 

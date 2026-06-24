@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { Briefcase, Menu, X, Smartphone, User, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface NavbarProps {
   activeRole: "client" | "worker";
@@ -11,6 +12,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
+  const t = useTranslations("Navbar");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,12 +25,12 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
   }, []);
 
   const menuItems = [
-    { name: "Inicio", href: "/" },
-    { name: "Cómo funciona", href: "/#como-funciona" },
-    { name: "Categorías", href: "/#categorias" },
-    { name: "Estadísticas", href: "/#estadisticas" },
-    { name: "Testimonios", href: "/#testimonios" },
-    { name: "Sobre Nosotros", href: "/#nosotros" },
+    { name: t("menu_home"), href: "/" },
+    { name: t("menu_how_it_works"), href: "/#como-funciona" },
+    { name: t("menu_categories"), href: "/#categorias" },
+    { name: t("menu_stats"), href: "/#estadisticas" },
+    { name: t("menu_testimonials"), href: "/#testimonios" },
+    { name: t("menu_about"), href: "/#nosotros" },
   ];
 
   return (
@@ -79,7 +81,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                   activeRole === "client" ? "text-white" : "text-slate-400 hover:text-white"
                 }`}
               >
-                Cliente
+                {t("role_client")}
               </button>
               <button
                 onClick={() => setActiveRole && setActiveRole("worker")}
@@ -87,7 +89,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                   activeRole === "worker" ? "text-white" : "text-slate-400 hover:text-white"
                 }`}
               >
-                Chambero
+                {t("role_worker")}
               </button>
             </div>
 
@@ -96,7 +98,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200 whitespace-nowrap shrink-0"
             >
               <Smartphone className="w-4 h-4 text-brand-highlight shrink-0" />
-              <span>Instalar App</span>
+              <span>{t("install_app")}</span>
             </Link>
 
             {/* Floating Trabaja con nosotros Card */}
@@ -116,8 +118,8 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                     <Briefcase className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-slate-400 font-medium">¿Buscas generar ingresos?</span>
-                    <span className="text-sm font-bold text-brand-primary-light group-hover:text-white transition-colors">Trabaja con nosotros</span>
+                    <span className="text-xs text-slate-400 font-medium">{t("income_question")}</span>
+                    <span className="text-sm font-bold text-brand-primary-light group-hover:text-white transition-colors">{t("work_with_us")}</span>
                   </div>
                   <ArrowRight className="w-4 h-4 text-brand-primary-light ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -133,7 +135,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               className="p-2 bg-slate-900 border border-white/5 rounded-xl text-xs font-bold text-brand-primary flex items-center gap-1"
             >
               <User className="w-3.5 h-3.5" />
-              <span>{activeRole === "client" ? "Cliente" : "Chambero"}</span>
+              <span>{activeRole === "client" ? t("role_client") : t("role_worker")}</span>
             </button>
 
             <button
@@ -171,7 +173,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
 
             <div className="border-t border-white/5 pt-4 flex flex-col gap-3">
               <div className="flex justify-between items-center px-3">
-                <span className="text-sm text-slate-400 font-medium">Modo de Vista:</span>
+                <span className="text-sm text-slate-400 font-medium">{t("view_mode")}</span>
                 <div className="flex p-1 bg-slate-900 border border-white/5 rounded-full">
                   <button
                     onClick={() => setActiveRole && setActiveRole("client")}
@@ -181,7 +183,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                         : "text-slate-400"
                     }`}
                   >
-                    Cliente
+                    {t("role_client")}
                   </button>
                   <button
                     onClick={() => setActiveRole && setActiveRole("worker")}
@@ -191,7 +193,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                         : "text-slate-400"
                     }`}
                   >
-                    Chambero
+                    {t("role_worker")}
                   </button>
                 </div>
               </div>
@@ -202,7 +204,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-white/5 text-white border border-white/10 hover:bg-white/10 transition-colors"
               >
                 <Smartphone className="w-5 h-5 text-brand-highlight" />
-                <span>Instalar App</span>
+                <span>{t("install_app")}</span>
               </Link>
 
               <Link
@@ -211,7 +213,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-brand-primary to-brand-primary-light text-white shadow-lg shadow-brand-primary/20"
               >
                 <Briefcase className="w-5 h-5" />
-                <span>Trabaja con nosotros</span>
+                <span>{t("work_with_us")}</span>
               </Link>
             </div>
           </motion.div>

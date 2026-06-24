@@ -2,12 +2,14 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Smartphone, Download, Award, ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface CTAProps {
   activeRole: "client" | "worker";
 }
 
 export default function CTA({ activeRole }: CTAProps) {
+  const t = useTranslations("CTA");
   return (
     <section id="descargar" className="py-20 bg-[#090d16] relative overflow-hidden">
       {/* Background radial highlight */}
@@ -30,8 +32,8 @@ export default function CTA({ activeRole }: CTAProps) {
                   className="block"
                 >
                   {activeRole === "client"
-                    ? "¿Listo para resolver tus tareas domésticas?"
-                    : "¿Listo para ganar más con tu oficio?"}
+                    ? t("client_title")
+                    : t("worker_title")}
                 </motion.span>
               </AnimatePresence>
             </h2>
@@ -46,8 +48,8 @@ export default function CTA({ activeRole }: CTAProps) {
                   transition={{ duration: 0.25 }}
                 >
                   {activeRole === "client"
-                    ? "Descarga Chamba App hoy. Publica tu primer requerimiento de forma gratuita y conéctate con trabajadores verificados en tu vecindario al instante."
-                    : "Descarga la aplicación, regístrate como profesional y empieza a recibir ofertas de trabajo locales en tu zona. ¡El control es tuyo!"}
+                    ? t("client_desc")
+                    : t("worker_desc")}
                 </motion.span>
               </AnimatePresence>
             </p>
@@ -115,7 +117,7 @@ export default function CTA({ activeRole }: CTAProps) {
             </div>
             
             <span className="text-[10px] text-slate-400 font-bold mt-4 text-center">
-              Escanea para descargar
+              {t("scan_to_download")}
             </span>
           </div>
         </div>

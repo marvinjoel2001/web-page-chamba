@@ -2,44 +2,42 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Testimonials() {
+  const t = useTranslations("Testimonials");
   const reviews = [
     {
       role: "client",
-      name: "Carla Mendoza",
-      title: "Cliente • La Paz",
+      name: t("rev_1_name"),
+      title: t("rev_1_title"),
       photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
       stars: 5,
-      comment:
-        "Tenía una fuga de agua urgente en la cocina un sábado por la noche. Publiqué en Chamba y a los 5 minutos Roberto me cotizó. Negociamos un precio justo por el chat y en media hora ya estaba solucionado. ¡Una salvación!",
+      comment: t("rev_1_comment"),
     },
     {
       role: "worker",
-      name: "Roberto Gómez",
-      title: "Chambero (Pintura/Plomería)",
+      name: t("rev_2_name"),
+      title: t("rev_2_title"),
       photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
       stars: 5,
-      comment:
-        "El hecho de poder configurar mi radio de trabajo a 5km a la redonda me ha cambiado la vida. Ahorro tiempo y costos de transporte, y la negociación de tarifas directa me permite valorizar bien mi mano de obra.",
+      comment: t("rev_2_comment"),
     },
     {
       role: "worker",
-      name: "Elena Morales",
-      title: "Chambera (Decoradora/Pintora)",
+      name: t("rev_3_name"),
+      title: t("rev_3_title"),
       photo: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6",
       stars: 5,
-      comment:
-        "Con Chamba he logrado conseguir clientes constantes en mi zona. La app es súper intuitiva, te notifica al instante y el perfil con reseñas me ayuda a generar confianza inmediata con nuevas personas.",
+      comment: t("rev_3_comment"),
     },
     {
       role: "client",
-      name: "Marcos Quispe",
-      title: "Chambero (Electricista)",
+      name: t("rev_4_name"),
+      title: t("rev_4_title"),
       photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
       stars: 5,
-      comment:
-        "Antes dependía del boca a boca o de pegar anuncios en la calle. Ahora abro Chamba y veo ofertas de trabajo reales en mi vecindario todos los días. Mis ingresos mensuales han subido un 40%.",
+      comment: t("rev_4_comment"),
     },
   ];
 
@@ -50,10 +48,10 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Lo que dicen nuestros usuarios
+            {t("title")}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
-            Descubre las historias de clientes satisfechos y profesionales locales que impulsan su economía diaria.
+            {t("subtitle")}
           </p>
         </div>
 

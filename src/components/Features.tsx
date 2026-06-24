@@ -11,6 +11,7 @@ import {
   Award,
   TrendingUp,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import PhoneFrame from "./mockups/PhoneFrame";
 import ChatMockup from "./mockups/ChatMockup";
 
@@ -19,49 +20,51 @@ interface FeaturesProps {
 }
 
 export default function Features({ activeRole }: FeaturesProps) {
+  const t = useTranslations("Features");
+
   const clientFeatures = [
     {
       icon: <Zap className="w-6 h-6 text-brand-primary" />,
-      title: "Publica Gratis en Segundos",
-      desc: "Describe tu problema, pon un presupuesto referencial y sube fotos desde la app. Sin comisiones de publicación.",
+      title: t("client_feat_1_title"),
+      desc: t("client_feat_1_desc"),
     },
     {
       icon: <DollarSign className="w-6 h-6 text-brand-highlight" />,
-      title: "Negociación en Tiempo Real",
-      desc: "Compara presupuestos de múltiples chamberos en minutos. Ofrece contraofertas y acuerden un precio justo.",
+      title: t("client_feat_2_title"),
+      desc: t("client_feat_2_desc"),
     },
     {
       icon: <MapPin className="w-6 h-6 text-brand-primary-light" />,
-      title: "Seguimiento en Vivo",
-      desc: "Mira el trayecto de tu profesional en tiempo real en el mapa para saber exactamente a qué hora llegará a tu puerta.",
+      title: t("client_feat_3_title"),
+      desc: t("client_feat_3_desc"),
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-emerald-500" />,
-      title: "Garantía de Confianza",
-      desc: "Revisa perfiles, fotos de trabajos anteriores y valoraciones de otros clientes para contratar al profesional ideal.",
+      title: t("client_feat_4_title"),
+      desc: t("client_feat_4_desc"),
     },
   ];
 
   const workerFeatures = [
     {
       icon: <Compass className="w-6 h-6 text-brand-highlight" />,
-      title: "Radio de Trabajo Ajustable",
-      desc: "Elige cuántos kilómetros a la redonda quieres cubrir (ej: 5km). Solo te notificamos solicitudes dentro de tu zona.",
+      title: t("worker_feat_1_title"),
+      desc: t("worker_feat_1_desc"),
     },
     {
       icon: <DollarSign className="w-6 h-6 text-brand-primary" />,
-      title: "Tú defines tus Tarifas",
-      desc: "Envía ofertas personalizadas según la dificultad: cobra por trabajo completo (precio fijo), por hora o por día.",
+      title: t("worker_feat_2_title"),
+      desc: t("worker_feat_2_desc"),
     },
     {
       icon: <MessageSquare className="w-6 h-6 text-brand-primary-light" />,
-      title: "Chat Directo con Clientes",
-      desc: "Aclara dudas, pide más fotos y ponte de acuerdo en detalles y materiales directamente en el chat privado.",
+      title: t("worker_feat_3_title"),
+      desc: t("worker_feat_3_desc"),
     },
     {
       icon: <Award className="w-6 h-6 text-purple-500" />,
-      title: "Crea tu Reputación",
-      desc: "Cada trabajo completado exitosamente y cada reseña de 5 estrellas aumentan tu visibilidad para atraer más clientes.",
+      title: t("worker_feat_4_title"),
+      desc: t("worker_feat_4_desc"),
     },
   ];
 
@@ -95,10 +98,10 @@ export default function Features({ activeRole }: FeaturesProps) {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Todo lo que necesitas en una sola App
+            {t("title")}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-400">
-            Diseñada especialmente para hacer el trabajo local más ágil, seguro y transparente.
+            {t("subtitle")}
           </p>
         </motion.div>
 

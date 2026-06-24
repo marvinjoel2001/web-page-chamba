@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { Hammer, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { subscribeEmail } from "../actions/subscribe";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -40,7 +43,7 @@ export default function Footer() {
               <span className="text-lg font-bold text-white tracking-tight">Chamba</span>
             </div>
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
-              La plataforma móvil líder en conexión de servicios locales. Ayudando a construir comunidades de confianza, conectando clientes con el mejor talento local sin intermediarios.
+              {t("desc")}
             </p>
             <div className="flex gap-3 mt-2">
               <a href="#" className="p-2 bg-slate-900 border border-white/5 hover:border-brand-primary/30 text-slate-400 hover:text-white rounded-xl transition" aria-label="Twitter">
@@ -58,30 +61,30 @@ export default function Footer() {
           {/* Quick links */}
           <div className="md:col-span-3 grid grid-cols-2 gap-4">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Empresa</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">{t("company")}</h4>
               <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><a href="#inicio" className="hover:text-brand-primary transition">Sobre nosotros</a></li>
-                <li><a href="#testimonios" className="hover:text-brand-primary transition">Testimonios</a></li>
-                <li><a href="#como-funciona" className="hover:text-brand-primary transition">Cómo funciona</a></li>
-                <li><a href="#contacto" className="hover:text-brand-primary transition">Contacto</a></li>
+                <li><Link href="/#nosotros" className="hover:text-brand-primary transition">{t("about")}</Link></li>
+                <li><Link href="/#testimonios" className="hover:text-brand-primary transition">{t("testimonials")}</Link></li>
+                <li><Link href="/#como-funciona" className="hover:text-brand-primary transition">{t("how_it_works")}</Link></li>
+                <li><Link href="/#contacto" className="hover:text-brand-primary transition">{t("contact")}</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Recursos</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">{t("resources")}</h4>
               <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><a href="/help" className="hover:text-brand-primary transition">Soporte técnico</a></li>
-                <li><a href="/help" className="hover:text-brand-primary transition">Centro de ayuda</a></li>
-                <li><a href="/terms" className="hover:text-brand-primary transition">Acuerdo Legal (Términos)</a></li>
-                <li><a href="/privacy" className="hover:text-brand-primary transition">Privacidad</a></li>
+                <li><Link href="/help" className="hover:text-brand-primary transition">{t("support")}</Link></li>
+                <li><Link href="/help" className="hover:text-brand-primary transition">{t("help")}</Link></li>
+                <li><Link href="/terms" className="hover:text-brand-primary transition">{t("terms")}</Link></li>
+                <li><Link href="/privacy" className="hover:text-brand-primary transition">{t("privacy")}</Link></li>
               </ul>
             </div>
           </div>
 
           {/* Newsletter signup */}
           <div className="md:col-span-4 flex flex-col items-start gap-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Suscríbete a novedades</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">{t("newsletter_title")}</h4>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Recibe notificaciones sobre nuevas especialidades en tu zona y lanzamientos de nuevas versiones de la aplicación.
+              {t("newsletter_desc")}
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full relative">
               <div className="flex gap-2 w-full">
@@ -92,7 +95,7 @@ export default function Footer() {
                     setEmail(e.target.value);
                     if (status !== "idle") setStatus("idle");
                   }}
-                  placeholder="Tu correo electrónico"
+                  placeholder={t("email_placeholder")}
                   required
                   disabled={status === "loading" || status === "success"}
                   className="flex-1 bg-slate-900 border border-white/5 text-xs text-white rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-primary transition disabled:opacity-50"
@@ -107,7 +110,7 @@ export default function Footer() {
                   ) : status === "success" ? (
                     <CheckCircle2 className="w-4 h-4" />
                   ) : (
-                    "Suscribirse"
+                    t("subscribe")
                   )}
                 </button>
               </div>
@@ -130,14 +133,14 @@ export default function Footer() {
         {/* Legal and Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center">
           <p className="text-[11px] text-slate-500">
-            © {new Date().getFullYear()} Chamba App Inc. Todos los derechos reservados.
+            {t("rights", { year: new Date().getFullYear() })}
           </p>
           <div className="flex gap-4 text-[11px] text-slate-500">
-            <a href="/terms" className="hover:text-slate-300 transition-colors">Términos de servicio</a>
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">{t("terms_footer")}</Link>
             <span>•</span>
-            <a href="/privacy" className="hover:text-slate-300 transition-colors">Políticas de privacidad</a>
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors">{t("privacy_footer")}</Link>
             <span>•</span>
-            <a href="/help" className="hover:text-slate-300 transition-colors">Ayuda</a>
+            <Link href="/help" className="hover:text-slate-300 transition-colors">{t("help_footer")}</Link>
           </div>
         </div>
       </div>
