@@ -7,7 +7,7 @@ import Link from "next/link";
 
 interface NavbarProps {
   activeRole: "client" | "worker";
-  setActiveRole: (role: "client" | "worker") => void;
+  setActiveRole?: (role: "client" | "worker") => void;
 }
 
 export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
@@ -74,7 +74,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 }`}
               />
               <button
-                onClick={() => setActiveRole("client")}
+                onClick={() => setActiveRole && setActiveRole("client")}
                 className={`relative px-4 py-1 text-xs font-semibold rounded-full transition-colors duration-200 z-10 w-[88px] text-center ${
                   activeRole === "client" ? "text-white" : "text-slate-400 hover:text-white"
                 }`}
@@ -82,7 +82,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 Cliente
               </button>
               <button
-                onClick={() => setActiveRole("worker")}
+                onClick={() => setActiveRole && setActiveRole("worker")}
                 className={`relative px-4 py-1 text-xs font-semibold rounded-full transition-colors duration-200 z-10 w-[88px] text-center ${
                   activeRole === "worker" ? "text-white" : "text-slate-400 hover:text-white"
                 }`}
@@ -113,7 +113,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
           <div className="flex md:hidden items-center gap-3">
             {/* Quick switcher in mobile navbar */}
             <button
-              onClick={() => setActiveRole(activeRole === "client" ? "worker" : "client")}
+              onClick={() => setActiveRole && setActiveRole(activeRole === "client" ? "worker" : "client")}
               className="p-2 bg-slate-900 border border-white/5 rounded-xl text-xs font-bold text-brand-primary flex items-center gap-1"
             >
               <User className="w-3.5 h-3.5" />
@@ -158,7 +158,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 <span className="text-sm text-slate-400 font-medium">Modo de Vista:</span>
                 <div className="flex p-1 bg-slate-900 border border-white/5 rounded-full">
                   <button
-                    onClick={() => setActiveRole("client")}
+                    onClick={() => setActiveRole && setActiveRole("client")}
                     className={`px-4 py-1 text-xs font-semibold rounded-full transition-all ${
                       activeRole === "client"
                         ? "bg-brand-primary text-white"
@@ -168,7 +168,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                     Cliente
                   </button>
                   <button
-                    onClick={() => setActiveRole("worker")}
+                    onClick={() => setActiveRole && setActiveRole("worker")}
                     className={`px-4 py-1 text-xs font-semibold rounded-full transition-all ${
                       activeRole === "worker"
                         ? "bg-brand-primary text-white"

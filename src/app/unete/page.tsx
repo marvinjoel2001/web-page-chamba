@@ -8,9 +8,8 @@ export default function JoinUsPage() {
     <div className="min-h-screen flex flex-col bg-[#090d16] font-sans selection:bg-brand-primary selection:text-white antialiased">
       {/* 
         We pass a fixed activeRole if your Navbar requires it.
-        We can just pass "worker" so the Navbar reflects the worker vibe.
       */}
-      <Navbar activeRole="worker" setActiveRole={() => {}} />
+      <Navbar activeRole="worker" />
 
       <main className="flex-1 relative pt-24 pb-16 overflow-hidden">
         {/* Background Decorative Elements */}

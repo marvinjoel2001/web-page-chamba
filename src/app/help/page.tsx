@@ -38,7 +38,7 @@ export default function HelpPage() {
 
   return (
     <div className="bg-[#090d16] min-h-screen pt-24 text-slate-300">
-      <Navbar activeRole="client" setActiveRole={() => {}} />
+      <Navbar activeRole="client" />
       <div className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold text-white mb-4">Centro de Ayuda</h1>
         <p className="text-slate-400 mb-12">Estamos aquí para ayudarte. Encuentra respuestas a las preguntas más frecuentes o contáctanos.</p>
