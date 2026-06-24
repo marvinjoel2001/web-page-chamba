@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Briefcase, Menu, X, Smartphone, User } from "lucide-react";
+import { Briefcase, Menu, X, Smartphone, User, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -52,12 +52,12 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden xl:flex items-center gap-4 2xl:gap-8">
+          <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors duration-200 whitespace-nowrap"
+                className="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors duration-200"
               >
                 {item.name}
               </Link>
@@ -65,7 +65,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
           </div>
 
           {/* Controls: Role Selector + CTA */}
-          <div className="hidden xl:flex items-center gap-4 shrink-0">
+          <div className="hidden md:flex items-center gap-4 relative">
             {/* Role Switcher */}
             <div className="relative flex p-1 bg-slate-900/60 border border-white/5 rounded-full">
               <div
@@ -92,24 +92,41 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             </div>
 
             <Link
-              href="/unete"
-              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-brand-primary-light bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 rounded-xl transition-all duration-200 whitespace-nowrap shrink-0"
-            >
-              <Briefcase className="w-4 h-4 shrink-0" />
-              <span>Trabaja con nosotros</span>
-            </Link>
-
-            <Link
               href="/#descargar"
               className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200 whitespace-nowrap shrink-0"
             >
               <Smartphone className="w-4 h-4 text-brand-highlight shrink-0" />
               <span>Instalar App</span>
             </Link>
+
+            {/* Floating Trabaja con nosotros Card */}
+            <div className="absolute top-[calc(100%+1.5rem)] right-0">
+              <div className="relative">
+                {/* Dotted Arrow SVG pointing up-left */}
+                <svg className="absolute -top-7 right-8 w-8 h-8 text-brand-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeDasharray="3 3" strokeWidth="1.5" strokeLinecap="round" d="M8 20 C 8 10, 16 8, 20 4" />
+                  <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M15 4 L 20 4 L 20 9" />
+                </svg>
+
+                <Link
+                  href="/unete"
+                  className="flex items-center gap-4 p-3 pr-5 bg-[#090d16] border border-brand-primary/20 rounded-2xl shadow-2xl hover:-translate-y-1 hover:shadow-brand-primary/20 hover:border-brand-primary/50 transition-all duration-300 group whitespace-nowrap"
+                >
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary-light group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                    <Briefcase className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-slate-400 font-medium">¿Buscas generar ingresos?</span>
+                    <span className="text-sm font-bold text-brand-primary-light group-hover:text-white transition-colors">Trabaja con nosotros</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-brand-primary-light ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex xl:hidden items-center gap-3 shrink-0">
+          <div className="flex md:hidden items-center gap-3">
             {/* Quick switcher in mobile navbar */}
             <button
               onClick={() => setActiveRole && setActiveRole(activeRole === "client" ? "worker" : "client")}
@@ -137,7 +154,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="xl:hidden border-b border-white/5 bg-[#090d16] px-4 pt-2 pb-6 space-y-4 shadow-xl"
+            className="md:hidden border-b border-white/5 bg-[#090d16] px-4 pt-2 pb-6 space-y-4 shadow-xl"
           >
             <div className="flex flex-col gap-2 pt-2">
               {menuItems.map((item) => (
@@ -180,21 +197,21 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               </div>
 
               <Link
-                href="/unete"
+                href="/#descargar"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-brand-primary/10 text-brand-primary-light border border-brand-primary/30"
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-white/5 text-white border border-white/10 hover:bg-white/10 transition-colors"
               >
-                <Briefcase className="w-5 h-5" />
-                <span>Trabaja con nosotros</span>
+                <Smartphone className="w-5 h-5 text-brand-highlight" />
+                <span>Instalar App</span>
               </Link>
 
               <Link
-                href="/#descargar"
+                href="/unete"
                 onClick={() => setIsOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-brand-primary to-brand-primary-light text-white shadow-lg shadow-brand-primary/20"
               >
-                <Smartphone className="w-5 h-5" />
-                <span>Descargar la App</span>
+                <Briefcase className="w-5 h-5" />
+                <span>Trabaja con nosotros</span>
               </Link>
             </div>
           </motion.div>
