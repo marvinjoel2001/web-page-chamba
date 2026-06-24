@@ -42,7 +42,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
               <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary-light shadow-md shadow-brand-primary/20 overflow-hidden">
                 <img src="/images/icon.png" alt="Chamba Logo" className="w-full h-full object-cover" />
               </div>
@@ -52,12 +52,12 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden xl:flex items-center gap-4 2xl:gap-8">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors duration-200"
+                className="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors duration-200 whitespace-nowrap"
               >
                 {item.name}
               </Link>
@@ -65,7 +65,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
           </div>
 
           {/* Controls: Role Selector + CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-4 shrink-0">
             {/* Role Switcher */}
             <div className="relative flex p-1 bg-slate-900/60 border border-white/5 rounded-full">
               <div
@@ -93,24 +93,23 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
 
             <Link
               href="/unete"
-              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-brand-primary-light bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 rounded-xl transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-brand-primary-light bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 rounded-xl transition-all duration-200 whitespace-nowrap shrink-0"
             >
-              <Briefcase className="w-4 h-4" />
-              <span className="hidden lg:inline">Trabaja con nosotros</span>
-              <span className="lg:hidden">Únete</span>
+              <Briefcase className="w-4 h-4 shrink-0" />
+              <span>Trabaja con nosotros</span>
             </Link>
 
             <Link
               href="/#descargar"
-              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200 whitespace-nowrap shrink-0"
             >
-              <Smartphone className="w-4 h-4 text-brand-highlight" />
+              <Smartphone className="w-4 h-4 text-brand-highlight shrink-0" />
               <span>Instalar App</span>
             </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex md:hidden items-center gap-3">
+          <div className="flex xl:hidden items-center gap-3 shrink-0">
             {/* Quick switcher in mobile navbar */}
             <button
               onClick={() => setActiveRole && setActiveRole(activeRole === "client" ? "worker" : "client")}
@@ -138,7 +137,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-b border-white/5 bg-[#090d16] px-4 pt-2 pb-6 space-y-4 shadow-xl"
+            className="xl:hidden border-b border-white/5 bg-[#090d16] px-4 pt-2 pb-6 space-y-4 shadow-xl"
           >
             <div className="flex flex-col gap-2 pt-2">
               {menuItems.map((item) => (
