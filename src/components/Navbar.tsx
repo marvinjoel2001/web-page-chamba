@@ -159,15 +159,21 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             className="md:hidden border-b border-white/5 bg-[#090d16] px-4 pt-2 pb-6 space-y-4 shadow-xl"
           >
             <div className="flex flex-col gap-2 pt-2">
-              {menuItems.map((item) => (
-                <Link
+              {menuItems.map((item, index) => (
+                <motion.div
                   key={item.name}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="px-3 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-brand-primary transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 + 0.1 }}
                 >
-                  {item.name}
-                </Link>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-300 hover:bg-white/5 hover:text-brand-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
@@ -207,14 +213,20 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 <span>{t("install_app")}</span>
               </Link>
 
-              <Link
-                href="/unete"
-                onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-brand-primary to-brand-primary-light text-white shadow-lg shadow-brand-primary/20"
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: menuItems.length * 0.1 + 0.1 }}
               >
-                <Briefcase className="w-5 h-5" />
-                <span>{t("work_with_us")}</span>
-              </Link>
+                <Link
+                  href="/unete"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-brand-primary to-brand-primary-light text-white shadow-lg shadow-brand-primary/20"
+                >
+                  <Briefcase className="w-5 h-5" />
+                  <span>{t("work_with_us")}</span>
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}

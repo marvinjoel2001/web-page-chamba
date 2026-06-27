@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Star, MapPin, Hammer, Users, Clock, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
+import React from "react";
 import PhoneFrame from "./mockups/PhoneFrame";
 import ExploreMockup from "./mockups/ExploreMockup";
 
@@ -16,11 +17,12 @@ export default function Hero({ activeRole }: HeroProps) {
   // Client variants
   const clientTitle = (
     <>
-      {t("client_title_1")}
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-primary-light">
-        {t("client_title_2")}
+      <AnimatedWords text={t("client_title_1")} />
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-primary-light inline-block">
+        <AnimatedWords text={t("client_title_2")} delay={0.3} />
       </span>
-      {t("client_title_3")}
+      <br/>
+      <AnimatedWords text={t("client_title_3")} delay={0.6} />
     </>
   );
   const clientDesc = t("client_desc");
@@ -28,11 +30,12 @@ export default function Hero({ activeRole }: HeroProps) {
   // Worker variants
   const workerTitle = (
     <>
-      {t("worker_title_1")}
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary-dark">
-        {t("worker_title_2")}
+      <AnimatedWords text={t("worker_title_1")} />
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary-dark inline-block">
+        <AnimatedWords text={t("worker_title_2")} delay={0.3} />
       </span>
-      {t("worker_title_3")}
+      <br/>
+      <AnimatedWords text={t("worker_title_3")} delay={0.6} />
     </>
   );
   const workerDesc = t("worker_desc");
@@ -99,9 +102,11 @@ export default function Hero({ activeRole }: HeroProps) {
 
             {/* App Store Links */}
             <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start w-full">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="#descargar"
-                className="flex items-center gap-3 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 border border-white/10 hover:border-brand-primary/40 rounded-2xl px-6 py-3 transition-all duration-300 group shadow-lg"
+                className="flex items-center gap-3 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 border border-white/10 hover:border-brand-primary/40 rounded-2xl px-6 py-3 transition-colors duration-300 group shadow-lg"
               >
                 {/* Apple App Store Icon */}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="Apple" className="w-6 h-6 object-contain" />
@@ -109,11 +114,13 @@ export default function Hero({ activeRole }: HeroProps) {
                   <p className="text-[10px] text-slate-400 uppercase tracking-wider">{t("download_on")}</p>
                   <p className="text-sm font-semibold text-white group-hover:text-brand-primary transition-colors">{t("app_store")}</p>
                 </div>
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="#descargar"
-                className="flex items-center gap-3 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 border border-white/10 hover:border-brand-highlight/40 rounded-2xl px-6 py-3 transition-all duration-300 group shadow-lg"
+                className="flex items-center gap-3 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 border border-white/10 hover:border-brand-highlight/40 rounded-2xl px-6 py-3 transition-colors duration-300 group shadow-lg"
               >
                 {/* Google Play Icon */}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play" className="w-6 h-6 object-contain" />
@@ -121,7 +128,7 @@ export default function Hero({ activeRole }: HeroProps) {
                   <p className="text-[10px] text-slate-400 uppercase tracking-wider">{t("available_on")}</p>
                   <p className="text-sm font-semibold text-white group-hover:text-brand-highlight transition-colors">{t("google_play")}</p>
                 </div>
-              </a>
+              </motion.a>
             </div>
 
             {/* Micro Stats */}
@@ -180,3 +187,51 @@ export default function Hero({ activeRole }: HeroProps) {
     </section>
   );
 }
+
+const AnimatedWords = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+  const words = text.split(" ");
+
+  const container: Variants = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: delay * i },
+    }),
+  };
+
+  const child: Variants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.span
+      style={{ overflow: "hidden", display: "inline-flex", flexWrap: "wrap" }}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {words.map((word, index) => (
+        <motion.span variants={child} style={{ marginRight: "0.25em" }} key={index}>
+          {word}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};

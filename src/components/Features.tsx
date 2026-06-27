@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Zap,
   DollarSign,
@@ -70,7 +70,7 @@ export default function Features({ activeRole }: FeaturesProps) {
 
   const currentFeatures = activeRole === "client" ? clientFeatures : workerFeatures;
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     show: {
       transition: {
@@ -79,9 +79,14 @@ export default function Features({ activeRole }: FeaturesProps) {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { type: "spring", damping: 15, stiffness: 100 } 
+    },
   };
 
   return (
@@ -133,6 +138,7 @@ export default function Features({ activeRole }: FeaturesProps) {
                 <motion.div
                   key={idx}
                   variants={itemVariants}
+                  whileHover={{ y: -8, scale: 1.02 }}
                   className="group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 hover:border-white/10 rounded-3xl p-6 transition-all duration-300 shadow-md flex flex-col items-start"
                 >
                   {/* Glowing border hover effect */}

@@ -59,10 +59,11 @@ export default function Testimonials() {
           {reviews.map((rev, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              initial={{ opacity: 0, y: 30, scale: 0.95, rotate: index % 2 === 0 ? -1 : 1 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ type: "spring", damping: 15, stiffness: 100, delay: index * 0.15 }}
+              whileHover={{ scale: 1.02, y: -5 }}
               className="group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 rounded-3xl p-6 transition-all duration-300 shadow-md flex flex-col justify-between"
             >
               {/* Decorative Quote Mark */}

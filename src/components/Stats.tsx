@@ -42,10 +42,11 @@ export default function Stats() {
           {statsList.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ type: "spring", damping: 12, stiffness: 100, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
               className="flex flex-col items-center text-center p-6 bg-[#121824]/40 border border-white/5 rounded-3xl"
             >
               <div className="p-3 bg-slate-900 border border-white/5 rounded-2xl mb-4 text-white">

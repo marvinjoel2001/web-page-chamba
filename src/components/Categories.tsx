@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   Paintbrush,
   Droplet,
@@ -81,7 +81,7 @@ export default function Categories() {
     },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     show: {
       transition: {
@@ -90,9 +90,14 @@ export default function Categories() {
     },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    show: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1, 
+      transition: { type: "spring", damping: 15, stiffness: 100 } 
+    },
   };
 
   return (
