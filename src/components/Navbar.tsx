@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Briefcase, Menu, X, Smartphone, User, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 interface NavbarProps {
@@ -13,6 +13,7 @@ interface NavbarProps {
 
 export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
   const t = useTranslations("Navbar");
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -102,29 +103,31 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             </Link>
 
             {/* Floating Trabaja con nosotros Card */}
-            <div className="absolute top-[calc(100%+1.5rem)] right-0">
-              <div className="relative">
-                {/* Dotted Arrow SVG pointing up-left */}
-                <svg className="absolute -top-7 right-8 w-8 h-8 text-brand-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeDasharray="3 3" strokeWidth="1.5" strokeLinecap="round" d="M8 20 C 8 10, 16 8, 20 4" />
-                  <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M15 4 L 20 4 L 20 9" />
-                </svg>
+            {pathname !== "/unete" && (
+              <div className="absolute top-[calc(100%+1.5rem)] right-0">
+                <div className="relative">
+                  {/* Dotted Arrow SVG pointing up-left */}
+                  <svg className="absolute -top-7 right-8 w-8 h-8 text-brand-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeDasharray="3 3" strokeWidth="1.5" strokeLinecap="round" d="M8 20 C 8 10, 16 8, 20 4" />
+                    <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M15 4 L 20 4 L 20 9" />
+                  </svg>
 
-                <Link
-                  href="/unete"
-                  className="flex items-center gap-4 p-3 pr-5 bg-[#090d16] border border-brand-primary/20 rounded-2xl shadow-2xl hover:-translate-y-1 hover:shadow-brand-primary/20 hover:border-brand-primary/50 transition-all duration-300 group whitespace-nowrap"
-                >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary-light group-hover:bg-brand-primary group-hover:text-white transition-colors">
-                    <Briefcase className="w-5 h-5" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs text-slate-400 font-medium">{t("income_question")}</span>
-                    <span className="text-sm font-bold text-brand-primary-light group-hover:text-white transition-colors">{t("work_with_us")}</span>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-brand-primary-light ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                  <Link
+                    href="/unete"
+                    className="flex items-center gap-4 p-3 pr-5 bg-[#090d16] border border-brand-primary/20 rounded-2xl shadow-2xl hover:-translate-y-1 hover:shadow-brand-primary/20 hover:border-brand-primary/50 transition-all duration-300 group whitespace-nowrap"
+                  >
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary-light group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                      <Briefcase className="w-5 h-5" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs text-slate-400 font-medium">{t("income_question")}</span>
+                      <span className="text-sm font-bold text-brand-primary-light group-hover:text-white transition-colors">{t("work_with_us")}</span>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-brand-primary-light ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}

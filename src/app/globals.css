@@ -36,7 +36,7 @@
 
 /* Force dark class since we want the landing page to be dark theme by default */
 :root, .dark {
-  --background: #07111F;
+  --background: #0F172A;
   --foreground: #F8FAFC;
 }
 
@@ -64,10 +64,10 @@ body {
 
 /* Glassmorphism utilities */
 .glass {
-  background: rgba(18, 24, 36, 0.75);
+  background: rgba(30, 41, 59, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-light {
