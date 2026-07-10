@@ -91,9 +91,14 @@
     "worker_step_4_desc": "Realize o trabalho contratado, confirme sua chegada pelo GPS, conclua a tarefa e receba seu dinheiro diretamente."
   },
   "Categories": {
+    "tag": "Os ofícios mais procurados",
     "title": "Categorias Mais Procuradas",
-    "subtitle": "Encontre especialistas qualificados em uma ampla variedade de especialidades técnicas e ofícios.",
+    "subtitle": "Milhares de pessoas procuram esses serviços toda semana. Encontre especialistas qualificados na sua região, prontos para trabalhar hoje.",
     "view_offers": "Ver ofertas",
+    "popular": "Popular",
+    "cta_title": "Não vê o seu ofício?",
+    "cta_desc": "O Chamba é aberto: publique qualquer tarefa ou serviço e receba ofertas de profissionais perto de você.",
+    "cta_button": "Publicar uma tarefa",
     "cat_1_name": "Pintura",
     "cat_1_desc": "Pintura interna e externa, retoques de fachadas e acabamentos.",
     "cat_2_name": "Encanamento",

@@ -1,6 +1,13 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  Variants,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { Star, MapPin, Hammer, Users, Clock, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -155,36 +162,89 @@ export default function Hero({ activeRole }: HeroProps) {
           </div>
 
           {/* Hero Image Section */}
-          <div className="lg:col-span-5 relative flex justify-center items-center">
+          <div className="lg:col-span-5 relative flex justify-center items-center min-h-[480px] lg:min-h-[620px] [perspective:1600px]">
             {/* Background glowing rings */}
-            <div className="absolute w-[350px] h-[350px] rounded-full border border-brand-primary/10 animate-pulse-slow" />
-            <div className="absolute w-[450px] h-[450px] rounded-full border border-brand-primary-light/5 animate-pulse-slow" />
+            <div className="absolute w-[420px] h-[420px] lg:w-[520px] lg:h-[520px] rounded-full border border-brand-primary/10 animate-pulse-slow" />
+            <div className="absolute w-[540px] h-[540px] lg:w-[660px] lg:h-[660px] rounded-full border border-brand-primary-light/5 animate-pulse-slow" />
 
-            {/* Image Container */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotate: 2, y: 0 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0, y: [0, -15, 0] }}
-              transition={{ 
-                duration: 0.8, 
-                ease: "easeOut",
-                y: {
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
-              }}
-              className="relative z-10 w-full flex justify-center hover:scale-[1.02] transition-transform duration-500"
-            >
-              <img 
-                src="/images/app_screenshot.png" 
-                alt="Chamba App Screenshot" 
-                className="w-full h-auto max-w-[360px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[550px] xl:max-w-[600px] object-contain drop-shadow-[0_0_60px_rgba(109,40,217,0.4)]" 
-              />
-            </motion.div>
+            {/* Interactive 3D tilt wrapper */}
+            <Tilt3D>
+              {/* Floating + entrance animation (kept separate from the tilt) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 0 }}
+                animate={{ opacity: 1, scale: 1, y: [0, -16, 0] }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="relative flex justify-center"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Depth glow that sits BEHIND the phones (pushed back in 3D) */}
+                <div
+                  className="absolute inset-0 rounded-[60px] bg-brand-primary/30 blur-[90px] scale-90"
+                  style={{ transform: "translateZ(-120px)" }}
+                />
+
+                <img
+                  src="/images/app_screenshot.png"
+                  alt="Chamba App Screenshot"
+                  className="relative w-full h-auto max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[680px] xl:max-w-[760px] object-contain drop-shadow-[0_35px_60px_rgba(109,40,217,0.55)]"
+                  style={{ transform: "translateZ(60px)" }}
+                />
+
+                {/* Floor reflection / shadow for grounding the 3D scene */}
+                <div
+                  className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-2/3 h-10 bg-black/50 blur-2xl rounded-[100%]"
+                  style={{ transform: "translateZ(-40px)" }}
+                />
+              </motion.div>
+            </Tilt3D>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * Wrapper que inclina a sus hijos en 3D siguiendo el cursor (con retorno
+ * suave por resorte). En móviles/sin puntero simplemente queda estático.
+ */
+function Tilt3D({ children }: { children: React.ReactNode }) {
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [14, -14]), {
+    stiffness: 150,
+    damping: 18,
+  });
+  const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-18, 18]), {
+    stiffness: 150,
+    damping: 18,
+  });
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - rect.left) / rect.width - 0.5);
+    py.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const reset = () => {
+    px.set(0);
+    py.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMove}
+      onMouseLeave={reset}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className="relative z-10 w-full flex justify-center"
+    >
+      {children}
+    </motion.div>
   );
 }
 

@@ -91,9 +91,14 @@
     "worker_step_4_desc": "Realiza el trabajo contratado, confirma tu llegada vía GPS, completa la tarea y recibe tu dinero directo."
   },
   "Categories": {
+    "tag": "Los oficios que más se buscan",
     "title": "Categorías Más Demandadas",
-    "subtitle": "Encuentra expertos calificados en una amplia variedad de especialidades técnicas y oficios.",
+    "subtitle": "Miles de personas ya buscan estos servicios cada semana. Encuentra expertos calificados en tu zona, listos para trabajar hoy mismo.",
     "view_offers": "Ver ofertas",
+    "popular": "Popular",
+    "cta_title": "¿No ves tu oficio?",
+    "cta_desc": "Chamba es abierto: publica cualquier tarea o servicio y recibe ofertas de profesionales cerca de ti.",
+    "cta_button": "Publicar una tarea",
     "cat_1_name": "Pintura",
     "cat_1_desc": "Pintado interior y exterior, retoques de fachadas y acabados.",
     "cat_2_name": "Plomería",

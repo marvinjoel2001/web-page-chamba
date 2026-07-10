@@ -91,9 +91,14 @@
     "worker_step_4_desc": "Perform the hired job, confirm your arrival via GPS, finish the task, and get paid directly."
   },
   "Categories": {
+    "tag": "The most in-demand trades",
     "title": "Most Requested Categories",
-    "subtitle": "Find qualified experts in a wide variety of technical specialties and trades.",
+    "subtitle": "Thousands of people search for these services every week. Find qualified experts in your area, ready to work today.",
     "view_offers": "View offers",
+    "popular": "Popular",
+    "cta_title": "Don't see your trade?",
+    "cta_desc": "Chamba is open: post any task or service and get offers from professionals near you.",
+    "cta_button": "Post a task",
     "cat_1_name": "Painting",
     "cat_1_desc": "Interior and exterior painting, facade touch-ups, and finishes.",
     "cat_2_name": "Plumbing",
