@@ -188,8 +188,8 @@ export default function Hero({ activeRole }: HeroProps) {
                 />
 
                 <img
-                  src="/images/app_screenshot.png"
-                  alt="Chamba App Screenshot"
+                  src={activeRole === "client" ? "/images/client.png" : "/images/worker.png"}
+                  alt={activeRole === "client" ? "Chamba Client App" : "Chamba Worker App"}
                   className="relative w-full h-auto max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[680px] xl:max-w-[760px] object-contain drop-shadow-[0_35px_60px_rgba(109,40,217,0.55)]"
                   style={{ transform: "translateZ(60px)" }}
                 />
