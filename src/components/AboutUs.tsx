@@ -36,7 +36,6 @@ export default function AboutUs() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/20 border border-brand-primary/30 text-brand-highlight text-xs font-semibold mb-3">
                   <Target className="w-3.5 h-3.5" /> {t("badge_role")}
                 </div>
-                <h3 className="text-3xl font-black text-white tracking-tight">Marvin Joel Peña</h3>
                 <p className="text-slate-400 mt-1">{t("badge_desc")}</p>
               </div>
             </div>
