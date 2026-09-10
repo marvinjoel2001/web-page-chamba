@@ -3,16 +3,13 @@
 import {
   motion,
   AnimatePresence,
-  Variants,
   useMotionValue,
   useSpring,
   useTransform,
 } from "framer-motion";
-import { Star, MapPin, Hammer, Users, Clock, ShieldCheck } from "lucide-react";
+import { Search, ArrowRight, MapPin, ShieldCheck, Tag, Store } from "lucide-react";
 import { useTranslations } from "next-intl";
-import React from "react";
-import PhoneFrame from "./mockups/PhoneFrame";
-import ExploreMockup from "./mockups/ExploreMockup";
+import React, { useState } from "react";
 
 interface HeroProps {
   activeRole: "client" | "worker";
@@ -20,32 +17,23 @@ interface HeroProps {
 
 export default function Hero({ activeRole }: HeroProps) {
   const t = useTranslations("Hero");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Client variants
-  const clientTitle = (
-    <>
-      <AnimatedWords text={t("client_title_1")} />
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-primary-light inline-block">
-        <AnimatedWords text={t("client_title_2")} delay={0.3} />
-      </span>
-      <br/>
-      <AnimatedWords text={t("client_title_3")} delay={0.6} />
-    </>
-  );
-  const clientDesc = t("client_desc");
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const target = document.getElementById("categorias");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-  // Worker variants
-  const workerTitle = (
-    <>
-      <AnimatedWords text={t("worker_title_1")} />
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-primary-dark inline-block">
-        <AnimatedWords text={t("worker_title_2")} delay={0.3} />
-      </span>
-      <br/>
-      <AnimatedWords text={t("worker_title_3")} delay={0.6} />
-    </>
-  );
-  const workerDesc = t("worker_desc");
+  const handleChipClick = (query: string) => {
+    setSearchQuery(query);
+    const target = document.getElementById("categorias");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-grid-pattern">
@@ -65,35 +53,43 @@ export default function Hero({ activeRole }: HeroProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Text Content */}
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-            {/* Quick Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900 border border-white/5 text-xs font-semibold text-slate-300 mb-6"
-            >
-              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-              <span>{t("badge_new")}</span>
-            </motion.div>
-
             {/* Dynamic Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight min-h-[140px] sm:min-h-[160px] md:min-h-[180px] flex items-center justify-center lg:justify-start">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.15]">
               <AnimatePresence mode="wait">
-                <motion.span
+                <motion.div
                   key={activeRole}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="block"
                 >
-                  {activeRole === "client" ? clientTitle : workerTitle}
-                </motion.span>
+                  {activeRole === "client" ? (
+                    <>
+                      <span className="block">{t("client_title_line1")}</span>
+                      <span className="block">
+                        {t("client_title_line2")}
+                        <span className="text-purple-400 inline-block drop-shadow-[0_2px_15px_rgba(168,85,247,0.4)]">
+                          {t("client_title_highlight")}
+                        </span>
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="block">{t("worker_title_line1")}</span>
+                      <span className="block">
+                        {t("worker_title_line2")}
+                        <span className="text-purple-400 inline-block drop-shadow-[0_2px_15px_rgba(168,85,247,0.4)]">
+                          {t("worker_title_highlight")}
+                        </span>
+                      </span>
+                    </>
+                  )}
+                </motion.div>
               </AnimatePresence>
             </h1>
 
-            {/* Dynamic Description */}
-            <p className="mt-6 text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed min-h-[100px] flex items-center justify-center lg:justify-start">
+            {/* Subtitle / Description */}
+            <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={activeRole}
@@ -102,60 +98,111 @@ export default function Hero({ activeRole }: HeroProps) {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {activeRole === "client" ? clientDesc : workerDesc}
+                  {activeRole === "client" ? t("client_desc") : t("worker_desc")}
                 </motion.span>
               </AnimatePresence>
             </p>
 
-            {/* App Store Links */}
-            <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start w-full">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="#descargar"
-                className="flex items-center gap-3 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 border border-white/10 hover:border-brand-primary/40 rounded-2xl px-6 py-3 transition-colors duration-300 group shadow-lg"
+            {/* Search Bar Input */}
+            <form
+              onSubmit={handleSearch}
+              className="mt-8 w-full max-w-xl bg-white rounded-full p-2 pl-6 flex items-center shadow-[0_12px_32px_rgba(0,0,0,0.35)] transition-all focus-within:ring-4 focus-within:ring-purple-500/20"
+            >
+              <Search className="w-5 h-5 text-indigo-400/80 mr-3 shrink-0" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={
+                  activeRole === "client"
+                    ? t("search_placeholder_client")
+                    : t("search_placeholder_worker")
+                }
+                className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none text-base sm:text-lg font-normal"
+              />
+              <button
+                type="submit"
+                aria-label="Buscar"
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white flex items-center justify-center shrink-0 shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer ml-2"
               >
-                {/* Apple App Store Icon */}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="Apple" className="w-6 h-6 object-contain" />
-                <div className="text-left">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-wider">{t("download_on")}</p>
-                  <p className="text-sm font-semibold text-white group-hover:text-brand-primary transition-colors">{t("app_store")}</p>
-                </div>
-              </motion.a>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </form>
 
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="#descargar"
-                className="flex items-center gap-3 bg-slate-900/80 backdrop-blur-md hover:bg-slate-800 border border-white/10 hover:border-brand-highlight/40 rounded-2xl px-6 py-3 transition-colors duration-300 group shadow-lg"
+            {/* Suggested Chips */}
+            <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-2.5 w-full max-w-xl">
+              <button
+                type="button"
+                onClick={() =>
+                  handleChipClick(
+                    activeRole === "client" ? t("chip_1_client") : t("chip_1_worker")
+                  )
+                }
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131b2e]/90 hover:bg-[#1c2640] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
               >
-                {/* Google Play Icon */}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play" className="w-6 h-6 object-contain" />
-                <div className="text-left">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-wider">{t("available_on")}</p>
-                  <p className="text-sm font-semibold text-white group-hover:text-brand-highlight transition-colors">{t("google_play")}</p>
-                </div>
-              </motion.a>
+                <Search className="w-3.5 h-3.5 text-slate-400" />
+                <span>
+                  {activeRole === "client" ? t("chip_1_client") : t("chip_1_worker")}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  handleChipClick(
+                    activeRole === "client" ? t("chip_2_client") : t("chip_2_worker")
+                  )
+                }
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131b2e]/90 hover:bg-[#1c2640] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
+              >
+                <Search className="w-3.5 h-3.5 text-slate-400" />
+                <span>
+                  {activeRole === "client" ? t("chip_2_client") : t("chip_2_worker")}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  handleChipClick(
+                    activeRole === "client" ? t("chip_3_client") : t("chip_3_worker")
+                  )
+                }
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131b2e]/90 hover:bg-[#1c2640] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
+              >
+                <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                <span>
+                  {activeRole === "client" ? t("chip_3_client") : t("chip_3_worker")}
+                </span>
+              </button>
             </div>
 
-            {/* Micro Stats */}
-            <div className="mt-12 grid grid-cols-3 gap-6 pt-8 border-t border-white/5 w-full max-w-lg">
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-white">4.9★</span>
-                <span className="text-xs text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-brand-highlight" /> {t("stat_quality")}
+            {/* Feature Trust Badges */}
+            <div className="mt-8 pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-600/25">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <span className="text-xs sm:text-sm font-medium text-white/95 leading-tight">
+                  {activeRole === "client" ? t("badge_1_client") : t("badge_1_worker")}
                 </span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-white">+10k</span>
-                <span className="text-xs text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-1">
-                  <Users className="w-3.5 h-3.5 text-brand-primary" /> {t("stat_requests")}
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-600/25">
+                  <Tag className="w-5 h-5" />
+                </div>
+                <span className="text-xs sm:text-sm font-medium text-white/95 leading-tight">
+                  {activeRole === "client" ? t("badge_2_client") : t("badge_2_worker")}
                 </span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-white">&lt; 5 min</span>
-                <span className="text-xs text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-1">
-                  <Clock className="w-3.5 h-3.5 text-brand-primary-light" /> {t("stat_responses")}
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-600/25">
+                  <Store className="w-5 h-5" />
+                </div>
+                <span className="text-xs sm:text-sm font-medium text-white/95 leading-tight">
+                  {activeRole === "client" ? t("badge_3_client") : t("badge_3_worker")}
                 </span>
               </div>
             </div>
@@ -248,50 +295,4 @@ function Tilt3D({ children }: { children: React.ReactNode }) {
   );
 }
 
-const AnimatedWords = ({ text, delay = 0 }: { text: string; delay?: number }) => {
-  const words = text.split(" ");
 
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: delay * i },
-    }),
-  };
-
-  const child: Variants = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
-
-  return (
-    <motion.span
-      style={{ overflow: "hidden", display: "inline-flex", flexWrap: "wrap" }}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      {words.map((word, index) => (
-        <motion.span variants={child} style={{ marginRight: "0.25em" }} key={index}>
-          {word}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-};
