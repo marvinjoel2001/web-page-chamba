@@ -24,91 +24,101 @@ export default function Categories() {
   const categoriesList = [
     {
       id: "pintura",
+      image: "/images/categories/pintura.jpg",
       name: t("cat_1_name"),
       desc: t("cat_1_desc"),
       icon: Paintbrush,
-      iconWrap: "bg-brand-primary/10 border-brand-primary/20 text-brand-primary",
+      iconWrap: "bg-brand-primary/20 border-brand-primary/30 text-brand-primary-light",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(139,92,246,0.55)]",
       popular: true,
     },
     {
       id: "plomeria",
+      image: "/images/categories/plomeria.jpg",
       name: t("cat_2_name"),
       desc: t("cat_2_desc"),
       icon: Droplet,
-      iconWrap: "bg-brand-highlight/10 border-brand-highlight/20 text-brand-highlight",
+      iconWrap: "bg-brand-highlight/20 border-brand-highlight/30 text-brand-highlight",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(234,179,8,0.5)]",
       popular: true,
     },
     {
       id: "electricidad",
+      image: "/images/categories/electricidad.jpg",
       name: t("cat_3_name"),
       desc: t("cat_3_desc"),
       icon: Zap,
-      iconWrap: "bg-amber-400/10 border-amber-400/20 text-amber-400",
+      iconWrap: "bg-amber-400/20 border-amber-400/30 text-amber-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(251,191,36,0.5)]",
       popular: true,
     },
     {
       id: "jardineria",
+      image: "/images/categories/jardineria.jpg",
       name: t("cat_4_name"),
       desc: t("cat_4_desc"),
       icon: Leaf,
-      iconWrap: "bg-emerald-400/10 border-emerald-400/20 text-emerald-400",
+      iconWrap: "bg-emerald-400/20 border-emerald-400/30 text-emerald-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(52,211,153,0.45)]",
       popular: false,
     },
     {
       id: "transporte",
+      image: "/images/categories/transporte.jpg",
       name: t("cat_5_name"),
       desc: t("cat_5_desc"),
       icon: Truck,
-      iconWrap: "bg-blue-400/10 border-blue-400/20 text-blue-400",
+      iconWrap: "bg-blue-400/20 border-blue-400/30 text-blue-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(96,165,250,0.45)]",
       popular: false,
     },
     {
       id: "limpieza",
+      image: "/images/categories/limpieza.jpg",
       name: t("cat_6_name"),
       desc: t("cat_6_desc"),
       icon: Sparkles,
-      iconWrap: "bg-pink-400/10 border-pink-400/20 text-pink-400",
+      iconWrap: "bg-pink-400/20 border-pink-400/30 text-pink-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(244,114,182,0.45)]",
       popular: true,
     },
     {
       id: "construccion",
+      image: "/images/categories/construccion.jpg",
       name: t("cat_7_name"),
       desc: t("cat_7_desc"),
       icon: Wrench,
-      iconWrap: "bg-rose-400/10 border-rose-400/20 text-rose-400",
+      iconWrap: "bg-rose-400/20 border-rose-400/30 text-rose-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(251,113,133,0.45)]",
       popular: false,
     },
     {
       id: "carpinteria",
+      image: "/images/categories/carpinteria.jpg",
       name: t("cat_8_name"),
       desc: t("cat_8_desc"),
       icon: Hammer,
-      iconWrap: "bg-orange-400/10 border-orange-400/20 text-orange-400",
+      iconWrap: "bg-orange-400/20 border-orange-400/30 text-orange-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(251,146,60,0.45)]",
       popular: false,
     },
     {
       id: "mecanica",
+      image: "/images/categories/mecanica.jpg",
       name: t("cat_9_name"),
       desc: t("cat_9_desc"),
       icon: Settings,
-      iconWrap: "bg-indigo-400/10 border-indigo-400/20 text-indigo-400",
+      iconWrap: "bg-indigo-400/20 border-indigo-400/30 text-indigo-400",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(129,140,248,0.45)]",
       popular: false,
     },
     {
       id: "general",
+      image: "/images/categories/general.jpg",
       name: t("cat_10_name"),
       desc: t("cat_10_desc"),
       icon: Layers,
-      iconWrap: "bg-slate-400/10 border-slate-400/20 text-slate-300",
+      iconWrap: "bg-slate-400/20 border-slate-400/30 text-slate-300",
       glow: "group-hover:shadow-[0_24px_45px_-18px_rgba(148,163,184,0.4)]",
       popular: false,
     },
@@ -159,7 +169,7 @@ export default function Categories() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           {categoriesList.map((category) => {
             const Icon = category.icon;
@@ -168,34 +178,53 @@ export default function Categories() {
                 key={category.id}
                 variants={cardVariants}
                 whileHover={{ y: -8 }}
-                className={`group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 hover:border-white/10 rounded-3xl p-5 transition-all duration-300 shadow-lg ${category.glow} flex flex-col justify-between`}
+                className={`group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 hover:border-brand-primary/30 rounded-3xl overflow-hidden transition-all duration-300 shadow-xl ${category.glow} flex flex-col justify-between`}
               >
-                {/* Popular badge */}
-                {category.popular && (
-                  <div className="absolute top-4 right-4 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-highlight/15 border border-brand-highlight/25 text-[10px] font-bold text-brand-highlight uppercase tracking-wide">
-                    <TrendingUp className="w-3 h-3" />
-                    {t("popular")}
-                  </div>
-                )}
+                {/* Real Worker Photo Header */}
+                <div className="relative w-full h-48 overflow-hidden bg-slate-900">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  {/* Subtle dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#121824] via-transparent to-black/30" />
 
-                <div>
+                  {/* Icon badge floating top-left */}
                   <div
-                    className={`w-12 h-12 rounded-2xl flex items-center justify-center border mb-4 group-hover:scale-110 transition-transform duration-300 ${category.iconWrap}`}
+                    className={`absolute top-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-md border shadow-lg transition-transform duration-300 group-hover:scale-110 ${category.iconWrap}`}
                   >
-                    <Icon className="w-6 h-6" />
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-brand-primary-light transition-colors">
-                    {category.name}
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {category.desc}
-                  </p>
+
+                  {/* Popular badge */}
+                  {category.popular && (
+                    <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-brand-highlight/20 border border-brand-highlight/40 text-[10px] font-bold text-brand-highlight uppercase tracking-wider backdrop-blur-md shadow-lg">
+                      <TrendingUp className="w-3 h-3" />
+                      {t("popular")}
+                    </div>
+                  )}
                 </div>
 
-                {/* Arrow Indicator */}
-                <div className="mt-5 flex items-center text-xs font-bold text-brand-highlight group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                  <span>{t("view_offers")}</span>
-                  <ArrowRight className="ml-1 w-3.5 h-3.5" />
+                {/* Content Section */}
+                <div className="p-5 pt-3 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-brand-primary-light transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                      {category.desc}
+                    </p>
+                  </div>
+
+                  {/* Arrow Indicator */}
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-brand-primary-light transition-colors">
+                    <span className="group-hover:text-white transition-colors">{t("view_offers")}</span>
+                    <div className="w-7 h-7 rounded-full bg-white/5 group-hover:bg-brand-primary/20 flex items-center justify-center transition-all group-hover:translate-x-1">
+                      <ArrowRight className="w-3.5 h-3.5 text-brand-primary-light" />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             );
@@ -206,21 +235,23 @@ export default function Categories() {
             href="#descargar"
             variants={cardVariants}
             whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-3xl p-6 flex flex-col justify-center items-start text-left bg-gradient-to-br from-brand-primary to-brand-primary-dark border border-brand-primary/40 shadow-lg hover:shadow-[0_24px_45px_-18px_rgba(139,92,246,0.7)] transition-all duration-300"
+            className="group relative overflow-hidden rounded-3xl p-6 flex flex-col justify-between items-start text-left bg-gradient-to-br from-brand-primary to-brand-primary-dark border border-brand-primary/40 shadow-xl hover:shadow-[0_24px_45px_-18px_rgba(139,92,246,0.7)] transition-all duration-300 min-h-[300px]"
           >
-            <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-            <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center mb-4 group-hover:rotate-90 transition-transform duration-300">
-              <Plus className="w-6 h-6 text-white" />
+            <div className="absolute -right-6 -top-6 w-36 h-36 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center mb-5 group-hover:rotate-90 transition-transform duration-300">
+                <Plus className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                {t("cta_title")}
+              </h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                {t("cta_desc")}
+              </p>
             </div>
-            <h3 className="text-base font-bold text-white mb-2">
-              {t("cta_title")}
-            </h3>
-            <p className="text-xs text-white/80 leading-relaxed">
-              {t("cta_desc")}
-            </p>
-            <div className="mt-5 flex items-center text-xs font-bold text-white">
+            <div className="mt-6 flex items-center text-xs font-bold text-white bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-full border border-white/20 transition-all">
               <span>{t("cta_button")}</span>
-              <ArrowRight className="ml-1 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </div>
           </motion.a>
         </motion.div>
