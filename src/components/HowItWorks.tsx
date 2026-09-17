@@ -4,33 +4,36 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   Edit3, 
   Users, 
-  MessageSquare, 
-  ShieldCheck, 
-  UserCheck, 
-  Compass, 
-  Send, 
-  CheckSquare,
+  Calendar, 
+  MapPin, 
+  Star,
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck,
+  Zap,
+  ChevronRight,
+  UserCheck,
+  Compass,
+  Send,
+  Navigation,
+  Award
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
+import ModernPhoneMockup from "./mockups/ModernPhoneMockup";
 
 interface HowItWorksProps {
   activeRole: "client" | "worker";
 }
 
 interface StepItem {
+  stepIndex: 1 | 2 | 3 | 4 | 5;
   stepNumber: string;
   icon: React.ReactNode;
-  title: string;
-  desc: string;
-  image: string;
-  alt: string;
-  badgeColor: string;
-  glowColor: string;
-  accentBorder: string;
-  highlight: string;
+  titleKey: string;
+  descKey: string;
+  badgeKey?: string;
+  badgeIcon?: React.ReactNode;
 }
 
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
@@ -38,103 +41,97 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
   const clientSteps: StepItem[] = [
     {
+      stepIndex: 1,
       stepNumber: "01",
-      icon: <Edit3 className="w-5 h-5 text-brand-primary" />,
-      title: t("client_step_1_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("client_step_1_desc"),
-      image: "/images/how-it-works/step1_search.png",
-      alt: "Paso 1: Describe lo que buscas en Chamba App",
-      badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
-      glowColor: "from-purple-600/30 via-brand-primary/15 to-transparent",
-      accentBorder: "group-hover:border-purple-500/50",
-      highlight: "Describe o usa tu voz",
+      icon: <Edit3 className="w-4 h-4 text-purple-300" />,
+      titleKey: "client_step_1_title",
+      descKey: "client_step_1_desc",
+      badgeKey: "client_step_1_badge",
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
     },
     {
+      stepIndex: 2,
       stepNumber: "02",
-      icon: <Users className="w-5 h-5 text-emerald-400" />,
-      title: t("client_step_2_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("client_step_2_desc"),
-      image: "/images/how-it-works/step2_offers.png",
-      alt: "Paso 2: Recibe ofertas y cotizaciones en tiempo real",
-      badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-      glowColor: "from-emerald-600/30 via-teal-500/15 to-transparent",
-      accentBorder: "group-hover:border-emerald-500/50",
-      highlight: "Ofertas en vivo",
+      icon: <Users className="w-4 h-4 text-purple-300" />,
+      titleKey: "client_step_2_title",
+      descKey: "client_step_2_desc",
+      badgeKey: "client_step_2_badge",
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
     },
     {
+      stepIndex: 3,
       stepNumber: "03",
-      icon: <MessageSquare className="w-5 h-5 text-brand-primary-light" />,
-      title: t("client_step_3_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("client_step_3_desc"),
-      image: "/images/how-it-works/step3_accepted.png",
-      alt: "Paso 3: Confirma la oferta y trabajador",
-      badgeColor: "bg-indigo-500/15 text-indigo-300 border-indigo-500/30",
-      glowColor: "from-indigo-600/30 via-brand-primary/15 to-transparent",
-      accentBorder: "group-hover:border-indigo-500/50",
-      highlight: "Confirmación instantánea",
+      icon: <Calendar className="w-4 h-4 text-purple-300" />,
+      titleKey: "client_step_3_title",
+      descKey: "client_step_3_desc",
+      badgeKey: "client_step_3_badge",
+      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />,
     },
     {
+      stepIndex: 4,
       stepNumber: "04",
-      icon: <ShieldCheck className="w-5 h-5 text-amber-400" />,
-      title: t("client_step_4_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("client_step_4_desc"),
-      image: "/images/how-it-works/step4_completed.png",
-      alt: "Paso 4: Finaliza y califica el trabajo",
-      badgeColor: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-      glowColor: "from-amber-500/30 via-yellow-500/15 to-transparent",
-      accentBorder: "group-hover:border-amber-500/50",
-      highlight: "Califica el servicio",
+      icon: <MapPin className="w-4 h-4 text-purple-300" />,
+      titleKey: "client_step_4_title",
+      descKey: "client_step_4_desc",
+      badgeKey: "client_step_4_badge",
+      badgeIcon: <MapPin className="w-3.5 h-3.5 text-purple-400" />,
+    },
+    {
+      stepIndex: 5,
+      stepNumber: "05",
+      icon: <Star className="w-4 h-4 text-purple-300" />,
+      titleKey: "client_step_5_title",
+      descKey: "client_step_5_desc",
+      badgeKey: "client_step_5_badge",
+      badgeIcon: <Star className="w-3.5 h-3.5 text-purple-400" />,
     },
   ];
 
   const workerSteps: StepItem[] = [
     {
+      stepIndex: 1,
       stepNumber: "01",
-      icon: <UserCheck className="w-5 h-5 text-brand-highlight" />,
-      title: t("worker_step_1_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("worker_step_1_desc"),
-      image: "/images/how-it-works/step1_search.png",
-      alt: "Paso 1: Completa tu perfil de chambero",
-      badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
-      glowColor: "from-purple-600/30 via-brand-primary/15 to-transparent",
-      accentBorder: "group-hover:border-purple-500/50",
-      highlight: "Perfil verificado",
+      icon: <UserCheck className="w-4 h-4 text-purple-300" />,
+      titleKey: "worker_step_1_title",
+      descKey: "worker_step_1_desc",
+      badgeKey: "worker_step_1_badge",
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
     },
     {
+      stepIndex: 2,
       stepNumber: "02",
-      icon: <Compass className="w-5 h-5 text-brand-primary" />,
-      title: t("worker_step_2_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("worker_step_2_desc"),
-      image: "/images/how-it-works/step2_offers.png",
-      alt: "Paso 2: Explora solicitudes de trabajo",
-      badgeColor: "bg-blue-500/15 text-blue-300 border-blue-500/30",
-      glowColor: "from-blue-600/30 via-brand-primary/15 to-transparent",
-      accentBorder: "group-hover:border-blue-500/50",
-      highlight: "Solicitudes cercanas",
+      icon: <Compass className="w-4 h-4 text-purple-300" />,
+      titleKey: "worker_step_2_title",
+      descKey: "worker_step_2_desc",
+      badgeKey: "worker_step_2_badge",
+      badgeIcon: <MapPin className="w-3.5 h-3.5 text-purple-400" />,
     },
     {
+      stepIndex: 3,
       stepNumber: "03",
-      icon: <Send className="w-5 h-5 text-brand-primary-light" />,
-      title: t("worker_step_3_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("worker_step_3_desc"),
-      image: "/images/how-it-works/step3_accepted.png",
-      alt: "Paso 3: Envía ofertas y cotizaciones",
-      badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-      glowColor: "from-emerald-600/30 via-teal-500/15 to-transparent",
-      accentBorder: "group-hover:border-emerald-500/50",
-      highlight: "Presupuestos propios",
+      icon: <Send className="w-4 h-4 text-purple-300" />,
+      titleKey: "worker_step_3_title",
+      descKey: "worker_step_3_desc",
+      badgeKey: "worker_step_3_badge",
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
     },
     {
+      stepIndex: 4,
       stepNumber: "04",
-      icon: <CheckSquare className="w-5 h-5 text-amber-400" />,
-      title: t("worker_step_4_title").replace(/^[0-9]+\.\s*/, ""),
-      desc: t("worker_step_4_desc"),
-      image: "/images/how-it-works/step4_completed.png",
-      alt: "Paso 4: Trabaja y cobra directo",
-      badgeColor: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-      glowColor: "from-amber-500/30 via-yellow-500/15 to-transparent",
-      accentBorder: "group-hover:border-amber-500/50",
-      highlight: "Cobra directo",
+      icon: <Navigation className="w-4 h-4 text-purple-300" />,
+      titleKey: "worker_step_4_title",
+      descKey: "worker_step_4_desc",
+      badgeKey: "worker_step_4_badge",
+      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />,
+    },
+    {
+      stepIndex: 5,
+      stepNumber: "05",
+      icon: <Award className="w-4 h-4 text-purple-300" />,
+      titleKey: "worker_step_5_title",
+      descKey: "worker_step_5_desc",
+      badgeKey: "worker_step_5_badge",
+      badgeIcon: <Star className="w-3.5 h-3.5 text-purple-400" />,
     },
   ];
 
@@ -144,49 +141,91 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.12,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 25 },
+    hidden: { opacity: 0, y: 30 },
     show: { 
       opacity: 1, 
-      y: 0,
-      transition: { duration: 0.45, ease: "easeOut" }
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeOut" } 
     },
   };
 
   return (
-    <section id="como-funciona" className="py-24 bg-[#090d16] relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute left-1/4 top-10 w-96 h-96 rounded-full bg-brand-primary/10 blur-[130px] pointer-events-none" />
-      <div className="absolute right-1/4 bottom-10 w-96 h-96 rounded-full bg-purple-600/10 blur-[130px] pointer-events-none" />
+    <section id="como-funciona" className="py-24 bg-[#0a091b] relative overflow-hidden">
+      {/* Background Ambient Radial Glows */}
+      <div className="absolute left-1/2 -top-20 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-purple-600/15 blur-[140px] pointer-events-none" />
+      <div className="absolute left-1/10 top-1/3 w-80 h-80 rounded-full bg-indigo-600/10 blur-[130px] pointer-events-none" />
+      <div className="absolute right-1/10 bottom-1/4 w-80 h-80 rounded-full bg-purple-700/10 blur-[130px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Subtle Star Dust Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Floating 3D Logo Cube (Left Top Decorative Element) */}
+        <div className="hidden xl:flex absolute -left-4 top-2 w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-800 border border-purple-400/40 shadow-[0_20px_45px_rgba(124,58,237,0.35)] items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500 z-20">
+          <img 
+            src="/images/icon.png" 
+            alt="Chamba Logo 3D" 
+            className="w-12 h-12 object-contain drop-shadow-lg" 
+          />
+        </div>
+
+        {/* Floating Handwritten Annotation Note (Right Top Decorative Element) */}
+        <div className="hidden lg:block absolute right-4 xl:right-8 top-0 text-right select-none pointer-events-none z-20">
+          <span className="text-purple-300 font-serif italic text-sm xl:text-base leading-tight block transform -rotate-6 tracking-wide drop-shadow-sm">
+            {t("note")}
+          </span>
+          <svg 
+            className="w-10 h-8 text-purple-400/80 ml-auto transform -rotate-12 mt-1" 
+            fill="none" 
+            viewBox="0 0 40 30" 
+            stroke="currentColor"
+          >
+            <path 
+              d="M 32 4 C 20 2, 8 12, 10 24 M 10 24 L 5 18 M 10 24 L 16 22" 
+              strokeWidth="1.8" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+            />
+          </svg>
+        </div>
+
         {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
+          className="text-center max-w-3xl mx-auto mb-14 sm:mb-18"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary-light text-xs font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Paso a Paso</span>
+          {/* Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-950/70 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+            <span>{t("tag")}</span>
           </div>
 
+          {/* Section Main Title */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-            {t("title")}
+            ¿Cómo funciona{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent relative inline-block">
+              Chamba?
+              <span className="absolute -top-1 -right-4 text-amber-300 text-base font-normal select-none">✨</span>
+            </span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          
+          {/* Section Subtitle */}
+          <p className="mt-4 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
             {t("subtitle")}
           </p>
         </motion.div>
 
-        {/* Steps Grid with Real Device Screenshots */}
+        {/* 5-Step Showcase Grid with Connecting Arrows */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeRole}
@@ -194,61 +233,86 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-3.5 xl:gap-4 items-stretch relative"
           >
-            {steps.map((st, index) => (
-              <motion.div
-                variants={itemVariants}
-                key={index}
-                className="flex flex-col relative z-10 group"
-              >
-                {/* Showcase Card */}
-                <div className="flex flex-col h-full bg-gradient-to-b from-slate-900/90 via-[#0e1424]/90 to-slate-950/95 border border-slate-800/80 rounded-3xl p-5 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-brand-primary/50 hover:shadow-2xl hover:shadow-brand-primary/15 overflow-hidden">
-                  
-                  {/* Step Header Badge & Icon */}
-                  <div className="flex items-center justify-between gap-3 mb-4">
-                    <span className={`text-xs font-black tracking-wider uppercase px-3 py-1 rounded-full border ${st.badgeColor} transition-colors duration-300`}>
-                      Paso {st.stepNumber}
-                    </span>
-                    <div className="w-9 h-9 rounded-xl bg-slate-800/60 border border-white/5 flex items-center justify-center text-slate-300 group-hover:scale-110 group-hover:text-white transition-all duration-300 shadow-sm">
-                      {st.icon}
+            {steps.map((st, index) => {
+              const isLast = index === steps.length - 1;
+
+              return (
+                <div key={st.stepIndex} className="relative flex flex-col">
+                  {/* Step Card Container */}
+                  <motion.div
+                    variants={itemVariants}
+                    className="flex-1 flex flex-col justify-between bg-gradient-to-b from-[#14122d]/90 via-[#100e26]/95 to-[#0c0a1f]/95 border border-purple-500/20 rounded-[28px] p-4 xl:p-4.5 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.18)] transition-all duration-300 group"
+                  >
+                    <div>
+                      {/* Top Row: Number Box (Left) & Circular Icon (Right) */}
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span className="w-8 h-7 rounded-xl bg-white/5 border border-white/10 text-white font-extrabold text-xs flex items-center justify-center tracking-wider shadow-inner">
+                          {st.stepNumber}
+                        </span>
+
+                        <div className="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-400/30 flex items-center justify-center text-purple-300 group-hover:scale-110 group-hover:bg-purple-600/30 transition-all duration-300 shadow-sm">
+                          {st.icon}
+                        </div>
+                      </div>
+
+                      {/* Step Title */}
+                      <h3 className="text-[15px] font-bold text-white mb-1.5 leading-snug group-hover:text-purple-200 transition-colors">
+                        {t(st.titleKey as any)}
+                      </h3>
+
+                      {/* Step Description */}
+                      <p className="text-xs text-slate-400 leading-relaxed mb-4 min-h-[48px]">
+                        {t(st.descKey as any)}
+                      </p>
                     </div>
-                  </div>
-
-                  {/* Title & Desc */}
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-primary-light transition-colors">
-                    {st.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed mb-6 min-h-[42px]">
-                    {st.desc}
-                  </p>
-
-                  {/* Device Screen Presentation */}
-                  <div className="mt-auto relative w-full pt-2 flex justify-center items-end overflow-hidden">
-                    {/* Ambient Glow */}
-                    <div className={`absolute inset-x-4 bottom-0 h-44 rounded-full bg-gradient-to-t ${st.glowColor} blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
 
                     {/* Smartphone Mockup */}
-                    <div className="relative w-full max-w-[210px] sm:max-w-[230px] transition-transform duration-500 ease-out group-hover:scale-105">
-                      <img
-                        src={st.image}
-                        alt={st.alt}
-                        className="w-full h-auto max-h-[380px] sm:max-h-[420px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]"
-                        loading="lazy"
+                    <div className="my-auto py-2 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+                      <ModernPhoneMockup 
+                        step={st.stepIndex} 
+                        role={activeRole} 
                       />
                     </div>
-                  </div>
 
-                  {/* Bottom Highlight Tag */}
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-400 group-hover:text-slate-200 transition-colors">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary" />
-                    <span>{st.highlight}</span>
-                  </div>
+                    {/* Bottom Guarantee Badge under Card */}
+                    {st.badgeKey && (
+                      <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-center gap-1.5 text-[10.5px] font-medium text-purple-300/85 text-center leading-tight">
+                        {st.badgeIcon}
+                        <span>{t(st.badgeKey as any)}</span>
+                      </div>
+                    )}
+                  </motion.div>
+
+                  {/* Horizontal Flow Arrow between cards (Desktop Only) */}
+                  {!isLast && (
+                    <div className="hidden lg:flex absolute -right-2.5 xl:-right-3 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                      <div className="w-5 h-5 rounded-full bg-purple-950/90 border border-purple-500/30 flex items-center justify-center text-purple-300/70 shadow-sm">
+                        <ChevronRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </AnimatePresence>
+
+        {/* Bottom Feature Pill Badge */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-14 flex justify-center"
+        >
+          <div className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-950/70 via-indigo-950/70 to-purple-950/70 border border-purple-500/30 text-purple-200 text-xs sm:text-sm font-semibold shadow-lg shadow-purple-950/50">
+            <Zap className="w-4 h-4 text-purple-400 fill-purple-400 animate-pulse" />
+            <span>{t("bottom_pill")}</span>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
