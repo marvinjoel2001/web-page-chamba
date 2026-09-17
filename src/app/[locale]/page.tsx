@@ -9,6 +9,7 @@ import AboutUs from "@/components/AboutUs";
 import HowItWorks from "@/components/HowItWorks";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
+import AgencyBanner from "@/components/AgencyBanner";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -42,6 +43,9 @@ export default function Home() {
 
         {/* About Us (Founder Story) */}
         <AboutUs />
+
+        {/* Agency Corporate Portal Banner */}
+        <AgencyBanner />
 
         {/* Call to Action for Installation */}
         <CTA activeRole={activeRole} />

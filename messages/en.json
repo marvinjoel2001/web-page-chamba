@@ -11,7 +11,9 @@
     "install_app": "Install App",
     "income_question": "Looking to earn money?",
     "work_with_us": "Work with us",
-    "view_mode": "View Mode:"
+    "view_mode": "View Mode:",
+    "menu_agencies": "Agencies",
+    "portal_agencies": "Chamba Agencies"
   },
   "Hero": {
     "client_title_line1": "Find someone",

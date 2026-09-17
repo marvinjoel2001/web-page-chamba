@@ -67,6 +67,19 @@ export default function Footer() {
                 <li><Link href="/#testimonios" className="hover:text-brand-primary transition">{t("testimonials")}</Link></li>
                 <li><Link href="/#como-funciona" className="hover:text-brand-primary transition">{t("how_it_works")}</Link></li>
                 <li><Link href="/#contacto" className="hover:text-brand-primary transition">{t("contact")}</Link></li>
+                <li>
+                  <a
+                    href="https://agency-chamba.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-purple-300 hover:text-white transition font-medium pt-1"
+                  >
+                    <span>Chamba Agencias</span>
+                    <span className="text-[9px] uppercase font-black px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                      Portal
+                    </span>
+                  </a>
+                </li>
               </ul>
             </div>
             <div>

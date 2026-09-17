@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Briefcase, Menu, X, Smartphone, User, ArrowRight } from "lucide-react";
+import { Briefcase, Menu, X, Smartphone, User, ArrowRight, Building2, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -55,7 +55,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
             </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-7">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
@@ -65,6 +65,17 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 {item.name}
               </Link>
             ))}
+            <a
+              href="https://agency-chamba.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 hover:text-white bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/30 hover:border-purple-400/60 rounded-full transition-all duration-200 shadow-sm hover:shadow-purple-500/20 whitespace-nowrap"
+              title="Portal para Agencias de Servicios"
+            >
+              <Building2 className="w-3.5 h-3.5 text-purple-400" />
+              <span>{t("portal_agencies")}</span>
+              <ExternalLink className="w-3 h-3 text-purple-400/70" />
+            </a>
           </div>
 
           {/* Controls: Role Selector + CTA */}
@@ -215,6 +226,18 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
                 <Smartphone className="w-5 h-5 text-brand-highlight" />
                 <span>{t("install_app")}</span>
               </Link>
+
+              <a
+                href="https://agency-chamba.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold bg-purple-950/60 text-purple-200 border border-purple-500/30 hover:bg-purple-900/60 transition-colors"
+              >
+                <Building2 className="w-5 h-5 text-purple-400" />
+                <span>{t("portal_agencies")}</span>
+                <ExternalLink className="w-4 h-4 text-purple-400/70" />
+              </a>
 
               <motion.div
                 initial={{ opacity: 0, y: 10 }}

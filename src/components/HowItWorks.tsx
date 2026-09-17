@@ -1,59 +1,140 @@
 "use client";
 
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { Edit3, Users, MessageSquare, ShieldCheck, UserCheck, Compass, Send, CheckSquare } from "lucide-react";
+import { 
+  Edit3, 
+  Users, 
+  MessageSquare, 
+  ShieldCheck, 
+  UserCheck, 
+  Compass, 
+  Send, 
+  CheckSquare,
+  Sparkles,
+  CheckCircle2
+} from "lucide-react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 interface HowItWorksProps {
   activeRole: "client" | "worker";
 }
 
+interface StepItem {
+  stepNumber: string;
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  image: string;
+  alt: string;
+  badgeColor: string;
+  glowColor: string;
+  accentBorder: string;
+  highlight: string;
+}
+
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const t = useTranslations("HowItWorks");
 
-  const clientSteps = [
+  const clientSteps: StepItem[] = [
     {
-      icon: <Edit3 className="w-6 h-6 text-brand-primary" />,
-      title: t("client_step_1_title"),
+      stepNumber: "01",
+      icon: <Edit3 className="w-5 h-5 text-brand-primary" />,
+      title: t("client_step_1_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("client_step_1_desc"),
+      image: "/images/how-it-works/step1_search.png",
+      alt: "Paso 1: Describe lo que buscas en Chamba App",
+      badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+      glowColor: "from-purple-600/30 via-brand-primary/15 to-transparent",
+      accentBorder: "group-hover:border-purple-500/50",
+      highlight: "Describe o usa tu voz",
     },
     {
-      icon: <Users className="w-6 h-6 text-brand-highlight" />,
-      title: t("client_step_2_title"),
+      stepNumber: "02",
+      icon: <Users className="w-5 h-5 text-emerald-400" />,
+      title: t("client_step_2_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("client_step_2_desc"),
+      image: "/images/how-it-works/step2_offers.png",
+      alt: "Paso 2: Recibe ofertas y cotizaciones en tiempo real",
+      badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+      glowColor: "from-emerald-600/30 via-teal-500/15 to-transparent",
+      accentBorder: "group-hover:border-emerald-500/50",
+      highlight: "Ofertas en vivo",
     },
     {
-      icon: <MessageSquare className="w-6 h-6 text-brand-primary-light" />,
-      title: t("client_step_3_title"),
+      stepNumber: "03",
+      icon: <MessageSquare className="w-5 h-5 text-brand-primary-light" />,
+      title: t("client_step_3_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("client_step_3_desc"),
+      image: "/images/how-it-works/step3_accepted.png",
+      alt: "Paso 3: Confirma la oferta y trabajador",
+      badgeColor: "bg-indigo-500/15 text-indigo-300 border-indigo-500/30",
+      glowColor: "from-indigo-600/30 via-brand-primary/15 to-transparent",
+      accentBorder: "group-hover:border-indigo-500/50",
+      highlight: "Confirmación instantánea",
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-emerald-500" />,
-      title: t("client_step_4_title"),
+      stepNumber: "04",
+      icon: <ShieldCheck className="w-5 h-5 text-amber-400" />,
+      title: t("client_step_4_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("client_step_4_desc"),
+      image: "/images/how-it-works/step4_completed.png",
+      alt: "Paso 4: Finaliza y califica el trabajo",
+      badgeColor: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+      glowColor: "from-amber-500/30 via-yellow-500/15 to-transparent",
+      accentBorder: "group-hover:border-amber-500/50",
+      highlight: "Califica el servicio",
     },
   ];
 
-  const workerSteps = [
+  const workerSteps: StepItem[] = [
     {
-      icon: <UserCheck className="w-6 h-6 text-brand-highlight" />,
-      title: t("worker_step_1_title"),
+      stepNumber: "01",
+      icon: <UserCheck className="w-5 h-5 text-brand-highlight" />,
+      title: t("worker_step_1_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("worker_step_1_desc"),
+      image: "/images/how-it-works/step1_search.png",
+      alt: "Paso 1: Completa tu perfil de chambero",
+      badgeColor: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+      glowColor: "from-purple-600/30 via-brand-primary/15 to-transparent",
+      accentBorder: "group-hover:border-purple-500/50",
+      highlight: "Perfil verificado",
     },
     {
-      icon: <Compass className="w-6 h-6 text-brand-primary" />,
-      title: t("worker_step_2_title"),
+      stepNumber: "02",
+      icon: <Compass className="w-5 h-5 text-brand-primary" />,
+      title: t("worker_step_2_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("worker_step_2_desc"),
+      image: "/images/how-it-works/step2_offers.png",
+      alt: "Paso 2: Explora solicitudes de trabajo",
+      badgeColor: "bg-blue-500/15 text-blue-300 border-blue-500/30",
+      glowColor: "from-blue-600/30 via-brand-primary/15 to-transparent",
+      accentBorder: "group-hover:border-blue-500/50",
+      highlight: "Solicitudes cercanas",
     },
     {
-      icon: <Send className="w-6 h-6 text-brand-primary-light" />,
-      title: t("worker_step_3_title"),
+      stepNumber: "03",
+      icon: <Send className="w-5 h-5 text-brand-primary-light" />,
+      title: t("worker_step_3_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("worker_step_3_desc"),
+      image: "/images/how-it-works/step3_accepted.png",
+      alt: "Paso 3: Envía ofertas y cotizaciones",
+      badgeColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+      glowColor: "from-emerald-600/30 via-teal-500/15 to-transparent",
+      accentBorder: "group-hover:border-emerald-500/50",
+      highlight: "Presupuestos propios",
     },
     {
-      icon: <CheckSquare className="w-6 h-6 text-emerald-500" />,
-      title: t("worker_step_4_title"),
+      stepNumber: "04",
+      icon: <CheckSquare className="w-5 h-5 text-amber-400" />,
+      title: t("worker_step_4_title").replace(/^[0-9]+\.\s*/, ""),
       desc: t("worker_step_4_desc"),
+      image: "/images/how-it-works/step4_completed.png",
+      alt: "Paso 4: Trabaja y cobra directo",
+      badgeColor: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+      glowColor: "from-amber-500/30 via-yellow-500/15 to-transparent",
+      accentBorder: "group-hover:border-amber-500/50",
+      highlight: "Cobra directo",
     },
   ];
 
@@ -63,66 +144,107 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.12,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    hidden: { opacity: 0, y: 25 },
     show: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
-      transition: { type: "spring", damping: 12, stiffness: 100 }
+      transition: { duration: 0.45, ease: "easeOut" }
     },
   };
 
   return (
-    <section id="como-funciona" className="py-20 bg-[#090d16] relative overflow-hidden">
-      <div className="absolute right-0 bottom-0 w-80 h-80 rounded-full bg-brand-highlight/5 blur-[100px] pointer-events-none" />
+    <section id="como-funciona" className="py-24 bg-[#090d16] relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute left-1/4 top-10 w-96 h-96 rounded-full bg-brand-primary/10 blur-[130px] pointer-events-none" />
+      <div className="absolute right-1/4 bottom-10 w-96 h-96 rounded-full bg-purple-600/10 blur-[130px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary-light text-xs font-bold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Paso a Paso</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
             {t("title")}
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400">
+          <p className="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
             {t("subtitle")}
           </p>
         </motion.div>
 
+        {/* Steps Grid with Real Device Screenshots */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeRole}
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-8 relative"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
           >
-            {/* Visual connector bar for timeline (desktop only) */}
-            <div className="hidden md:block absolute top-[44px] left-[12%] right-[12%] h-[1px] bg-slate-800 z-0" />
-
             {steps.map((st, index) => (
-              <motion.div variants={itemVariants} key={index} className="flex flex-col items-center text-center relative z-10 group">
-                {/* Icon wrapper */}
-                <div className="w-16 h-16 rounded-full bg-slate-900 border-2 border-slate-800 flex items-center justify-center mb-6 group-hover:border-brand-primary group-hover:scale-110 transition-all duration-300 shadow-lg shadow-black/50">
-                  {st.icon}
+              <motion.div
+                variants={itemVariants}
+                key={index}
+                className="flex flex-col relative z-10 group"
+              >
+                {/* Showcase Card */}
+                <div className="flex flex-col h-full bg-gradient-to-b from-slate-900/90 via-[#0e1424]/90 to-slate-950/95 border border-slate-800/80 rounded-3xl p-5 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-brand-primary/50 hover:shadow-2xl hover:shadow-brand-primary/15 overflow-hidden">
+                  
+                  {/* Step Header Badge & Icon */}
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className={`text-xs font-black tracking-wider uppercase px-3 py-1 rounded-full border ${st.badgeColor} transition-colors duration-300`}>
+                      Paso {st.stepNumber}
+                    </span>
+                    <div className="w-9 h-9 rounded-xl bg-slate-800/60 border border-white/5 flex items-center justify-center text-slate-300 group-hover:scale-110 group-hover:text-white transition-all duration-300 shadow-sm">
+                      {st.icon}
+                    </div>
+                  </div>
+
+                  {/* Title & Desc */}
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-primary-light transition-colors">
+                    {st.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-6 min-h-[42px]">
+                    {st.desc}
+                  </p>
+
+                  {/* Device Screen Presentation */}
+                  <div className="mt-auto relative w-full pt-2 flex justify-center items-end overflow-hidden">
+                    {/* Ambient Glow */}
+                    <div className={`absolute inset-x-4 bottom-0 h-44 rounded-full bg-gradient-to-t ${st.glowColor} blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />
+
+                    {/* Smartphone Mockup */}
+                    <div className="relative w-full max-w-[210px] sm:max-w-[230px] transition-transform duration-500 ease-out group-hover:scale-105">
+                      <img
+                        src={st.image}
+                        alt={st.alt}
+                        className="w-full h-auto max-h-[380px] sm:max-h-[420px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Bottom Highlight Tag */}
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-400 group-hover:text-slate-200 transition-colors">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary" />
+                    <span>{st.highlight}</span>
+                  </div>
                 </div>
-                
-                <h3 className="text-base font-bold text-white mb-2.5">
-                  {st.title}
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed max-w-[220px]">
-                  {st.desc}
-                </p>
               </motion.div>
             ))}
           </motion.div>

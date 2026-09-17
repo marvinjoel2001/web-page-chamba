@@ -11,7 +11,9 @@
     "install_app": "Instalar App",
     "income_question": "Buscando gerar renda?",
     "work_with_us": "Trabalhe conosco",
-    "view_mode": "Modo de Exibição:"
+    "view_mode": "Modo de Exibição:",
+    "menu_agencies": "Agências",
+    "portal_agencies": "Chamba Agências"
   },
   "Hero": {
     "client_title_line1": "Encontre alguém",
