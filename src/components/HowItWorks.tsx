@@ -4,36 +4,32 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   Edit3, 
   Users, 
-  Calendar, 
-  MapPin, 
+  CheckCircle2, 
   Star,
   Sparkles,
-  CheckCircle2,
   ShieldCheck,
   Zap,
   ChevronRight,
   UserCheck,
   Compass,
   Send,
-  Navigation,
   Award
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
-import ModernPhoneMockup from "./mockups/ModernPhoneMockup";
 
 interface HowItWorksProps {
   activeRole: "client" | "worker";
 }
 
 interface StepItem {
-  stepIndex: 1 | 2 | 3 | 4 | 5;
   stepNumber: string;
   icon: React.ReactNode;
   titleKey: string;
   descKey: string;
   badgeKey?: string;
   badgeIcon?: React.ReactNode;
+  image: string;
 }
 
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
@@ -41,97 +37,79 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
   const clientSteps: StepItem[] = [
     {
-      stepIndex: 1,
       stepNumber: "01",
       icon: <Edit3 className="w-4 h-4 text-purple-300" />,
       titleKey: "client_step_1_title",
       descKey: "client_step_1_desc",
       badgeKey: "client_step_1_badge",
       badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step1_clean.png",
     },
     {
-      stepIndex: 2,
       stepNumber: "02",
       icon: <Users className="w-4 h-4 text-purple-300" />,
       titleKey: "client_step_2_title",
       descKey: "client_step_2_desc",
       badgeKey: "client_step_2_badge",
       badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step2_clean.png",
     },
     {
-      stepIndex: 3,
       stepNumber: "03",
-      icon: <Calendar className="w-4 h-4 text-purple-300" />,
+      icon: <CheckCircle2 className="w-4 h-4 text-purple-300" />,
       titleKey: "client_step_3_title",
       descKey: "client_step_3_desc",
       badgeKey: "client_step_3_badge",
       badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step3_clean.png",
     },
     {
-      stepIndex: 4,
       stepNumber: "04",
-      icon: <MapPin className="w-4 h-4 text-purple-300" />,
-      titleKey: "client_step_4_title",
-      descKey: "client_step_4_desc",
-      badgeKey: "client_step_4_badge",
-      badgeIcon: <MapPin className="w-3.5 h-3.5 text-purple-400" />,
-    },
-    {
-      stepIndex: 5,
-      stepNumber: "05",
       icon: <Star className="w-4 h-4 text-purple-300" />,
       titleKey: "client_step_5_title",
       descKey: "client_step_5_desc",
       badgeKey: "client_step_5_badge",
       badgeIcon: <Star className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step4_clean.png",
     },
   ];
 
   const workerSteps: StepItem[] = [
     {
-      stepIndex: 1,
       stepNumber: "01",
       icon: <UserCheck className="w-4 h-4 text-purple-300" />,
       titleKey: "worker_step_1_title",
       descKey: "worker_step_1_desc",
       badgeKey: "worker_step_1_badge",
       badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step1_clean.png",
     },
     {
-      stepIndex: 2,
       stepNumber: "02",
       icon: <Compass className="w-4 h-4 text-purple-300" />,
       titleKey: "worker_step_2_title",
       descKey: "worker_step_2_desc",
       badgeKey: "worker_step_2_badge",
-      badgeIcon: <MapPin className="w-3.5 h-3.5 text-purple-400" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step2_clean.png",
     },
     {
-      stepIndex: 3,
       stepNumber: "03",
       icon: <Send className="w-4 h-4 text-purple-300" />,
       titleKey: "worker_step_3_title",
       descKey: "worker_step_3_desc",
       badgeKey: "worker_step_3_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />,
-    },
-    {
-      stepIndex: 4,
-      stepNumber: "04",
-      icon: <Navigation className="w-4 h-4 text-purple-300" />,
-      titleKey: "worker_step_4_title",
-      descKey: "worker_step_4_desc",
-      badgeKey: "worker_step_4_badge",
       badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step3_clean.png",
     },
     {
-      stepIndex: 5,
-      stepNumber: "05",
+      stepNumber: "04",
       icon: <Award className="w-4 h-4 text-purple-300" />,
       titleKey: "worker_step_5_title",
       descKey: "worker_step_5_desc",
       badgeKey: "worker_step_5_badge",
       badgeIcon: <Star className="w-3.5 h-3.5 text-purple-400" />,
+      image: "/images/how-it-works/step4_clean.png",
     },
   ];
 
@@ -165,7 +143,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
       {/* Subtle Star Dust Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Floating 3D Logo Cube (Left Top Decorative Element) */}
         <div className="hidden xl:flex absolute -left-4 top-2 w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-800 border border-purple-400/40 shadow-[0_20px_45px_rgba(124,58,237,0.35)] items-center justify-center transform -rotate-12 hover:rotate-0 transition-transform duration-500 z-20">
@@ -225,7 +203,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
           </p>
         </motion.div>
 
-        {/* 5-Step Showcase Grid with Connecting Arrows */}
+        {/* 4-Step Showcase Grid with Connecting Arrows & User's Real App Images */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeRole}
@@ -233,17 +211,17 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-3.5 xl:gap-4 items-stretch relative"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6 items-stretch relative"
           >
             {steps.map((st, index) => {
               const isLast = index === steps.length - 1;
 
               return (
-                <div key={st.stepIndex} className="relative flex flex-col">
+                <div key={st.stepNumber} className="relative flex flex-col">
                   {/* Step Card Container */}
                   <motion.div
                     variants={itemVariants}
-                    className="flex-1 flex flex-col justify-between bg-gradient-to-b from-[#14122d]/90 via-[#100e26]/95 to-[#0c0a1f]/95 border border-purple-500/20 rounded-[28px] p-4 xl:p-4.5 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.18)] transition-all duration-300 group"
+                    className="flex-1 flex flex-col justify-between bg-gradient-to-b from-[#14122d]/90 via-[#100e26]/95 to-[#0c0a1f]/95 border border-purple-500/20 rounded-[28px] p-5 sm:p-6 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.18)] transition-all duration-300 group overflow-hidden"
                   >
                     <div>
                       {/* Top Row: Number Box (Left) & Circular Icon (Right) */}
@@ -258,27 +236,34 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                       </div>
 
                       {/* Step Title */}
-                      <h3 className="text-[15px] font-bold text-white mb-1.5 leading-snug group-hover:text-purple-200 transition-colors">
+                      <h3 className="text-base font-bold text-white mb-1.5 leading-snug group-hover:text-purple-200 transition-colors">
                         {t(st.titleKey as any)}
                       </h3>
 
                       {/* Step Description */}
-                      <p className="text-xs text-slate-400 leading-relaxed mb-4 min-h-[48px]">
+                      <p className="text-xs text-slate-400 leading-relaxed mb-4 min-h-[42px]">
                         {t(st.descKey as any)}
                       </p>
                     </div>
 
-                    {/* Smartphone Mockup */}
-                    <div className="my-auto py-2 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
-                      <ModernPhoneMockup 
-                        step={st.stepIndex} 
-                        role={activeRole} 
-                      />
+                    {/* Smartphone Display with User's Real App Screenshot */}
+                    <div className="my-auto py-2 flex justify-center items-center">
+                      <div className="relative w-full max-w-[200px] sm:max-w-[215px] transition-transform duration-500 ease-out group-hover:scale-105">
+                        {/* Soft ambient phone glow */}
+                        <div className="absolute inset-0 bg-purple-600/20 blur-xl rounded-full opacity-60 group-hover:opacity-100 transition-opacity" />
+                        
+                        <img
+                          src={st.image}
+                          alt={t(st.titleKey as any)}
+                          className="relative z-10 w-full h-auto max-h-[420px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
 
                     {/* Bottom Guarantee Badge under Card */}
                     {st.badgeKey && (
-                      <div className="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-center gap-1.5 text-[10.5px] font-medium text-purple-300/85 text-center leading-tight">
+                      <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-center gap-1.5 text-[11px] font-medium text-purple-300/85 text-center leading-tight">
                         {st.badgeIcon}
                         <span>{t(st.badgeKey as any)}</span>
                       </div>
@@ -287,9 +272,9 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
                   {/* Horizontal Flow Arrow between cards (Desktop Only) */}
                   {!isLast && (
-                    <div className="hidden lg:flex absolute -right-2.5 xl:-right-3 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
-                      <div className="w-5 h-5 rounded-full bg-purple-950/90 border border-purple-500/30 flex items-center justify-center text-purple-300/70 shadow-sm">
-                        <ChevronRight className="w-3 h-3" />
+                    <div className="hidden lg:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
+                      <div className="w-6 h-6 rounded-full bg-purple-950/90 border border-purple-500/30 flex items-center justify-center text-purple-300/70 shadow-md">
+                        <ChevronRight className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   )}

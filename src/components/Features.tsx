@@ -1,161 +1,203 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import {
-  Zap,
-  DollarSign,
-  MapPin,
-  ShieldCheck,
-  Compass,
-  MessageSquare,
-  Award,
-  TrendingUp,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Users, MapPin, MessageSquare, ShieldCheck, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import PhoneFrame from "./mockups/PhoneFrame";
-import ChatMockup from "./mockups/ChatMockup";
+import React from "react";
 
 interface FeaturesProps {
-  activeRole: "client" | "worker";
+  activeRole?: "client" | "worker";
 }
 
-export default function Features({ activeRole }: FeaturesProps) {
+export default function Features({ activeRole = "client" }: FeaturesProps) {
   const t = useTranslations("Features");
 
-  const clientFeatures = [
+  const cards = [
     {
-      icon: <Zap className="w-6 h-6 text-brand-primary" />,
-      title: t("client_feat_1_title"),
-      desc: t("client_feat_1_desc"),
+      id: "card_1",
+      icon: <Users className="w-4 h-4 text-purple-300" />,
+      title: t("card_1_title"),
+      desc: t("card_1_desc"),
     },
     {
-      icon: <DollarSign className="w-6 h-6 text-brand-highlight" />,
-      title: t("client_feat_2_title"),
-      desc: t("client_feat_2_desc"),
+      id: "card_2",
+      icon: <MapPin className="w-4 h-4 text-purple-300" />,
+      title: t("card_2_title"),
+      desc: t("card_2_desc"),
     },
     {
-      icon: <MapPin className="w-6 h-6 text-brand-primary-light" />,
-      title: t("client_feat_3_title"),
-      desc: t("client_feat_3_desc"),
+      id: "card_3",
+      icon: <MessageSquare className="w-4 h-4 text-purple-300" />,
+      title: t("card_3_title"),
+      desc: t("card_3_desc"),
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-emerald-500" />,
-      title: t("client_feat_4_title"),
-      desc: t("client_feat_4_desc"),
+      id: "card_4",
+      icon: <ShieldCheck className="w-4 h-4 text-purple-300" />,
+      title: t("card_4_title"),
+      desc: t("card_4_desc"),
     },
   ];
-
-  const workerFeatures = [
-    {
-      icon: <Compass className="w-6 h-6 text-brand-highlight" />,
-      title: t("worker_feat_1_title"),
-      desc: t("worker_feat_1_desc"),
-    },
-    {
-      icon: <DollarSign className="w-6 h-6 text-brand-primary" />,
-      title: t("worker_feat_2_title"),
-      desc: t("worker_feat_2_desc"),
-    },
-    {
-      icon: <MessageSquare className="w-6 h-6 text-brand-primary-light" />,
-      title: t("worker_feat_3_title"),
-      desc: t("worker_feat_3_desc"),
-    },
-    {
-      icon: <Award className="w-6 h-6 text-purple-500" />,
-      title: t("worker_feat_4_title"),
-      desc: t("worker_feat_4_desc"),
-    },
-  ];
-
-  const currentFeatures = activeRole === "client" ? clientFeatures : workerFeatures;
-
-  const containerVariants: Variants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: { type: "spring", damping: 15, stiffness: 100 } 
-    },
-  };
 
   return (
-    <section id="como-funciona" className="py-20 bg-slate-950 relative overflow-hidden">
-      {/* Visual background element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-primary/5 blur-[120px] pointer-events-none" />
+    <section id="features" className="py-20 sm:py-28 bg-[#09081a] relative overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] rounded-full bg-purple-600/15 blur-[140px] pointer-events-none" />
+      <div className="absolute left-10 bottom-10 w-72 h-72 rounded-full bg-indigo-600/10 blur-[120px] pointer-events-none" />
+      <div className="absolute right-10 top-10 w-72 h-72 rounded-full bg-purple-700/10 blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            {t("title")}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+            {t("title_part1")}{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent relative inline-block">
+              {t("title_part2")}
+              <span className="absolute -top-1 -right-4 text-amber-300 text-sm sm:text-base font-normal select-none">✨</span>
+            </span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400">
+          <p className="mt-4 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
             {t("subtitle")}
           </p>
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeRole}
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="flex flex-col lg:flex-row gap-12 items-center"
-          >
-            {/* Features Image (Dynamic based on role) */}
-            <motion.div 
-              className={`w-full lg:w-1/2 flex justify-center ${activeRole === 'worker' ? 'lg:order-2' : ''}`}
-              initial={{ opacity: 0, x: activeRole === 'worker' ? 50 : -50 }}
+        {/* Main Showcase: Workers in Center with 4 Floating Cards */}
+        <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 xl:gap-8">
+          
+          {/* Left Column Cards (Cards 1 & 2) */}
+          <div className="w-full lg:w-[280px] xl:w-[320px] flex flex-col gap-5 sm:gap-6 z-20 order-2 lg:order-1">
+            {/* Card 1: Encuentra a la persona indicada */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-[#12102b]/85 border border-purple-500/20 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition-all duration-300 group flex flex-col justify-between"
             >
-              <PhoneFrame className="scale-90 shadow-2xl">
-                <ChatMockup />
-              </PhoneFrame>
+              <div>
+                <div className="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-400/30 flex items-center justify-center text-purple-300 mb-3 group-hover:scale-110 transition-transform">
+                  {cards[0].icon}
+                </div>
+                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
+                  {cards[0].title}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {cards[0].desc}
+                </p>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <ArrowRight className="w-4 h-4 text-purple-400/70 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+              </div>
             </motion.div>
 
-            {/* Features Grid */}
-            <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {currentFeatures.map((feat, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group relative bg-[#121824] hover:bg-[#161f30] border border-white/5 hover:border-white/10 rounded-3xl p-6 transition-all duration-300 shadow-md flex flex-col items-start"
-                >
-                  {/* Glowing border hover effect */}
-                  <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-brand-primary/20 transition-all duration-300 pointer-events-none" />
-                  
-                  {/* Icon wrapper */}
-                  <div className="p-3 bg-slate-900 rounded-2xl border border-white/5 mb-5 group-hover:scale-110 transition-transform duration-300">
-                    {feat.icon}
-                  </div>
+            {/* Card 2: Cerca de ti */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-[#12102b]/85 border border-purple-500/20 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-400/30 flex items-center justify-center text-purple-300 mb-3 group-hover:scale-110 transition-transform">
+                  {cards[1].icon}
+                </div>
+                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
+                  {cards[1].title}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {cards[1].desc}
+                </p>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <ArrowRight className="w-4 h-4 text-purple-400/70 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+              </div>
+            </motion.div>
+          </div>
 
-                  <h3 className="text-lg font-bold text-white mb-2">{feat.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{feat.desc}</p>
-                </motion.div>
-              ))}
+          {/* Center Column: Real Workers Photo Showcase */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="w-full lg:flex-1 max-w-[620px] xl:max-w-[680px] flex justify-center items-center relative z-10 order-1 lg:order-2"
+          >
+            {/* Ambient backlight glow */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/25 via-indigo-600/15 to-transparent blur-[80px] rounded-full pointer-events-none" />
+
+            <div className="relative w-full rounded-2xl overflow-hidden drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+              <img
+                src="/images/chamba_workers_feathered.png"
+                alt="Chamba Profesionales Reales"
+                className="w-full h-auto object-contain max-h-[460px] mx-auto select-none"
+                loading="lazy"
+              />
             </div>
           </motion.div>
-        </AnimatePresence>
+
+          {/* Right Column Cards (Cards 3 & 4) */}
+          <div className="w-full lg:w-[280px] xl:w-[320px] flex flex-col gap-5 sm:gap-6 z-20 order-3">
+            {/* Card 3: Habla y acuerda directamente */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-[#12102b]/85 border border-purple-500/20 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-400/30 flex items-center justify-center text-purple-300 mb-3 group-hover:scale-110 transition-transform">
+                  {cards[2].icon}
+                </div>
+                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
+                  {cards[2].title}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {cards[2].desc}
+                </p>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <ArrowRight className="w-4 h-4 text-purple-400/70 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+              </div>
+            </motion.div>
+
+            {/* Card 4: Trabajos con confianza */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              whileHover={{ y: -4, scale: 1.01 }}
+              className="bg-[#12102b]/85 border border-purple-500/20 backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-2xl hover:border-purple-500/50 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-8 h-8 rounded-full bg-purple-600/20 border border-purple-400/30 flex items-center justify-center text-purple-300 mb-3 group-hover:scale-110 transition-transform">
+                  {cards[3].icon}
+                </div>
+                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
+                  {cards[3].title}
+                </h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {cards[3].desc}
+                </p>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <ArrowRight className="w-4 h-4 text-purple-400/70 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

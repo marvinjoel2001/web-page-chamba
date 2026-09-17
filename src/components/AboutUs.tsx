@@ -56,7 +56,7 @@ export default function AboutUs() {
               {t("section_tag")}
             </h2>
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6">
-              {t("title_part1")}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-light to-brand-highlight">{t("title_part2")}</span>
+              {t("title_part1")}{t("title_part2")}
             </h3>
 
             <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
