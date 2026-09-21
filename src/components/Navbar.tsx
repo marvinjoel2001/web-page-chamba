@@ -34,33 +34,35 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
     { name: t("menu_about"), href: "/#nosotros" },
   ];
 
+  const desktopMenuItems = menuItems.filter((item) => item.href !== "/");
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-[#090d16]/80 backdrop-blur-md border-b border-white/5 shadow-lg shadow-black/20"
+          ? "py-3 bg-[#090d16]/85 backdrop-blur-md border-b border-white/5 shadow-lg shadow-black/20"
           : "py-5 bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary-light shadow-md shadow-brand-primary/20 overflow-hidden">
-                <img src="/images/icon.png" alt="Chamba Logo" className="w-full h-full object-cover" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white bg-clip-text">
-                Chamba
-              </span>
-            </Link>
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 mr-4 lg:mr-8 group">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-primary-light shadow-md shadow-brand-primary/20 overflow-hidden group-hover:scale-105 transition-transform duration-200">
+              <img src="/images/icon.png" alt="Chamba Logo" className="w-full h-full object-cover" />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-white">
+              Chamba
+            </span>
+          </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-7">
-            {menuItems.map((item) => (
+          <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-7">
+            {desktopMenuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors duration-200"
+                className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200 whitespace-nowrap"
               >
                 {item.name}
               </Link>
@@ -72,9 +74,9 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 hover:text-white bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/30 hover:border-purple-400/60 rounded-full transition-all duration-200 shadow-sm hover:shadow-purple-500/20 whitespace-nowrap"
               title="Portal para Agencias de Servicios"
             >
-              <Building2 className="w-3.5 h-3.5 text-purple-400" />
+              <Building2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
               <span>{t("portal_agencies")}</span>
-              <ExternalLink className="w-3 h-3 text-purple-400/70" />
+              <ExternalLink className="w-3 h-3 text-purple-400/70 shrink-0" />
             </a>
           </div>
 

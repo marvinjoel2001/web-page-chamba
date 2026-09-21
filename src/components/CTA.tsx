@@ -11,7 +11,7 @@ interface CTAProps {
 export default function CTA({ activeRole }: CTAProps) {
   const t = useTranslations("CTA");
   return (
-    <section id="descargar" className="py-20 bg-[#090d16] relative overflow-hidden">
+    <section id="descargar" className="py-20 relative overflow-hidden">
       {/* Background radial highlight */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-brand-primary/10 blur-[130px] pointer-events-none" />
 

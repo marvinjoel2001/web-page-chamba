@@ -21,6 +21,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {notFound} from 'next/navigation';
+import StarfieldBackground from "@/components/StarfieldBackground";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
@@ -47,7 +48,8 @@ export default async function RootLayout({
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#090d16] text-slate-100 selection:bg-brand-primary selection:text-white">
+        <StarfieldBackground />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

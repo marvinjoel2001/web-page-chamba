@@ -5,7 +5,7 @@ import { Building2, Users, ExternalLink, ShieldCheck, Zap } from "lucide-react";
 
 export default function AgencyBanner() {
   return (
-    <section id="agencias" className="py-16 bg-[#090d16] relative overflow-hidden">
+    <section id="agencias" className="py-16 relative overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute left-1/2 -top-24 -translate-x-1/2 w-[700px] h-[350px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
 

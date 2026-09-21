@@ -144,7 +144,7 @@ export default function Categories() {
   };
 
   return (
-    <section id="categorias" className="py-24 bg-[#090d16] relative overflow-hidden">
+    <section id="categorias" className="py-24 relative overflow-hidden">
       {/* Visual background gradient glow */}
       <div className="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-brand-highlight/5 blur-[120px] pointer-events-none" />
       <div className="absolute left-0 bottom-0 w-96 h-96 rounded-full bg-brand-primary/5 blur-[120px] pointer-events-none" />

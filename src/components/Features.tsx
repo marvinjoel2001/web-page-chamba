@@ -40,7 +40,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
   ];
 
   return (
-    <section id="features" className="py-20 sm:py-28 bg-[#09081a] relative overflow-hidden">
+    <section id="features" className="py-20 sm:py-28 relative overflow-hidden">
       {/* Ambient background glows */}
       <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] rounded-full bg-purple-600/15 blur-[140px] pointer-events-none" />
       <div className="absolute left-10 bottom-10 w-72 h-72 rounded-full bg-indigo-600/10 blur-[120px] pointer-events-none" />

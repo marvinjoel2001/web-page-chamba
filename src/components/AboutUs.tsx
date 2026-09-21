@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 export default function AboutUs() {
   const t = useTranslations("AboutUs");
   return (
-    <section id="nosotros" className="py-24 bg-[#090d16] relative overflow-hidden">
+    <section id="nosotros" className="py-24 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
 

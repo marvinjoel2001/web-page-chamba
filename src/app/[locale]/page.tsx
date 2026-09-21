@@ -17,7 +17,7 @@ export default function Home() {
   const [activeRole, setActiveRole] = useState<"client" | "worker">("client");
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090d16] font-sans selection:bg-brand-primary selection:text-white antialiased">
+    <div className="min-h-screen flex flex-col bg-transparent font-sans selection:bg-brand-primary selection:text-white antialiased relative z-10">
       {/* Header / Navigation */}
       <Navbar activeRole={activeRole} setActiveRole={setActiveRole} />
 

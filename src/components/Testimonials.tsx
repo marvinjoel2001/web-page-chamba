@@ -42,7 +42,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="testimonios" className="py-20 bg-slate-950 relative overflow-hidden">
+    <section id="testimonios" className="py-20 relative overflow-hidden">
       <div className="absolute top-1/4 right-0 w-72 h-72 rounded-full bg-brand-highlight/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
