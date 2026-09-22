@@ -71,21 +71,21 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               href="https://agency-chamba.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-purple-300 hover:text-white bg-purple-950/60 hover:bg-purple-900/80 border border-purple-500/30 hover:border-purple-400/60 rounded-full transition-all duration-200 shadow-sm hover:shadow-purple-500/20 whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/25 rounded-full transition-all duration-200 whitespace-nowrap"
               title="Portal para Agencias de Servicios"
             >
-              <Building2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
               <span>{t("portal_agencies")}</span>
-              <ExternalLink className="w-3 h-3 text-purple-400/70 shrink-0" />
+              <ExternalLink className="w-3 h-3 text-slate-400/70 shrink-0" />
             </a>
           </div>
 
           {/* Controls: Role Selector + CTA */}
           <div className="hidden md:flex items-center gap-4 relative">
             {/* Role Switcher */}
-            <div className="relative flex p-1 bg-slate-900/60 border border-white/5 rounded-full">
+            <div className="relative flex p-1 bg-slate-900/80 border border-white/10 rounded-full">
               <div
-                className={`absolute top-1 bottom-1 w-[88px] bg-gradient-to-r from-brand-primary to-brand-primary-light rounded-full transition-transform duration-300 ease-out ${
+                className={`absolute top-1 bottom-1 w-[88px] bg-purple-600 rounded-full transition-transform duration-300 ease-out ${
                   activeRole === "worker" ? "translate-x-[88px]" : "translate-x-0"
                 }`}
               />
@@ -111,7 +111,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               href="/#descargar"
               className="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all duration-200 whitespace-nowrap shrink-0"
             >
-              <Smartphone className="w-4 h-4 text-brand-highlight shrink-0" />
+              <Smartphone className="w-4 h-4 text-purple-400 shrink-0" />
               <span>{t("install_app")}</span>
             </Link>
 
@@ -120,23 +120,23 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               <div className="absolute top-[calc(100%+1.5rem)] right-0">
                 <div className="relative">
                   {/* Dotted Arrow SVG pointing up-left */}
-                  <svg className="absolute -top-7 right-8 w-8 h-8 text-brand-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="absolute -top-7 right-8 w-8 h-8 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeDasharray="3 3" strokeWidth="1.5" strokeLinecap="round" d="M8 20 C 8 10, 16 8, 20 4" />
                     <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M15 4 L 20 4 L 20 9" />
                   </svg>
 
                   <Link
                     href="/unete"
-                    className="flex items-center gap-4 p-3 pr-5 bg-[#090d16] border border-brand-primary/20 rounded-2xl shadow-2xl hover:-translate-y-1 hover:shadow-brand-primary/20 hover:border-brand-primary/50 transition-all duration-300 group whitespace-nowrap"
+                    className="flex items-center gap-4 p-3 pr-5 bg-slate-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl hover:-translate-y-1 hover:border-white/25 transition-all duration-300 group whitespace-nowrap"
                   >
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary-light group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 text-slate-300 group-hover:text-purple-300 transition-colors">
                       <Briefcase className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-xs text-slate-400 font-medium">{t("income_question")}</span>
-                      <span className="text-sm font-bold text-brand-primary-light group-hover:text-white transition-colors">{t("work_with_us")}</span>
+                      <span className="text-sm font-bold text-white group-hover:text-purple-200 transition-colors">{t("work_with_us")}</span>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-brand-primary-light ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 text-slate-400 ml-2 group-hover:text-white group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>

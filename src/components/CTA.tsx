@@ -16,9 +16,7 @@ export default function CTA({ activeRole }: CTAProps) {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-brand-primary/10 blur-[130px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="glass rounded-[40px] p-8 sm:p-12 md:p-16 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12 glow-orange">
-          {/* Glowing particle effect in box */}
-          <div className="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-brand-highlight/10 blur-[60px]" />
+        <div className="bg-slate-900/50 backdrop-blur-md rounded-3xl p-8 sm:p-12 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
           
           <div className="flex-1 text-center md:text-left">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">

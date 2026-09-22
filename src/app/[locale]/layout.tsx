@@ -48,7 +48,11 @@ export default async function RootLayout({
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#090d16] text-slate-100 selection:bg-brand-primary selection:text-white">
+      <head>
+        <link rel="preload" href="/images/worker.png" as="image" />
+        <link rel="preload" href="/images/client.png" as="image" />
+      </head>
+      <body className="min-h-full flex flex-col bg-[#04060a] text-slate-100 selection:bg-brand-primary selection:text-white">
         <StarfieldBackground />
         <NextIntlClientProvider messages={messages}>
           {children}

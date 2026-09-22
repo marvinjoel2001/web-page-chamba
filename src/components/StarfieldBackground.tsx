@@ -269,7 +269,7 @@ export default function StarfieldBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[1] select-none"
-      style={{ opacity: 0.95 }}
+      style={{ opacity: 0.75 }}
       aria-hidden="true"
     />
   );

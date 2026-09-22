@@ -15,16 +15,13 @@ export default function AgencyBanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl border border-purple-500/30 bg-gradient-to-br from-slate-900/90 via-[#120f24]/80 to-slate-950/90 p-8 sm:p-12 shadow-2xl shadow-purple-950/30 overflow-hidden"
+          className="relative rounded-3xl border border-white/10 bg-slate-900/40 backdrop-blur-md p-8 sm:p-12 shadow-2xl overflow-hidden"
         >
-          {/* Subtle mesh overlay */}
-          <div className="absolute right-0 top-0 w-96 h-96 bg-purple-500/10 blur-3xl rounded-full pointer-events-none" />
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column: Info & Features */}
             <div className="lg:col-span-8 flex flex-col items-start text-left">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider mb-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-slate-300 text-xs font-semibold uppercase tracking-wider mb-4">
                 <Building2 className="w-4 h-4 text-purple-400" />
                 <span>Chamba Agencias • Portal Corporativo</span>
               </div>

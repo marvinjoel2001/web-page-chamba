@@ -37,17 +37,15 @@ export default function Hero({ activeRole }: HeroProps) {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-grid-pattern">
-      {/* Glow Effects & Background */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090d16]/80 via-[#090d16]/90 to-[#090d16] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#04060a]/95 via-[#04060a]/90 to-[#04060a] z-10" />
         <img 
           src="/images/handshake.png" 
           alt="Handshake Background" 
-          className="w-full h-full object-cover opacity-30 mix-blend-screen"
+          className="w-full h-full object-cover opacity-10"
         />
       </div>
-      <div className="absolute top-1/4 left-1/10 w-96 h-96 rounded-full bg-brand-primary/20 blur-[120px] pointer-events-none z-0" />
-      <div className="absolute bottom-1/4 right-1/10 w-96 h-96 rounded-full bg-brand-primary-light/20 blur-[120px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -68,7 +66,7 @@ export default function Hero({ activeRole }: HeroProps) {
                       <span className="block">{t("client_title_line1")}</span>
                       <span className="block">
                         {t("client_title_line2")}
-                        <span className="text-purple-400 inline-block drop-shadow-[0_2px_15px_rgba(168,85,247,0.4)]">
+                        <span className="text-purple-300 inline-block font-semibold ml-2">
                           {t("client_title_highlight")}
                         </span>
                       </span>
@@ -78,7 +76,7 @@ export default function Hero({ activeRole }: HeroProps) {
                       <span className="block">{t("worker_title_line1")}</span>
                       <span className="block">
                         {t("worker_title_line2")}
-                        <span className="text-purple-400 inline-block drop-shadow-[0_2px_15px_rgba(168,85,247,0.4)]">
+                        <span className="text-purple-300 inline-block font-semibold ml-2">
                           {t("worker_title_highlight")}
                         </span>
                       </span>
@@ -89,26 +87,26 @@ export default function Hero({ activeRole }: HeroProps) {
             </h1>
 
             {/* Subtitle / Description */}
-            <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={activeRole}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.25 }}
                 >
                   {activeRole === "client" ? t("client_desc") : t("worker_desc")}
                 </motion.span>
               </AnimatePresence>
             </p>
 
-            {/* Search Bar Input */}
+            {/* Search Bar Input - Minimalist Dark Glass */}
             <form
               onSubmit={handleSearch}
-              className="mt-8 w-full max-w-xl bg-white rounded-full p-2 pl-6 flex items-center shadow-[0_12px_32px_rgba(0,0,0,0.35)] transition-all focus-within:ring-4 focus-within:ring-purple-500/20"
+              className="mt-8 w-full max-w-xl bg-slate-900/80 backdrop-blur-md border border-white/15 rounded-full p-1.5 pl-5 sm:pl-6 flex items-center shadow-2xl transition-all focus-within:border-white/35 focus-within:bg-slate-900"
             >
-              <Search className="w-5 h-5 text-indigo-400/80 mr-3 shrink-0" />
+              <Search className="w-5 h-5 text-slate-400 mr-3 shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
@@ -118,14 +116,14 @@ export default function Hero({ activeRole }: HeroProps) {
                     ? t("search_placeholder_client")
                     : t("search_placeholder_worker")
                 }
-                className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none text-base sm:text-lg font-normal"
+                className="w-full bg-transparent text-white placeholder:text-slate-400 focus:outline-none text-sm sm:text-base font-normal"
               />
               <button
                 type="submit"
                 aria-label="Buscar"
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white flex items-center justify-center shrink-0 shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer ml-2"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white hover:bg-slate-200 text-slate-950 flex items-center justify-center shrink-0 shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer ml-2"
               >
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950" />
               </button>
             </form>
 
@@ -138,7 +136,7 @@ export default function Hero({ activeRole }: HeroProps) {
                     activeRole === "client" ? t("chip_1_client") : t("chip_1_worker")
                   )
                 }
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131b2e]/90 hover:bg-[#1c2640] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
               >
                 <Search className="w-3.5 h-3.5 text-slate-400" />
                 <span>
@@ -153,7 +151,7 @@ export default function Hero({ activeRole }: HeroProps) {
                     activeRole === "client" ? t("chip_2_client") : t("chip_2_worker")
                   )
                 }
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131b2e]/90 hover:bg-[#1c2640] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
               >
                 <Search className="w-3.5 h-3.5 text-slate-400" />
                 <span>
@@ -168,7 +166,7 @@ export default function Hero({ activeRole }: HeroProps) {
                     activeRole === "client" ? t("chip_3_client") : t("chip_3_worker")
                   )
                 }
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131b2e]/90 hover:bg-[#1c2640] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 cursor-pointer shadow-sm hover:border-white/20 active:scale-95"
               >
                 <MapPin className="w-3.5 h-3.5 text-slate-400" />
                 <span>
@@ -177,74 +175,75 @@ export default function Hero({ activeRole }: HeroProps) {
               </button>
             </div>
 
-            {/* Feature Trust Badges */}
+            {/* Feature Trust Badges - Minimalist */}
             <div className="mt-8 pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 w-full max-w-xl">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-600/25">
-                  <ShieldCheck className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-300 shrink-0">
+                  <ShieldCheck className="w-4 h-4 text-purple-400" />
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-white/95 leading-tight">
+                <span className="text-xs sm:text-sm font-medium text-slate-300 leading-tight">
                   {activeRole === "client" ? t("badge_1_client") : t("badge_1_worker")}
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-600/25">
-                  <Tag className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-300 shrink-0">
+                  <Tag className="w-4 h-4 text-purple-400" />
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-white/95 leading-tight">
+                <span className="text-xs sm:text-sm font-medium text-slate-300 leading-tight">
                   {activeRole === "client" ? t("badge_2_client") : t("badge_2_worker")}
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-600/25">
-                  <Store className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-slate-300 shrink-0">
+                  <Store className="w-4 h-4 text-purple-400" />
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-white/95 leading-tight">
+                <span className="text-xs sm:text-sm font-medium text-slate-300 leading-tight">
                   {activeRole === "client" ? t("badge_3_client") : t("badge_3_worker")}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Hero Image Section */}
+          {/* Hero Image Section - Instant Zero-Lag Switch */}
           <div className="lg:col-span-5 relative flex justify-center items-center min-h-[480px] lg:min-h-[620px] [perspective:1600px]">
-            {/* Background glowing rings */}
-            <div className="absolute w-[420px] h-[420px] lg:w-[520px] lg:h-[520px] rounded-full border border-brand-primary/10 animate-pulse-slow" />
-            <div className="absolute w-[540px] h-[540px] lg:w-[660px] lg:h-[660px] rounded-full border border-brand-primary-light/5 animate-pulse-slow" />
-
             {/* Interactive 3D tilt wrapper */}
             <Tilt3D>
-              {/* Floating + entrance animation (kept separate from the tilt) */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 0 }}
-                animate={{ opacity: 1, scale: 1, y: [0, -16, 0] }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1, y: [0, -12, 0] }}
                 transition={{
-                  duration: 0.8,
+                  duration: 0.6,
                   ease: "easeOut",
-                  y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                  y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
                 }}
-                className="relative flex justify-center"
+                className="relative flex justify-center items-center w-full"
                 style={{ transformStyle: "preserve-3d" }}
               >
-                {/* Depth glow that sits BEHIND the phones (pushed back in 3D) */}
-                <div
-                  className="absolute inset-0 rounded-[60px] bg-brand-primary/30 blur-[90px] scale-90"
-                  style={{ transform: "translateZ(-120px)" }}
+                {/* BOTH IMAGES IN DOM: ZERO LAG ON ROLE SWITCH */}
+                <img
+                  src="/images/client.png"
+                  alt="Chamba Client App"
+                  className={`w-full h-auto max-w-[400px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[620px] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] transition-opacity duration-200 ${
+                    activeRole === "client" ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"
+                  }`}
+                  style={{ transform: "translateZ(40px)" }}
                 />
 
                 <img
-                  src={activeRole === "client" ? "/images/client.png" : "/images/worker.png"}
-                  alt={activeRole === "client" ? "Chamba Client App" : "Chamba Worker App"}
-                  className="relative w-full h-auto max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[680px] xl:max-w-[760px] object-contain drop-shadow-[0_35px_60px_rgba(109,40,217,0.55)]"
-                  style={{ transform: "translateZ(60px)" }}
+                  src="/images/worker.png"
+                  alt="Chamba Worker App"
+                  className={`w-full h-auto max-w-[400px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[620px] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.85)] transition-opacity duration-200 ${
+                    activeRole === "worker" ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"
+                  }`}
+                  style={{ transform: "translateZ(40px)" }}
                 />
 
-                {/* Floor reflection / shadow for grounding the 3D scene */}
+                {/* Floor shadow */}
                 <div
-                  className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-2/3 h-10 bg-black/50 blur-2xl rounded-[100%]"
-                  style={{ transform: "translateZ(-40px)" }}
+                  className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-black/80 blur-2xl rounded-full pointer-events-none"
+                  style={{ transform: "translateZ(-30px)" }}
                 />
               </motion.div>
             </Tilt3D>

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from "react";
+import ModernPhoneMockup from "@/components/mockups/ModernPhoneMockup";
 
 interface HowItWorksProps {
   activeRole: "client" | "worker";
@@ -29,7 +30,8 @@ interface StepItem {
   descKey: string;
   badgeKey?: string;
   badgeIcon?: React.ReactNode;
-  image: string;
+  image?: string;
+  mockupStep?: 1 | 2 | 3 | 4 | 5;
 }
 
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
@@ -82,7 +84,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
       descKey: "worker_step_1_desc",
       badgeKey: "worker_step_1_badge",
       badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />,
-      image: "/images/how-it-works/step1_search.png",
+      mockupStep: 1,
     },
     {
       stepNumber: "02",
@@ -91,7 +93,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
       descKey: "worker_step_2_desc",
       badgeKey: "worker_step_2_badge",
       badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />,
-      image: "/images/how-it-works/step2_offers.png",
+      mockupStep: 2,
     },
     {
       stepNumber: "03",
@@ -100,7 +102,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
       descKey: "worker_step_3_desc",
       badgeKey: "worker_step_3_badge",
       badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />,
-      image: "/images/how-it-works/step3_accepted.png",
+      mockupStep: 3,
     },
     {
       stepNumber: "04",
@@ -109,7 +111,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
       descKey: "worker_step_5_desc",
       badgeKey: "worker_step_5_badge",
       badgeIcon: <Star className="w-3.5 h-3.5 text-slate-400" />,
-      image: "/images/how-it-works/step4_completed.png",
+      mockupStep: 5,
     },
   ];
 
@@ -119,25 +121,22 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
+    hidden: { opacity: 0, y: 16 },
     show: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.45, ease: "easeOut" } 
+      transition: { duration: 0.3, ease: "easeOut" } 
     },
   };
 
   return (
     <section id="como-funciona" className="py-24 relative overflow-hidden">
-      {/* Subtle ambient lighting */}
-      <div className="absolute left-1/2 -top-24 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-purple-600/10 blur-[140px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -156,7 +155,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
           {/* Section Main Title */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-            ¿Cómo funciona{" "}
+            {activeRole === "client" ? "¿Cómo funciona " : "¿Cómo trabajar con "}
             <span className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
               Chamba?
             </span>
@@ -164,18 +163,19 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
           
           {/* Section Subtitle */}
           <p className="mt-4 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            {t("subtitle")}
+            {activeRole === "client" 
+              ? t("subtitle")
+              : "Un proceso transparente y directo para generar ingresos con tus habilidades, sin intermediarios."}
           </p>
         </motion.div>
 
         {/* 4-Step Showcase Grid with Grounded Phone Stages */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.div
             key={activeRole}
             variants={containerVariants}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
+            animate="show"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch relative"
           >
             {steps.map((st, index) => {
@@ -214,12 +214,16 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                     {/* Smartphone Display with Physical Grounding & Gravity Base */}
                     <div className="my-auto pt-2 pb-3 flex flex-col items-center justify-center">
                       <div className="relative w-full max-w-[200px] sm:max-w-[215px] transition-transform duration-300 ease-out group-hover:-translate-y-2">
-                        <img
-                          src={st.image}
-                          alt={t(st.titleKey as any)}
-                          className="relative z-10 w-full h-auto max-h-[390px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
-                          loading="lazy"
-                        />
+                        {st.image ? (
+                          <img
+                            src={st.image}
+                            alt={t(st.titleKey as any)}
+                            className="relative z-10 w-full h-auto max-h-[390px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <ModernPhoneMockup step={st.mockupStep || 1} role="worker" />
+                        )}
                       </div>
                       
                       {/* Physical Contact Shadow (Gravedad) */}

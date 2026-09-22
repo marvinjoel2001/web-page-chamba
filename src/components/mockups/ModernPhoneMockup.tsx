@@ -30,10 +30,10 @@ export default function ModernPhoneMockup({ step, role = "client" }: ModernPhone
   return (
     <div className="relative mx-auto w-full max-w-[185px] sm:max-w-[195px] aspect-[9/17.5] select-none">
       {/* Outer Phone Frame (Titanium Dark Finish with Gloss Bezel) */}
-      <div className="relative w-full h-full rounded-[30px] p-[3.5px] bg-gradient-to-b from-[#32304d] via-[#1f1d35] to-[#161427] shadow-[0_18px_36px_rgba(0,0,0,0.85)] border border-white/10 flex flex-col justify-between overflow-hidden">
+      <div className="relative w-full h-full rounded-[30px] p-[3.5px] bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-950 shadow-[0_18px_36px_rgba(0,0,0,0.85)] border border-white/10 flex flex-col justify-between overflow-hidden">
         
         {/* Inner Phone Screen */}
-        <div className="relative w-full h-full rounded-[26px] bg-[#0c0a1d] overflow-hidden flex flex-col justify-between text-white">
+        <div className="relative w-full h-full rounded-[26px] bg-[#07090e] overflow-hidden flex flex-col justify-between text-white">
           
           {/* Glass Glare Overlay */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.08] z-30" />
@@ -406,14 +406,14 @@ function WorkerScreen({ step }: { step: number }) {
             </span>
           </div>
 
-          <div className="bg-[#171530] border border-purple-500/20 rounded-xl p-1.5 space-y-1 my-1">
+          <div className="bg-slate-900/90 border border-white/[0.08] rounded-xl p-1.5 space-y-1 my-1">
             <div className="flex justify-between text-[7px]">
               <span className="text-slate-400">Especialidad</span>
               <span className="font-bold text-white">Electricista Pro</span>
             </div>
             <div className="flex justify-between text-[7px]">
               <span className="text-slate-400">Zona de Cobertura</span>
-              <span className="font-bold text-purple-300">Radio 10 km</span>
+              <span className="font-bold text-slate-300">Radio 10 km</span>
             </div>
             <div className="flex justify-between text-[7px]">
               <span className="text-slate-400">Estado</span>
@@ -421,7 +421,7 @@ function WorkerScreen({ step }: { step: number }) {
             </div>
           </div>
 
-          <div className="w-full py-1.5 rounded-xl bg-purple-600 text-white text-[8px] font-bold text-center shadow-md shadow-purple-600/30">
+          <div className="w-full py-1.5 rounded-xl bg-purple-600 text-white text-[8px] font-bold text-center shadow-md">
             Comenzar a recibir chambas
           </div>
           <MiniBottomNav activeIndex={2} />
@@ -433,25 +433,25 @@ function WorkerScreen({ step }: { step: number }) {
         <div className="flex-1 flex flex-col justify-between">
           <div className="flex items-center justify-between text-[8px] font-bold text-slate-300 pt-0.5">
             <span>Solicitudes cercanas</span>
-            <span className="text-purple-400 text-[7px]">3 activas</span>
+            <span className="text-purple-300 text-[7px]">3 activas</span>
           </div>
 
-          <div className="relative my-1 h-20 rounded-xl overflow-hidden border border-purple-500/20 bg-[#100e24]">
+          <div className="relative my-1 h-20 rounded-xl overflow-hidden border border-white/[0.08] bg-[#0c101c]">
             <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-[size:8px_8px]" />
-            <div className="absolute left-[30%] top-[40%] w-3 h-3 rounded-full bg-purple-600 border border-white flex items-center justify-center text-[5px] text-white font-bold animate-bounce">
+            <div className="absolute left-[30%] top-[40%] w-3.5 h-3.5 rounded-full bg-purple-600 border border-white flex items-center justify-center text-[6px] text-white font-bold">
               ⚡
             </div>
-            <div className="absolute left-[70%] top-[30%] w-3 h-3 rounded-full bg-indigo-600 border border-white flex items-center justify-center text-[5px] text-white font-bold">
+            <div className="absolute left-[70%] top-[30%] w-3.5 h-3.5 rounded-full bg-indigo-600 border border-white flex items-center justify-center text-[6px] text-white font-bold">
               ⚡
             </div>
           </div>
 
-          <div className="bg-[#171530] border border-purple-500/25 rounded-lg p-1.5 flex items-center justify-between">
+          <div className="bg-slate-900/90 border border-white/[0.08] rounded-lg p-1.5 flex items-center justify-between">
             <div>
               <span className="text-[7px] font-bold text-white block">Instalación eléctrica</span>
               <span className="text-[5px] text-slate-400 block">A 1.2 km de ti · Urgente</span>
             </div>
-            <span className="text-[7px] font-bold text-purple-300 bg-purple-900/60 px-1.5 py-0.5 rounded">Cotizar</span>
+            <span className="text-[7px] font-bold text-purple-200 bg-purple-950/80 border border-purple-500/20 px-1.5 py-0.5 rounded">Cotizar</span>
           </div>
 
           <MiniBottomNav activeIndex={1} />
@@ -465,7 +465,7 @@ function WorkerScreen({ step }: { step: number }) {
             <span>Enviar Propuesta</span>
           </div>
 
-          <div className="bg-[#171530] border border-purple-500/20 rounded-xl p-1.5 space-y-1.5 my-1">
+          <div className="bg-slate-900/90 border border-white/[0.08] rounded-xl p-1.5 space-y-1.5 my-1">
             <div>
               <span className="text-[6px] text-slate-400 block">Tu tarifa propuesta</span>
               <span className="text-[11px] font-black text-white">Bs 120</span>
@@ -476,7 +476,7 @@ function WorkerScreen({ step }: { step: number }) {
             </div>
           </div>
 
-          <div className="w-full py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[8px] font-bold text-center shadow-md shadow-purple-600/30">
+          <div className="w-full py-1.5 rounded-xl bg-purple-600 text-white text-[8px] font-bold text-center shadow-md">
             Enviar cotización al cliente
           </div>
           <MiniBottomNav activeIndex={1} />
@@ -486,13 +486,13 @@ function WorkerScreen({ step }: { step: number }) {
     case 4:
       return (
         <div className="flex-1 flex flex-col justify-between">
-          <div className="flex items-center justify-between text-[7px] font-bold bg-purple-950/70 border border-purple-500/30 rounded-lg px-2 py-0.5">
-            <span className="text-purple-300">Ruta hacia el cliente</span>
+          <div className="flex items-center justify-between text-[7px] font-bold bg-slate-900/90 border border-white/[0.08] rounded-lg px-2 py-0.5">
+            <span className="text-slate-300">Ruta hacia el cliente</span>
             <span className="text-emerald-400">8 min restantes</span>
           </div>
 
-          <div className="relative my-1 h-20 rounded-xl overflow-hidden border border-purple-500/20 bg-[#100e24] flex items-center justify-center">
-            <Navigation className="w-6 h-6 text-purple-400 animate-pulse" />
+          <div className="relative my-1 h-20 rounded-xl overflow-hidden border border-white/[0.08] bg-[#0c101c] flex items-center justify-center">
+            <Navigation className="w-5 h-5 text-purple-300" />
           </div>
 
           <div className="w-full py-1.5 rounded-xl bg-emerald-600 text-white text-[7px] font-bold text-center">
@@ -505,7 +505,7 @@ function WorkerScreen({ step }: { step: number }) {
     case 5:
       return (
         <div className="flex-1 flex flex-col justify-between items-center text-center pt-1">
-          <div className="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white text-[12px] font-bold shadow-lg shadow-emerald-600/40">
+          <div className="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white text-[12px] font-bold shadow-md">
             💰
           </div>
           <h4 className="text-[10px] font-black text-white mt-1">¡Pago Liberado!</h4>
