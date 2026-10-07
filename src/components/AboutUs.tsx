@@ -8,9 +8,6 @@ export default function AboutUs() {
   const t = useTranslations("AboutUs");
   return (
     <section id="nosotros" className="py-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
@@ -39,9 +36,6 @@ export default function AboutUs() {
                 <p className="text-slate-400 mt-1">{t("badge_desc")}</p>
               </div>
             </div>
-
-            {/* Decorative element */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-primary rounded-full blur-[60px] opacity-40 z-0" />
           </motion.div>
 
           {/* Story Text */}

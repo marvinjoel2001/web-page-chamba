@@ -43,8 +43,6 @@ export default function Testimonials() {
 
   return (
     <section id="testimonios" className="py-20 relative overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-72 h-72 rounded-full bg-brand-highlight/5 blur-[100px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">

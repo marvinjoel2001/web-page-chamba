@@ -145,21 +145,12 @@ export default function Categories() {
 
   return (
     <section id="categorias" className="py-24 relative overflow-hidden">
-      {/* Visual background gradient glow */}
-      <div className="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-brand-highlight/5 blur-[120px] pointer-events-none" />
-      <div className="absolute left-0 bottom-0 w-96 h-96 rounded-full bg-brand-primary/5 blur-[120px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          {/* Eyebrow tag */}
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-xs font-semibold text-brand-primary-light mb-5">
-            <TrendingUp className="w-3.5 h-3.5" />
-            <span>{t("tag")}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             {t("title")}
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400">
+          <p className="mt-4 text-base sm:text-lg text-slate-300">
             {t("subtitle")}
           </p>
         </div>
@@ -213,7 +204,7 @@ export default function Categories() {
                     <h3 className="text-lg font-bold text-white mb-1.5 group-hover:text-brand-primary-light transition-colors">
                       {category.name}
                     </h3>
-                    <p className="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-slate-300 leading-relaxed line-clamp-2">
                       {category.desc}
                     </p>
                   </div>
@@ -235,7 +226,7 @@ export default function Categories() {
             href="#descargar"
             variants={cardVariants}
             whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-3xl p-6 flex flex-col justify-between items-start text-left bg-gradient-to-br from-brand-primary to-brand-primary-dark border border-brand-primary/40 shadow-xl hover:shadow-[0_24px_45px_-18px_rgba(139,92,246,0.7)] transition-all duration-300 min-h-[300px]"
+            className="group relative overflow-hidden rounded-3xl p-6 flex flex-col justify-between items-start text-left bg-purple-800 border border-purple-500/40 shadow-xl hover:shadow-[0_24px_45px_-18px_rgba(139,92,246,0.7)] transition-all duration-300 min-h-[300px]"
           >
             <div className="absolute -right-6 -top-6 w-36 h-36 rounded-full bg-white/10 blur-2xl pointer-events-none" />
             <div>

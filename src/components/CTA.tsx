@@ -12,9 +12,6 @@ export default function CTA({ activeRole }: CTAProps) {
   const t = useTranslations("CTA");
   return (
     <section id="descargar" className="py-20 relative overflow-hidden">
-      {/* Background radial highlight */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-brand-primary/10 blur-[130px] pointer-events-none" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="bg-slate-900/50 backdrop-blur-md rounded-3xl p-8 sm:p-12 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
           

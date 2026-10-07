@@ -15,25 +15,25 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
   const clientCards = [
     {
       id: "card_1",
-      icon: <Users className="w-4 h-4 text-purple-300" />,
+      icon: <Users className="w-5 h-5 text-purple-300" />,
       title: t("card_1_title"),
       desc: t("card_1_desc"),
     },
     {
       id: "card_2",
-      icon: <MapPin className="w-4 h-4 text-purple-300" />,
+      icon: <MapPin className="w-5 h-5 text-purple-300" />,
       title: t("card_2_title"),
       desc: t("card_2_desc"),
     },
     {
       id: "card_3",
-      icon: <MessageSquare className="w-4 h-4 text-purple-300" />,
+      icon: <MessageSquare className="w-5 h-5 text-purple-300" />,
       title: t("card_3_title"),
       desc: t("card_3_desc"),
     },
     {
       id: "card_4",
-      icon: <ShieldCheck className="w-4 h-4 text-purple-300" />,
+      icon: <ShieldCheck className="w-5 h-5 text-purple-300" />,
       title: t("card_4_title"),
       desc: t("card_4_desc"),
     },
@@ -42,25 +42,25 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
   const workerCards = [
     {
       id: "worker_card_1",
-      icon: <DollarSign className="w-4 h-4 text-purple-300" />,
+      icon: <DollarSign className="w-5 h-5 text-purple-300" />,
       title: "Gana a tu propio ritmo",
       desc: "Tú defines tus tarifas por trabajo o por hora, recibiendo el 100% de tus cobros acordados.",
     },
     {
       id: "worker_card_2",
-      icon: <Compass className="w-4 h-4 text-purple-300" />,
+      icon: <Compass className="w-5 h-5 text-purple-300" />,
       title: "Chambas en tu zona",
       desc: "Recibe solicitudes de clientes cercanos en tiempo real con mapa y detalles precisos.",
     },
     {
       id: "worker_card_3",
-      icon: <MessageSquare className="w-4 h-4 text-purple-300" />,
+      icon: <MessageSquare className="w-5 h-5 text-purple-300" />,
       title: "Trato directo y sin vueltas",
       desc: "Chatea con el cliente, envía cotizaciones y coordina directamente sin intermediarios.",
     },
     {
       id: "worker_card_4",
-      icon: <Award className="w-4 h-4 text-purple-300" />,
+      icon: <Award className="w-5 h-5 text-purple-300" />,
       title: "Construye tu reputación",
       desc: "Acumula reseñas de 5 estrellas, perfil verificado y haz crecer tu cartera de clientes.",
     },
@@ -83,20 +83,20 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
             {activeRole === "client" ? (
               <>
                 {t("title_part1")}{" "}
-                <span className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+                <span className="text-purple-500 font-black">
                   {t("title_part2")}
                 </span>
               </>
             ) : (
               <>
                 Oportunidades reales.{" "}
-                <span className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+                <span className="text-purple-500 font-black">
                   Ingresos directos.
                 </span>
               </>
             )}
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
             {activeRole === "client"
               ? t("subtitle")
               : "Conectamos tu talento con clientes que buscan servicios en tu zona todos los días."}
@@ -115,21 +115,21 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
+              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-6 sm:p-7 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3 group-hover:text-purple-300 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3.5 group-hover:text-purple-300 group-hover:border-purple-400/30 transition-colors">
                   {currentCards[0].icon}
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-100 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
                   {currentCards[0].title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   {currentCards[0].desc}
                 </p>
               </div>
               <div className="mt-4 flex justify-end">
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
               </div>
             </motion.div>
 
@@ -140,21 +140,21 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
+              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-6 sm:p-7 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3 group-hover:text-purple-300 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3.5 group-hover:text-purple-300 group-hover:border-purple-400/30 transition-colors">
                   {currentCards[1].icon}
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-100 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
                   {currentCards[1].title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   {currentCards[1].desc}
                 </p>
               </div>
               <div className="mt-4 flex justify-end">
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
               </div>
             </motion.div>
           </div>
@@ -188,21 +188,21 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
+              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-6 sm:p-7 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3 group-hover:text-purple-300 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3.5 group-hover:text-purple-300 group-hover:border-purple-400/30 transition-colors">
                   {currentCards[2].icon}
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-100 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
                   {currentCards[2].title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   {currentCards[2].desc}
                 </p>
               </div>
               <div className="mt-4 flex justify-end">
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
               </div>
             </motion.div>
 
@@ -213,21 +213,21 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -4 }}
-              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-5 sm:p-6 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
+              className="bg-slate-900/40 border border-white/[0.08] backdrop-blur-md rounded-2xl p-6 sm:p-7 shadow-xl hover:border-white/20 hover:bg-slate-900/60 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3 group-hover:text-purple-300 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-slate-300 mb-3.5 group-hover:text-purple-300 group-hover:border-purple-400/30 transition-colors">
                   {currentCards[3].icon}
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 leading-snug group-hover:text-purple-100 transition-colors">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
                   {currentCards[3].title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   {currentCards[3].desc}
                 </p>
               </div>
               <div className="mt-4 flex justify-end">
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-purple-300 group-hover:translate-x-1 transition-all" />
               </div>
             </motion.div>
           </div>

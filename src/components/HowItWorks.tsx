@@ -6,9 +6,7 @@ import {
   Users, 
   CheckCircle2, 
   Star,
-  Sparkles,
   ShieldCheck,
-  Zap,
   ChevronRight,
   UserCheck,
   Compass,
@@ -40,38 +38,38 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const clientSteps: StepItem[] = [
     {
       stepNumber: "01",
-      icon: <Edit3 className="w-4 h-4 text-slate-300" />,
+      icon: <Edit3 className="w-4 h-4 text-white" />,
       titleKey: "client_step_1_title",
       descKey: "client_step_1_desc",
       badgeKey: "client_step_1_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
       image: "/images/how-it-works/step1_search.png",
     },
     {
       stepNumber: "02",
-      icon: <Users className="w-4 h-4 text-slate-300" />,
+      icon: <Users className="w-4 h-4 text-white" />,
       titleKey: "client_step_2_title",
       descKey: "client_step_2_desc",
       badgeKey: "client_step_2_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
       image: "/images/how-it-works/step2_offers.png",
     },
     {
       stepNumber: "03",
-      icon: <CheckCircle2 className="w-4 h-4 text-slate-300" />,
+      icon: <CheckCircle2 className="w-4 h-4 text-white" />,
       titleKey: "client_step_3_title",
       descKey: "client_step_3_desc",
       badgeKey: "client_step_3_badge",
-      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-white" />,
       image: "/images/how-it-works/step3_accepted.png",
     },
     {
       stepNumber: "04",
-      icon: <Star className="w-4 h-4 text-slate-300" />,
+      icon: <Star className="w-4 h-4 text-white" />,
       titleKey: "client_step_5_title",
       descKey: "client_step_5_desc",
       badgeKey: "client_step_5_badge",
-      badgeIcon: <Star className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <Star className="w-3.5 h-3.5 text-white fill-white" />,
       image: "/images/how-it-works/step4_completed.png",
     },
   ];
@@ -79,38 +77,38 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const workerSteps: StepItem[] = [
     {
       stepNumber: "01",
-      icon: <UserCheck className="w-4 h-4 text-slate-300" />,
+      icon: <UserCheck className="w-4 h-4 text-white" />,
       titleKey: "worker_step_1_title",
       descKey: "worker_step_1_desc",
       badgeKey: "worker_step_1_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
       mockupStep: 1,
     },
     {
       stepNumber: "02",
-      icon: <Compass className="w-4 h-4 text-slate-300" />,
+      icon: <Compass className="w-4 h-4 text-white" />,
       titleKey: "worker_step_2_title",
       descKey: "worker_step_2_desc",
       badgeKey: "worker_step_2_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
       mockupStep: 2,
     },
     {
       stepNumber: "03",
-      icon: <Send className="w-4 h-4 text-slate-300" />,
+      icon: <Send className="w-4 h-4 text-white" />,
       titleKey: "worker_step_3_title",
       descKey: "worker_step_3_desc",
       badgeKey: "worker_step_3_badge",
-      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-white" />,
       mockupStep: 3,
     },
     {
       stepNumber: "04",
-      icon: <Award className="w-4 h-4 text-slate-300" />,
+      icon: <Award className="w-4 h-4 text-white" />,
       titleKey: "worker_step_5_title",
       descKey: "worker_step_5_desc",
       badgeKey: "worker_step_5_badge",
-      badgeIcon: <Star className="w-3.5 h-3.5 text-slate-400" />,
+      badgeIcon: <Star className="w-3.5 h-3.5 text-white fill-white" />,
       mockupStep: 5,
     },
   ];
@@ -147,22 +145,16 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-14 sm:mb-18"
         >
-          {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-slate-300 text-xs font-medium tracking-wide mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span>{t("tag")}</span>
-          </div>
-
           {/* Section Main Title */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
             {activeRole === "client" ? "¿Cómo funciona " : "¿Cómo trabajar con "}
-            <span className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-purple-500 font-black">
               Chamba?
             </span>
           </h2>
           
           {/* Section Subtitle */}
-          <p className="mt-4 text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
             {activeRole === "client" 
               ? t("subtitle")
               : "Un proceso transparente y directo para generar ingresos con tus habilidades, sin intermediarios."}
@@ -195,18 +187,18 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                           {st.stepNumber}
                         </span>
 
-                        <div className="w-8 h-8 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-slate-300 group-hover:text-purple-300 group-hover:border-purple-500/30 transition-colors duration-200">
+                        <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/15 flex items-center justify-center text-white group-hover:border-purple-500/50 transition-colors duration-200">
                           {st.icon}
                         </div>
                       </div>
 
                       {/* Step Title */}
-                      <h3 className="text-base font-bold text-white mb-1.5 leading-snug group-hover:text-purple-100 transition-colors">
+                      <h3 className="text-lg font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
                         {t(st.titleKey as any)}
                       </h3>
 
                       {/* Step Description */}
-                      <p className="text-xs text-slate-400 leading-relaxed mb-4 min-h-[42px]">
+                      <p className="text-sm text-white leading-relaxed mb-4 min-h-[44px]">
                         {t(st.descKey as any)}
                       </p>
                     </div>
@@ -232,9 +224,9 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
 
                     {/* Bottom Guarantee Badge under Card */}
                     {st.badgeKey && (
-                      <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-center gap-1.5 text-[11px] font-medium text-slate-400 group-hover:text-slate-300 transition-colors text-center leading-tight">
+                      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-center gap-1.5 text-xs font-semibold text-white transition-colors text-center leading-tight">
                         {st.badgeIcon}
-                        <span>{t(st.badgeKey as any)}</span>
+                        <span className="text-white font-semibold">{t(st.badgeKey as any)}</span>
                       </div>
                     )}
                   </motion.div>
@@ -252,20 +244,6 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
             })}
           </motion.div>
         </AnimatePresence>
-
-        {/* Bottom Feature Pill Badge */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.25 }}
-          className="mt-14 flex justify-center"
-        >
-          <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/[0.04] border border-white/10 text-slate-300 text-xs sm:text-sm font-medium shadow-sm hover:border-white/20 transition-colors">
-            <Zap className="w-4 h-4 text-purple-400" />
-            <span>{t("bottom_pill")}</span>
-          </div>
-        </motion.div>
 
       </div>
     </section>

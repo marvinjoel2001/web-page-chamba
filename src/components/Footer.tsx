@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Logo and Intro */}
           <div className="md:col-span-5 flex flex-col items-start gap-4">
             <div className="flex items-center gap-2">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-primary to-brand-primary-light text-white">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-600 text-white">
                 <Hammer className="w-4.5 h-4.5" />
               </div>
               <span className="text-lg font-bold text-white tracking-tight">Chamba</span>

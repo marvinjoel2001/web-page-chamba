@@ -35,8 +35,6 @@ export default function Stats() {
 
   return (
     <section id="estadisticas" className="py-16 bg-slate-950/60 border-t border-b border-white/5 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 rounded-full bg-brand-primary/5 blur-[80px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {statsList.map((stat, index) => (

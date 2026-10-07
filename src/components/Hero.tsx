@@ -66,7 +66,7 @@ export default function Hero({ activeRole }: HeroProps) {
                       <span className="block">{t("client_title_line1")}</span>
                       <span className="block">
                         {t("client_title_line2")}
-                        <span className="text-purple-300 inline-block font-semibold ml-2">
+                        <span className="text-purple-500 inline-block font-black ml-2">
                           {t("client_title_highlight")}
                         </span>
                       </span>
@@ -76,7 +76,7 @@ export default function Hero({ activeRole }: HeroProps) {
                       <span className="block">{t("worker_title_line1")}</span>
                       <span className="block">
                         {t("worker_title_line2")}
-                        <span className="text-purple-300 inline-block font-semibold ml-2">
+                        <span className="text-purple-500 inline-block font-black ml-2">
                           {t("worker_title_highlight")}
                         </span>
                       </span>
