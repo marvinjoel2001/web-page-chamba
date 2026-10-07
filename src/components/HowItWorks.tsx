@@ -38,38 +38,38 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const clientSteps: StepItem[] = [
     {
       stepNumber: "01",
-      icon: <Edit3 className="w-4 h-4 text-white" />,
+      icon: <Edit3 className="w-4 h-4 text-purple-600" />,
       titleKey: "client_step_1_title",
       descKey: "client_step_1_desc",
       badgeKey: "client_step_1_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />,
       image: "/images/how-it-works/step1_search.png",
     },
     {
       stepNumber: "02",
-      icon: <Users className="w-4 h-4 text-white" />,
+      icon: <Users className="w-4 h-4 text-purple-600" />,
       titleKey: "client_step_2_title",
       descKey: "client_step_2_desc",
       badgeKey: "client_step_2_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />,
       image: "/images/how-it-works/step2_offers.png",
     },
     {
       stepNumber: "03",
-      icon: <CheckCircle2 className="w-4 h-4 text-white" />,
+      icon: <CheckCircle2 className="w-4 h-4 text-purple-600" />,
       titleKey: "client_step_3_title",
       descKey: "client_step_3_desc",
       badgeKey: "client_step_3_badge",
-      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-white" />,
+      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />,
       image: "/images/how-it-works/step3_accepted.png",
     },
     {
       stepNumber: "04",
-      icon: <Star className="w-4 h-4 text-white" />,
+      icon: <Star className="w-4 h-4 text-purple-600" />,
       titleKey: "client_step_5_title",
       descKey: "client_step_5_desc",
       badgeKey: "client_step_5_badge",
-      badgeIcon: <Star className="w-3.5 h-3.5 text-white fill-white" />,
+      badgeIcon: <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />,
       image: "/images/how-it-works/step4_completed.png",
     },
   ];
@@ -77,38 +77,38 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const workerSteps: StepItem[] = [
     {
       stepNumber: "01",
-      icon: <UserCheck className="w-4 h-4 text-white" />,
+      icon: <UserCheck className="w-4 h-4 text-purple-600" />,
       titleKey: "worker_step_1_title",
       descKey: "worker_step_1_desc",
       badgeKey: "worker_step_1_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />,
       mockupStep: 1,
     },
     {
       stepNumber: "02",
-      icon: <Compass className="w-4 h-4 text-white" />,
+      icon: <Compass className="w-4 h-4 text-purple-600" />,
       titleKey: "worker_step_2_title",
       descKey: "worker_step_2_desc",
       badgeKey: "worker_step_2_badge",
-      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-white" />,
+      badgeIcon: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />,
       mockupStep: 2,
     },
     {
       stepNumber: "03",
-      icon: <Send className="w-4 h-4 text-white" />,
+      icon: <Send className="w-4 h-4 text-purple-600" />,
       titleKey: "worker_step_3_title",
       descKey: "worker_step_3_desc",
       badgeKey: "worker_step_3_badge",
-      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-white" />,
+      badgeIcon: <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />,
       mockupStep: 3,
     },
     {
       stepNumber: "04",
-      icon: <Award className="w-4 h-4 text-white" />,
+      icon: <Award className="w-4 h-4 text-purple-600" />,
       titleKey: "worker_step_5_title",
       descKey: "worker_step_5_desc",
       badgeKey: "worker_step_5_badge",
-      badgeIcon: <Star className="w-3.5 h-3.5 text-white fill-white" />,
+      badgeIcon: <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />,
       mockupStep: 5,
     },
   ];
@@ -146,15 +146,15 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
           className="text-center max-w-3xl mx-auto mb-14 sm:mb-18"
         >
           {/* Section Main Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
             {activeRole === "client" ? "¿Cómo funciona " : "¿Cómo trabajar con "}
-            <span className="text-purple-500 font-black">
+            <span className="text-purple-600 font-black">
               Chamba?
             </span>
           </h2>
           
           {/* Section Subtitle */}
-          <p className="mt-4 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
             {activeRole === "client" 
               ? t("subtitle")
               : "Un proceso transparente y directo para generar ingresos con tus habilidades, sin intermediarios."}
@@ -178,27 +178,27 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                   {/* Step Card Container */}
                   <motion.div
                     variants={itemVariants}
-                    className="flex-1 flex flex-col justify-between bg-slate-900/40 backdrop-blur-sm border border-white/[0.08] rounded-3xl p-5 sm:p-6 shadow-xl shadow-black/20 hover:border-white/20 hover:bg-slate-900/60 hover:shadow-2xl hover:shadow-black/50 transition-all duration-300 group overflow-hidden"
+                    className="flex-1 flex flex-col justify-between bg-white/95 border border-slate-200/90 rounded-3xl p-5 sm:p-6 shadow-lg shadow-slate-200/50 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group overflow-hidden"
                   >
                     <div>
                       {/* Top Row: Number Box (Left) & Icon (Right) */}
                       <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="px-2.5 py-1 rounded-lg bg-white/[0.06] border border-white/10 text-white font-bold text-xs tracking-wider">
+                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-800 font-bold text-xs tracking-wider">
                           {st.stepNumber}
                         </span>
 
-                        <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/15 flex items-center justify-center text-white group-hover:border-purple-500/50 transition-colors duration-200">
+                        <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 transition-colors duration-200">
                           {st.icon}
                         </div>
                       </div>
 
                       {/* Step Title */}
-                      <h3 className="text-lg font-bold text-white mb-2 leading-snug group-hover:text-purple-200 transition-colors">
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 leading-snug group-hover:text-purple-600 transition-colors">
                         {t(st.titleKey as any)}
                       </h3>
 
                       {/* Step Description */}
-                      <p className="text-sm text-white leading-relaxed mb-4 min-h-[44px]">
+                      <p className="text-sm text-slate-600 leading-relaxed mb-4 min-h-[44px]">
                         {t(st.descKey as any)}
                       </p>
                     </div>
@@ -210,7 +210,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                           <img
                             src={st.image}
                             alt={t(st.titleKey as any)}
-                            className="relative z-10 w-full h-auto max-h-[390px] object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
+                            className="relative z-10 w-full h-auto max-h-[390px] object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.18)]"
                             loading="lazy"
                           />
                         ) : (
@@ -219,14 +219,14 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                       </div>
                       
                       {/* Physical Contact Shadow (Gravedad) */}
-                      <div className="w-[66%] h-3 bg-black/80 blur-[5px] rounded-full -mt-2 transition-all duration-300 ease-out group-hover:scale-90 group-hover:opacity-40 group-hover:blur-md" />
+                      <div className="w-[66%] h-3 bg-slate-400/25 blur-[5px] rounded-full -mt-2 transition-all duration-300 ease-out group-hover:scale-90 group-hover:opacity-40 group-hover:blur-md" />
                     </div>
 
                     {/* Bottom Guarantee Badge under Card */}
                     {st.badgeKey && (
-                      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-center gap-1.5 text-xs font-semibold text-white transition-colors text-center leading-tight">
+                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-600 transition-colors text-center leading-tight">
                         {st.badgeIcon}
-                        <span className="text-white font-semibold">{t(st.badgeKey as any)}</span>
+                        <span className="text-slate-700 font-semibold">{t(st.badgeKey as any)}</span>
                       </div>
                     )}
                   </motion.div>
@@ -234,7 +234,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                   {/* Horizontal Flow Arrow between cards (Desktop Only) */}
                   {!isLast && (
                     <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 pointer-events-none">
-                      <div className="w-6 h-6 rounded-full bg-slate-900/90 border border-white/10 flex items-center justify-center text-slate-400 shadow-md">
+                      <div className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 shadow-sm">
                         <ChevronRight className="w-3.5 h-3.5" />
                       </div>
                     </div>

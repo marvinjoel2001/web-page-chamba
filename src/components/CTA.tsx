@@ -13,10 +13,10 @@ export default function CTA({ activeRole }: CTAProps) {
   return (
     <section id="descargar" className="py-20 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-slate-900/50 backdrop-blur-md rounded-3xl p-8 sm:p-12 md:p-14 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 sm:p-12 md:p-14 border border-slate-200/90 shadow-xl shadow-slate-200/60 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
           
           <div className="flex-1 text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={activeRole}
@@ -33,7 +33,7 @@ export default function CTA({ activeRole }: CTAProps) {
               </AnimatePresence>
             </h2>
 
-            <p className="mt-4 text-base text-slate-300 leading-relaxed max-w-lg">
+            <p className="mt-4 text-base text-slate-600 leading-relaxed max-w-lg">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={activeRole}
@@ -53,26 +53,26 @@ export default function CTA({ activeRole }: CTAProps) {
               {/* App badges */}
               <a
                 href="#"
-                className="flex items-center justify-center gap-3 bg-slate-950 hover:bg-slate-900 border border-white/10 hover:border-brand-primary/40 rounded-2xl px-6 py-3 transition shadow-lg group"
+                className="flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl px-6 py-3 transition shadow-md hover:shadow-lg group"
               >
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Apple_logo_white.svg" alt="Apple App Store" className="w-5 h-5 object-contain" />
-                <span className="text-xs font-semibold text-white group-hover:text-brand-primary transition-colors">iOS App Store</span>
+                <span className="text-xs font-semibold text-white group-hover:text-purple-300 transition-colors">iOS App Store</span>
               </a>
 
               <a
                 href="#"
-                className="flex items-center justify-center gap-3 bg-slate-950 hover:bg-slate-900 border border-white/10 hover:border-brand-highlight/40 rounded-2xl px-6 py-3 transition shadow-lg group"
+                className="flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl px-6 py-3 transition shadow-md hover:shadow-lg group"
               >
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play Store" className="w-5 h-5 object-contain" />
-                <span className="text-xs font-semibold text-white group-hover:text-brand-highlight transition-colors">Google Play Store</span>
+                <span className="text-xs font-semibold text-white group-hover:text-amber-300 transition-colors">Google Play Store</span>
               </a>
             </div>
           </div>
 
           {/* Right column: Interactive Premium QR Mockup */}
-          <div className="flex flex-col items-center shrink-0 bg-slate-950 border border-white/10 p-5 rounded-3xl shadow-xl w-full max-w-[210px]">
+          <div className="flex flex-col items-center shrink-0 bg-slate-50 border border-slate-200 p-5 rounded-3xl shadow-sm w-full max-w-[210px]">
             {/* Visual QR Code Simulator */}
-            <div className="w-36 h-36 border border-white/5 rounded-2xl p-2.5 bg-white flex flex-col justify-between items-center relative">
+            <div className="w-36 h-36 border border-slate-200/80 rounded-2xl p-2.5 bg-white flex flex-col justify-between items-center relative shadow-sm">
               {/* Outer corners mock styling */}
               <div className="grid grid-cols-12 gap-1 w-full h-full text-slate-900">
                 {/* Visual grid blocks mimicking QR code */}
@@ -90,7 +90,7 @@ export default function CTA({ activeRole }: CTAProps) {
                   <div className="w-2 h-1 bg-slate-950" />
                   <div className="w-3 h-3 bg-slate-950" />
                 </div>
-                <div className="col-span-6 h-8 bg-slate-950/20 rounded flex items-center justify-center font-bold text-[9px] tracking-tighter text-slate-950">
+                <div className="col-span-6 h-8 bg-purple-100 rounded flex items-center justify-center font-bold text-[9px] tracking-tighter text-purple-900">
                   CHAMBA
                 </div>
                 <div className="col-span-3 h-8 flex flex-wrap gap-0.5 justify-end pt-1">
@@ -111,7 +111,7 @@ export default function CTA({ activeRole }: CTAProps) {
               </div>
             </div>
             
-            <span className="text-[10px] text-slate-400 font-bold mt-4 text-center">
+            <span className="text-[10px] text-slate-500 font-bold mt-4 text-center">
               {t("scan_to_download")}
             </span>
           </div>

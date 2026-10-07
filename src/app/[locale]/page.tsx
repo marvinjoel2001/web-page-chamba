@@ -29,8 +29,8 @@ export default function Home() {
         {/* Dynamic Features Showcase */}
         <Features activeRole={activeRole} />
 
-        {/* Categories Grid */}
-        <Categories />
+        {/* Categories Grid - Exclusivo para clientes que buscan servicios */}
+        {activeRole === "client" && <Categories />}
 
         {/* Step-by-Step Instructions */}
         <HowItWorks activeRole={activeRole} />

@@ -37,41 +37,41 @@ export default function HelpPage() {
   };
 
   return (
-    <div className="bg-[#090d16] min-h-screen pt-24 text-slate-300">
+    <div className="bg-[#f8fafc] min-h-screen pt-24 text-slate-700">
       <Navbar activeRole="client" />
       <div className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold text-white mb-4">Centro de Ayuda</h1>
-        <p className="text-slate-400 mb-12">Estamos aquí para ayudarte. Encuentra respuestas a las preguntas más frecuentes o contáctanos.</p>
+        <h1 className="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Centro de Ayuda</h1>
+        <p className="text-slate-600 mb-12">Estamos aquí para ayudarte. Encuentra respuestas a las preguntas más frecuentes o contáctanos.</p>
         
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="bg-slate-900 border border-white/5 p-6 rounded-2xl flex flex-col gap-4">
-            <Mail className="w-8 h-8 text-brand-primary" />
-            <h3 className="text-lg font-bold text-white">Soporte Técnico</h3>
-            <p className="text-sm text-slate-400">¿Tienes problemas con la aplicación? Escríbenos directamente y te responderemos en menos de 24 horas.</p>
-            <a href="mailto:soporte@chamba.app" className="text-brand-primary text-sm font-semibold hover:underline mt-auto">soporte@chamba.app</a>
+          <div className="bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow p-6 rounded-2xl flex flex-col gap-4">
+            <Mail className="w-8 h-8 text-purple-600" />
+            <h3 className="text-lg font-bold text-slate-900">Soporte Técnico</h3>
+            <p className="text-sm text-slate-600">¿Tienes problemas con la aplicación? Escríbenos directamente y te responderemos en menos de 24 horas.</p>
+            <a href="mailto:soporte@chamba.app" className="text-purple-600 text-sm font-semibold hover:underline mt-auto">soporte@chamba.app</a>
           </div>
-          <div className="bg-slate-900 border border-white/5 p-6 rounded-2xl flex flex-col gap-4">
-            <ShieldAlert className="w-8 h-8 text-brand-highlight" />
-            <h3 className="text-lg font-bold text-white">Reportar un problema</h3>
-            <p className="text-sm text-slate-400">Si un usuario o trabajador incumplió nuestras normas de comunidad, por favor repórtalo inmediatamente.</p>
+          <div className="bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow p-6 rounded-2xl flex flex-col gap-4">
+            <ShieldAlert className="w-8 h-8 text-amber-500" />
+            <h3 className="text-lg font-bold text-slate-900">Reportar un problema</h3>
+            <p className="text-sm text-slate-600">Si un usuario o trabajador incumplió nuestras normas de comunidad, por favor repórtalo inmediatamente.</p>
             <button 
               onClick={() => setIsReportModalOpen(true)}
-              className="text-brand-highlight text-sm font-semibold hover:underline mt-auto text-left"
+              className="text-amber-600 text-sm font-semibold hover:underline mt-auto text-left cursor-pointer"
             >
               Llenar formulario de reporte
             </button>
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-white mb-6">Preguntas Frecuentes</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">Preguntas Frecuentes</h2>
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="bg-[#121824] border border-white/5 p-5 rounded-xl">
-              <h4 className="text-base font-semibold text-white flex gap-3 items-start">
-                <MessageCircleQuestion className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
+            <div key={idx} className="bg-white border border-slate-200/80 p-5 rounded-xl shadow-xs">
+              <h4 className="text-base font-semibold text-slate-900 flex gap-3 items-start">
+                <MessageCircleQuestion className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
                 {faq.q}
               </h4>
-              <p className="text-sm text-slate-400 mt-2 ml-8">{faq.a}</p>
+              <p className="text-sm text-slate-600 mt-2 ml-8 leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>
@@ -79,30 +79,30 @@ export default function HelpPage() {
 
       {/* Report Modal */}
       {isReportModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-white/10 rounded-2xl p-6 w-full max-w-md shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 w-full max-w-md shadow-2xl relative">
             <button 
               onClick={() => setIsReportModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors"
             >
               ✕
             </button>
             
             {reportStatus === "success" ? (
               <div className="text-center py-8">
-                <div className="w-16 h-16 bg-brand-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">✓</span>
+                <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-200 text-emerald-600">
+                  <span className="text-2xl font-bold">✓</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">¡Reporte Enviado!</h3>
-                <p className="text-slate-400">Gracias por ayudarnos a mantener la comunidad segura. Revisaremos tu caso lo antes posible.</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">¡Reporte Enviado!</h3>
+                <p className="text-slate-600 text-sm">Gracias por ayudarnos a mantener la comunidad segura. Revisaremos tu caso lo antes posible.</p>
               </div>
             ) : (
               <form onSubmit={handleReportSubmit} className="flex flex-col gap-4">
-                <h3 className="text-xl font-bold text-white mb-2">Reportar Problema</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Reportar Problema</h3>
                 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-medium text-slate-300">Tipo de Problema</label>
-                  <select required className="bg-slate-950 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-brand-highlight">
+                  <label className="text-sm font-semibold text-slate-700">Tipo de Problema</label>
+                  <select required className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm">
                     <option value="">Selecciona una opción</option>
                     <option value="usuario">Comportamiento inadecuado de un usuario</option>
                     <option value="estafa">Posible estafa o fraude</option>
@@ -112,19 +112,19 @@ export default function HelpPage() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-medium text-slate-300">Tu correo electrónico</label>
-                  <input required type="email" placeholder="Para poder contactarte..." className="bg-slate-950 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-brand-highlight" />
+                  <label className="text-sm font-semibold text-slate-700">Tu correo electrónico</label>
+                  <input required type="email" placeholder="Para poder contactarte..." className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm" />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-medium text-slate-300">Descripción detallada</label>
-                  <textarea required rows={4} placeholder="Cuéntanos qué sucedió exactamente..." className="bg-slate-950 border border-white/10 rounded-xl p-3 text-white focus:outline-none focus:border-brand-highlight resize-none" />
+                  <label className="text-sm font-semibold text-slate-700">Descripción detallada</label>
+                  <textarea required rows={4} placeholder="Cuéntanos qué sucedió exactamente..." className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm resize-none" />
                 </div>
 
                 <button 
                   type="submit" 
                   disabled={reportStatus === "submitting"}
-                  className="mt-2 w-full bg-brand-highlight hover:bg-brand-highlight/90 text-white font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-50"
+                  className="mt-2 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-purple-600/20 transition-all disabled:opacity-50"
                 >
                   {reportStatus === "submitting" ? "Enviando..." : "Enviar Reporte"}
                 </button>

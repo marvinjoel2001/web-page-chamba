@@ -45,7 +45,7 @@ export default function WorkerRegistrationForm() {
     <div className="w-full max-w-md mx-auto">
       <AnimatePresence mode="wait">
         {!isSuccess ? (
-          <motion.div
+            <motion.div
             key="form"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,8 +53,8 @@ export default function WorkerRegistrationForm() {
             className="glass p-8 rounded-3xl glow-primary"
           >
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-white mb-2">{t("title")}</h2>
-              <p className="text-slate-400 text-sm">
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">{t("title")}</h2>
+              <p className="text-slate-600 text-sm">
                 {t("subtitle")}
               </p>
             </div>
@@ -62,16 +62,16 @@ export default function WorkerRegistrationForm() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Nombre */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-300 ml-1">{t("label_name")}</label>
+                <label className="text-xs font-semibold text-slate-700 ml-1">{t("label_name")}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-brand-primary" />
+                    <User className="h-5 w-5 text-purple-600" />
                   </div>
                   <input
                     type="text"
                     name="fullName"
                     required
-                    className="w-full pl-10 pr-4 py-3 bg-[#0B172A]/80 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm transition-colors"
                     placeholder={t("placeholder_name")}
                   />
                 </div>
@@ -79,16 +79,16 @@ export default function WorkerRegistrationForm() {
 
               {/* WhatsApp */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-300 ml-1">{t("label_whatsapp")}</label>
+                <label className="text-xs font-semibold text-slate-700 ml-1">{t("label_whatsapp")}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Phone className="h-5 w-5 text-brand-primary" />
+                    <Phone className="h-5 w-5 text-purple-600" />
                   </div>
                   <input
                     type="tel"
                     name="whatsapp"
                     required
-                    className="w-full pl-10 pr-4 py-3 bg-[#0B172A]/80 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm transition-colors"
                     placeholder={t("placeholder_whatsapp")}
                   />
                 </div>
@@ -96,15 +96,15 @@ export default function WorkerRegistrationForm() {
 
               {/* Email */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-300 ml-1">{t("label_email")}</label>
+                <label className="text-xs font-semibold text-slate-700 ml-1">{t("label_email")}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-brand-primary" />
+                    <Mail className="h-5 w-5 text-purple-600" />
                   </div>
                   <input
                     type="email"
                     name="email"
-                    className="w-full pl-10 pr-4 py-3 bg-[#0B172A]/80 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm transition-colors"
                     placeholder={t("placeholder_email")}
                   />
                 </div>
@@ -112,16 +112,16 @@ export default function WorkerRegistrationForm() {
               
               {/* Ciudad */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-300 ml-1">{t("label_city")}</label>
+                <label className="text-xs font-semibold text-slate-700 ml-1">{t("label_city")}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MapPin className="h-5 w-5 text-brand-primary" />
+                    <MapPin className="h-5 w-5 text-purple-600" />
                   </div>
                   <input
                     type="text"
                     name="city"
                     required
-                    className="w-full pl-10 pr-4 py-3 bg-[#0B172A]/80 border border-white/10 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm transition-colors"
                     placeholder={t("placeholder_city")}
                   />
                 </div>
@@ -129,16 +129,16 @@ export default function WorkerRegistrationForm() {
 
               {/* Categoría */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-300 ml-1">{t("label_category")}</label>
+                <label className="text-xs font-semibold text-slate-700 ml-1">{t("label_category")}</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Wrench className="h-5 w-5 text-brand-primary" />
+                    <Wrench className="h-5 w-5 text-purple-600" />
                   </div>
                   <select
                     name="category"
                     required
                     defaultValue=""
-                    className="w-full pl-10 pr-4 py-3 bg-[#0B172A] border border-white/10 rounded-xl text-white appearance-none focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors cursor-pointer"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 appearance-none focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm transition-colors cursor-pointer"
                   >
                     <option value="" disabled>{t("category_default")}</option>
                     <option value="plomeria">{t("cat_plomeria")}</option>
@@ -156,7 +156,7 @@ export default function WorkerRegistrationForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full mt-6 bg-brand-primary hover:bg-brand-primary-light text-white font-semibold py-3.5 px-4 rounded-xl transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center glow-primary"
+                className="w-full mt-6 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3.5 px-4 rounded-xl transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center shadow-lg shadow-purple-600/25"
               >
                 {isSubmitting ? (
                   <>
@@ -168,7 +168,7 @@ export default function WorkerRegistrationForm() {
                 )}
               </button>
               
-              <p className="text-[10px] text-slate-500 text-center mt-4">
+              <p className="text-[11px] text-slate-500 text-center mt-4">
                 {t("terms_disclaimer")}
               </p>
             </form>
@@ -180,16 +180,16 @@ export default function WorkerRegistrationForm() {
             animate={{ opacity: 1, scale: 1 }}
             className="glass p-8 rounded-3xl glow-highlight text-center"
           >
-            <div className="w-20 h-20 bg-[#EAB308]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle2 className="h-10 w-10 text-[#EAB308]" />
+            <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-amber-200">
+              <CheckCircle2 className="h-10 w-10 text-amber-500" />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">{t("success_title")}</h2>
-            <p className="text-slate-300 mb-6">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">{t("success_title")}</h2>
+            <p className="text-slate-600 mb-6">
               {t("success_msg")}
             </p>
             <button
               onClick={() => setIsSuccess(false)}
-              className="bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-6 rounded-xl transition-colors"
+              className="bg-purple-50 hover:bg-purple-100 text-purple-700 font-semibold py-3 px-6 rounded-xl transition-colors border border-purple-200"
             >
               {t("btn_register_another")}
             </button>

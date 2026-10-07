@@ -31,28 +31,28 @@ export default function Footer() {
     }
   };
   return (
-    <footer className="bg-[#090d16] border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-white border-t border-slate-200/80 pt-16 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-slate-100">
           {/* Logo and Intro */}
           <div className="md:col-span-5 flex flex-col items-start gap-4">
             <div className="flex items-center gap-2">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-600 text-white">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-600 text-white shadow-sm">
                 <Hammer className="w-4.5 h-4.5" />
               </div>
-              <span className="text-lg font-bold text-white tracking-tight">Chamba</span>
+              <span className="text-lg font-extrabold text-slate-900 tracking-tight">Chamba</span>
             </div>
-            <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
+            <p className="text-xs text-slate-500 max-w-sm leading-relaxed">
               {t("desc")}
             </p>
             <div className="flex gap-3 mt-2">
-              <a href="#" className="p-2 bg-slate-900 border border-white/5 hover:border-brand-primary/30 text-slate-400 hover:text-white rounded-xl transition" aria-label="Twitter">
+              <a href="#" className="p-2 bg-slate-50 border border-slate-200 hover:border-purple-300 text-slate-500 hover:text-purple-600 rounded-xl transition shadow-sm" aria-label="Twitter">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
-              <a href="#" className="p-2 bg-slate-900 border border-white/5 hover:border-brand-primary/30 text-slate-400 hover:text-white rounded-xl transition" aria-label="Facebook">
+              <a href="#" className="p-2 bg-slate-50 border border-slate-200 hover:border-purple-300 text-slate-500 hover:text-purple-600 rounded-xl transition shadow-sm" aria-label="Facebook">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
               </a>
-              <a href="#" className="p-2 bg-slate-900 border border-white/5 hover:border-brand-primary/30 text-slate-400 hover:text-white rounded-xl transition" aria-label="Instagram">
+              <a href="#" className="p-2 bg-slate-50 border border-slate-200 hover:border-purple-300 text-slate-500 hover:text-purple-600 rounded-xl transition shadow-sm" aria-label="Instagram">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
             </div>
@@ -61,21 +61,21 @@ export default function Footer() {
           {/* Quick links */}
           <div className="md:col-span-3 grid grid-cols-2 gap-4">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">{t("company")}</h4>
-              <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><Link href="/#nosotros" className="hover:text-brand-primary transition">{t("about")}</Link></li>
-                <li><Link href="/#testimonios" className="hover:text-brand-primary transition">{t("testimonials")}</Link></li>
-                <li><Link href="/#como-funciona" className="hover:text-brand-primary transition">{t("how_it_works")}</Link></li>
-                <li><Link href="/#contacto" className="hover:text-brand-primary transition">{t("contact")}</Link></li>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">{t("company")}</h4>
+              <ul className="flex flex-col gap-2.5 text-xs text-slate-600">
+                <li><Link href="/#nosotros" className="hover:text-purple-600 transition">{t("about")}</Link></li>
+                <li><Link href="/#testimonios" className="hover:text-purple-600 transition">{t("testimonials")}</Link></li>
+                <li><Link href="/#como-funciona" className="hover:text-purple-600 transition">{t("how_it_works")}</Link></li>
+                <li><Link href="/#contacto" className="hover:text-purple-600 transition">{t("contact")}</Link></li>
                 <li>
                   <a
                     href="https://agency-chamba.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-purple-300 hover:text-white transition font-medium pt-1"
+                    className="inline-flex items-center gap-1.5 text-purple-600 hover:text-purple-800 transition font-semibold pt-1"
                   >
                     <span>Chamba Agencias</span>
-                    <span className="text-[9px] uppercase font-black px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                    <span className="text-[9px] uppercase font-black px-1.5 py-0.2 rounded bg-purple-100 text-purple-700 border border-purple-200">
                       Portal
                     </span>
                   </a>
@@ -83,20 +83,20 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">{t("resources")}</h4>
-              <ul className="flex flex-col gap-2.5 text-xs text-slate-400">
-                <li><Link href="/help" className="hover:text-brand-primary transition">{t("support")}</Link></li>
-                <li><Link href="/help" className="hover:text-brand-primary transition">{t("help")}</Link></li>
-                <li><Link href="/terms" className="hover:text-brand-primary transition">{t("terms")}</Link></li>
-                <li><Link href="/privacy" className="hover:text-brand-primary transition">{t("privacy")}</Link></li>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">{t("resources")}</h4>
+              <ul className="flex flex-col gap-2.5 text-xs text-slate-600">
+                <li><Link href="/help" className="hover:text-purple-600 transition">{t("support")}</Link></li>
+                <li><Link href="/help" className="hover:text-purple-600 transition">{t("help")}</Link></li>
+                <li><Link href="/terms" className="hover:text-purple-600 transition">{t("terms")}</Link></li>
+                <li><Link href="/privacy" className="hover:text-purple-600 transition">{t("privacy")}</Link></li>
               </ul>
             </div>
           </div>
 
           {/* Newsletter signup */}
           <div className="md:col-span-4 flex flex-col items-start gap-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">{t("newsletter_title")}</h4>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">{t("newsletter_title")}</h4>
+            <p className="text-xs text-slate-500 leading-relaxed">
               {t("newsletter_desc")}
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full relative">
@@ -111,12 +111,12 @@ export default function Footer() {
                   placeholder={t("email_placeholder")}
                   required
                   disabled={status === "loading" || status === "success"}
-                  className="flex-1 bg-slate-900 border border-white/5 text-xs text-white rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-primary transition disabled:opacity-50"
+                  className="flex-1 bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-purple-500 focus:bg-white transition disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={status === "loading" || status === "success"}
-                  className="px-4 py-2.5 flex items-center justify-center min-w-[100px] bg-brand-primary hover:bg-brand-primary-dark disabled:bg-brand-primary/50 text-white font-bold text-xs rounded-xl shadow shadow-brand-primary/20 transition"
+                  className="px-4 py-2.5 flex items-center justify-center min-w-[100px] bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white font-bold text-xs rounded-xl shadow-sm transition"
                 >
                   {status === "loading" ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -130,7 +130,7 @@ export default function Footer() {
               
               {/* Status Message */}
               {status !== "idle" && message && (
-                <div className={`flex items-center gap-1.5 text-[11px] mt-1 ${status === "success" ? "text-green-400" : "text-red-400"}`}>
+                <div className={`flex items-center gap-1.5 text-[11px] mt-1 ${status === "success" ? "text-emerald-600" : "text-rose-600"}`}>
                   {status === "success" ? (
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   ) : (
@@ -149,11 +149,11 @@ export default function Footer() {
             {t("rights", { year: new Date().getFullYear() })}
           </p>
           <div className="flex gap-4 text-[11px] text-slate-500">
-            <Link href="/terms" className="hover:text-slate-300 transition-colors">{t("terms_footer")}</Link>
+            <Link href="/terms" className="hover:text-slate-800 transition-colors">{t("terms_footer")}</Link>
             <span>•</span>
-            <Link href="/privacy" className="hover:text-slate-300 transition-colors">{t("privacy_footer")}</Link>
+            <Link href="/privacy" className="hover:text-slate-800 transition-colors">{t("privacy_footer")}</Link>
             <span>•</span>
-            <Link href="/help" className="hover:text-slate-300 transition-colors">{t("help_footer")}</Link>
+            <Link href="/help" className="hover:text-slate-800 transition-colors">{t("help_footer")}</Link>
           </div>
         </div>
       </div>

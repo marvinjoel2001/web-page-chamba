@@ -53,19 +53,19 @@ export default function StarfieldBackground() {
     };
 
     const particleColors = [
-      "rgba(255, 255, 255,",      // Pure starlight
-      "rgba(240, 243, 255,",      // Diamond white
-      "rgba(196, 181, 253,",      // Soft lilac (Chamba purple accent)
-      "rgba(167, 139, 250,",      // Violet accent
-      "rgba(186, 230, 253,",      // Celestial cyan
+      "rgba(139, 92, 246,",      // Chamba purple
+      "rgba(124, 58, 237,",      // Deep violet
+      "rgba(167, 139, 250,",      // Soft lilac
+      "rgba(99, 102, 241,",       // Indigo accent
+      "rgba(234, 179, 8,",        // Warm golden sparkle
     ];
 
     const sparkColors = [
-      "#ffffff",
-      "#c4b5fd",
+      "#8b5cf6",
+      "#7c3aed",
       "#a78bfa",
-      "#fef08a",
-      "#93c5fd",
+      "#6366f1",
+      "#eab308",
     ];
 
     // Responsive particle count
@@ -269,7 +269,7 @@ export default function StarfieldBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[1] select-none"
-      style={{ opacity: 0.75 }}
+      style={{ opacity: 0.45 }}
       aria-hidden="true"
     />
   );

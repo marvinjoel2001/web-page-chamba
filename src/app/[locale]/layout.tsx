@@ -52,7 +52,7 @@ export default async function RootLayout({
         <link rel="preload" href="/images/worker.png" as="image" />
         <link rel="preload" href="/images/client.png" as="image" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#04060a] text-slate-100 selection:bg-brand-primary selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#f8fafc] text-slate-900 selection:bg-purple-600 selection:text-white">
         <StarfieldBackground />
         <NextIntlClientProvider messages={messages}>
           {children}

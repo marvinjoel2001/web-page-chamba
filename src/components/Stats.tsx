@@ -34,7 +34,7 @@ export default function Stats() {
   ];
 
   return (
-    <section id="estadisticas" className="py-16 bg-slate-950/60 border-t border-b border-white/5 relative overflow-hidden">
+    <section id="estadisticas" className="py-16 bg-slate-50/70 border-t border-b border-slate-200/80 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {statsList.map((stat, index) => (
@@ -45,18 +45,18 @@ export default function Stats() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center text-center p-6 bg-[#121824]/40 border border-white/5 rounded-3xl"
+              className="flex flex-col items-center text-center p-6 bg-white border border-slate-200/80 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="p-3 bg-slate-900 border border-white/5 rounded-2xl mb-4 text-white">
+              <div className="p-3 bg-purple-50 border border-purple-100 rounded-2xl mb-4 text-purple-600">
                 {stat.icon}
               </div>
-              <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                 {stat.value}
               </span>
-              <span className="text-sm font-bold text-slate-300 mt-2">
+              <span className="text-sm font-bold text-slate-700 mt-2">
                 {stat.label}
               </span>
-              <span className="text-xs text-slate-400 mt-2 leading-relaxed max-w-[200px]">
+              <span className="text-xs text-slate-500 mt-2 leading-relaxed max-w-[200px]">
                 {stat.desc}
               </span>
             </motion.div>
