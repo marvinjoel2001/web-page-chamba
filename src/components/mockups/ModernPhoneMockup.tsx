@@ -87,7 +87,7 @@ function ClientScreen({ step }: { step: number }) {
         <div className="flex-1 flex flex-col justify-between">
           {/* App Brand Header */}
           <div className="flex items-center justify-center gap-1 pt-0.5">
-            <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center text-[7px] font-black shadow-sm">
+            <div className="w-3.5 h-3.5 rounded-full bg-purple-600 flex items-center justify-center text-[7px] font-black shadow-sm">
               C
             </div>
             <span className="text-[10px] font-black tracking-tight text-white">Chamba</span>
@@ -123,7 +123,7 @@ function ClientScreen({ step }: { step: number }) {
           </div>
 
           {/* Siguiente Button */}
-          <div className="w-full py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[8px] font-bold flex items-center justify-center gap-1 shadow-md shadow-purple-600/30">
+          <div className="w-full py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-[8px] font-bold flex items-center justify-center gap-1 shadow-md shadow-purple-600/30">
             <span>Siguiente</span>
             <ArrowRight className="w-2 h-2" />
           </div>
@@ -156,7 +156,7 @@ function ClientScreen({ step }: { step: number }) {
             {/* Card 1 */}
             <div className="bg-[#171530] border border-purple-500/25 rounded-lg p-1.5 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-[7px] font-bold text-white">
+                <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-[7px] font-bold text-white">
                   CM
                 </div>
                 <div>
@@ -176,7 +176,7 @@ function ClientScreen({ step }: { step: number }) {
             {/* Card 2 */}
             <div className="bg-[#171530] border border-white/5 rounded-lg p-1.5 flex items-center justify-between opacity-90">
               <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-[7px] font-bold text-white">
+                <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[7px] font-bold text-white">
                   LR
                 </div>
                 <div>
@@ -196,7 +196,7 @@ function ClientScreen({ step }: { step: number }) {
             {/* Card 3 */}
             <div className="bg-[#171530] border border-white/5 rounded-lg p-1.5 flex items-center justify-between opacity-80">
               <div className="flex items-center gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-[7px] font-bold text-white">
+                <div className="w-5 h-5 rounded-full bg-emerald-600 flex items-center justify-center text-[7px] font-bold text-white">
                   JT
                 </div>
                 <div>
@@ -224,7 +224,7 @@ function ClientScreen({ step }: { step: number }) {
         <div className="flex-1 flex flex-col justify-between">
           {/* Worker Profile Header */}
           <div className="bg-[#171530] border border-purple-500/20 rounded-xl p-1.5 flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-[8px] font-black text-white shadow-sm shrink-0">
+            <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center text-[8px] font-black text-white shadow-sm shrink-0">
               CM
             </div>
             <div className="min-w-0 flex-1">
@@ -253,13 +253,13 @@ function ClientScreen({ step }: { step: number }) {
           </div>
 
           {/* Estimated Price Card */}
-          <div className="bg-gradient-to-r from-purple-950/60 to-indigo-950/60 border border-purple-500/30 rounded-xl p-2 text-center my-0.5">
+          <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 text-center my-0.5">
             <span className="text-[6px] text-purple-300 uppercase tracking-wider block font-semibold">Precio estimado</span>
             <span className="text-[12px] font-black text-white block mt-0.5">Bs 110 <span className="text-[7px] font-normal text-slate-400">/ hora</span></span>
           </div>
 
           {/* Confirm Button */}
-          <div className="w-full py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[8px] font-bold flex items-center justify-center gap-1 shadow-md shadow-purple-600/30">
+          <div className="w-full py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-[8px] font-bold flex items-center justify-center gap-1 shadow-md shadow-purple-600/30">
             <span>Confirmar solicitud</span>
             <Check className="w-2.5 h-2.5" />
           </div>
@@ -344,7 +344,7 @@ function ClientScreen({ step }: { step: number }) {
         <div className="flex-1 flex flex-col justify-between items-center text-center pt-1">
           {/* Big Checkmark Shield */}
           <div className="relative mt-1">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-600/50">
+            <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white shadow-lg shadow-purple-600/50">
               <Check className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div className="absolute -inset-1 rounded-full border border-purple-400/30 animate-pulse" />
@@ -367,7 +367,7 @@ function ClientScreen({ step }: { step: number }) {
 
           {/* Action Buttons */}
           <div className="w-full space-y-1 mt-1">
-            <div className="w-full py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[7px] font-bold shadow-md shadow-purple-600/30 flex items-center justify-center gap-1">
+            <div className="w-full py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-[7px] font-bold shadow-md shadow-purple-600/30 flex items-center justify-center gap-1">
               <span>Calificar trabajador</span>
               <Star className="w-2 h-2 fill-white" />
             </div>
@@ -397,7 +397,7 @@ function WorkerScreen({ step }: { step: number }) {
       return (
         <div className="flex-1 flex flex-col justify-between">
           <div className="text-center pt-1">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 mx-auto flex items-center justify-center text-white text-[10px] font-bold shadow-lg shadow-purple-600/40">
+            <div className="w-9 h-9 rounded-full bg-purple-600 mx-auto flex items-center justify-center text-white text-[10px] font-bold shadow-lg shadow-purple-600/40">
               ID
             </div>
             <h4 className="text-[10px] font-extrabold text-white mt-1">Perfil Profesional</h4>
