@@ -20,7 +20,6 @@ import {
   Shield,
   Sprout,
   LayoutGrid,
-  Briefcase,
   CheckCircle2,
 } from "lucide-react";
 import React from "react";
@@ -304,17 +303,13 @@ export default function Hero({ activeRole }: HeroProps) {
                   <div className="relative w-full flex flex-col items-center">
                     <img
                       src="/images/workers_dissolve.png"
-                      alt="Trabajadores de Chamba - Diversidad y Compromiso"
-                      className="w-full h-auto max-w-[680px] sm:max-w-[780px] lg:max-w-[880px] xl:max-w-[980px] 2xl:max-w-[1100px] object-contain drop-shadow-[0_25px_50px_rgba(139,92,246,0.15)]"
+                      alt="Trabajadores de Chamba - Oportunidades y Oficios"
+                      className="w-full h-auto max-w-[760px] sm:max-w-[880px] lg:max-w-[1000px] xl:max-w-[1120px] 2xl:max-w-[1240px] lg:scale-105 transform origin-center object-contain drop-shadow-[0_20px_45px_rgba(139,92,246,0.12)] transition-transform duration-300"
                     />
 
-                    {/* Modern Floating Badges (Sin encasillar en borde cuadrado) */}
-                    <div className="mt-2 sm:-mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 z-10 px-2">
-                      <span className="bg-white/95 backdrop-blur-md border border-purple-100 text-purple-700 shadow-lg shadow-purple-900/5 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse" />
-                        Equipo Chamba Santa Cruz
-                      </span>
-                      <span className="bg-white/95 backdrop-blur-md border border-emerald-100 text-slate-800 shadow-lg shadow-purple-900/5 px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
+                    {/* Modern Floating Badges */}
+                    <div className="mt-3 sm:-mt-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 z-10 px-2">
+                      <span className="bg-white/95 backdrop-blur-md border border-emerald-100 text-slate-800 shadow-lg shadow-purple-900/5 px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                         100% Identidad Verificada
                       </span>
@@ -324,55 +319,6 @@ export default function Hero({ activeRole }: HeroProps) {
               </div>
 
             </div>
-
-            {/* Bottom Wide Stats Floating Banner (Exacto a la maqueta) */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="mt-14 bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-7 shadow-xl shadow-purple-900/5 grid grid-cols-2 md:grid-cols-4 gap-6 items-center"
-            >
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100/80 flex items-center justify-center text-purple-700 shrink-0">
-                  <Users className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-xl sm:text-2xl font-black text-slate-900 block leading-tight">10K+</span>
-                  <span className="text-xs text-slate-500 font-medium">Trabajadores activos</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100/80 flex items-center justify-center text-purple-700 shrink-0">
-                  <Briefcase className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-xl sm:text-2xl font-black text-slate-900 block leading-tight">50K+</span>
-                  <span className="text-xs text-slate-500 font-medium">Trabajos publicados</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100/80 flex items-center justify-center text-purple-700 shrink-0">
-                  <Star className="w-6 h-6 fill-purple-600 text-purple-600" />
-                </div>
-                <div>
-                  <span className="text-xl sm:text-2xl font-black text-slate-900 block leading-tight">4.9</span>
-                  <span className="text-xs text-slate-500 font-medium">Calificación promedio</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3.5">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100/80 flex items-center justify-center text-purple-700 shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-purple-700" />
-                </div>
-                <div>
-                  <span className="text-xl sm:text-2xl font-black text-slate-900 block leading-tight">100+</span>
-                  <span className="text-xs text-slate-500 font-medium">Zonas de servicio</span>
-                </div>
-              </div>
-            </motion.div>
-
           </div>
         )}
 
