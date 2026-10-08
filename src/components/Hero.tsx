@@ -217,10 +217,10 @@ export default function Hero({ activeRole }: HeroProps) {
           /* MODO TRABAJADOR: "Más oportunidades para gente que sí trabaja"            */
           /* ========================================================================= */
           <div>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
               
               {/* Left Column: Worker Headline, Subtitle, Trade Cards, CTA */}
-              <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
+              <div className="lg:col-span-5 xl:col-span-5 flex flex-col items-start text-left">
                 
                 {/* Badge: Trabajo para todos */}
                 <motion.div
@@ -290,9 +290,9 @@ export default function Hero({ activeRole }: HeroProps) {
 
               </div>
 
-              {/* Right Column: Diverse Real Workers Image - Sin bordes cuadrados, desvanecida y más grande */}
-              <div className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end items-center mt-6 lg:mt-0">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-purple-200/40 blur-3xl rounded-full pointer-events-none" />
+              {/* Right Column: Diverse Real Workers Image - Sin bordes cuadrados, desvanecida y MUCHO más grande */}
+              <div className="lg:col-span-7 xl:col-span-7 relative flex justify-center lg:justify-end items-center mt-8 lg:mt-0">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-purple-200/40 blur-3xl rounded-full pointer-events-none" />
 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -304,11 +304,11 @@ export default function Hero({ activeRole }: HeroProps) {
                     <img
                       src="/images/workers_dissolve.png"
                       alt="Trabajadores de Chamba - Oportunidades y Oficios"
-                      className="w-full h-auto max-w-[760px] sm:max-w-[880px] lg:max-w-[1000px] xl:max-w-[1120px] 2xl:max-w-[1240px] lg:scale-105 transform origin-center object-contain drop-shadow-[0_20px_45px_rgba(139,92,246,0.12)] transition-transform duration-300"
+                      className="w-full h-auto max-w-none scale-105 sm:scale-115 lg:scale-125 xl:scale-135 2xl:scale-140 transform origin-center lg:origin-right object-contain drop-shadow-[0_25px_60px_rgba(139,92,246,0.16)] transition-transform duration-300"
                     />
 
                     {/* Modern Floating Badges */}
-                    <div className="mt-3 sm:-mt-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 z-10 px-2">
+                    <div className="mt-4 sm:mt-2 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 z-10 px-2">
                       <span className="bg-white/95 backdrop-blur-md border border-emerald-100 text-slate-800 shadow-lg shadow-purple-900/5 px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                         100% Identidad Verificada

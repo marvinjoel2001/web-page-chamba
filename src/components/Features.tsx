@@ -257,18 +257,21 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
 
           {/* Center Column: Workers Photo Showcase */}
           <div className="w-full lg:flex-1 max-w-[580px] xl:max-w-[640px] flex justify-center items-center relative z-10 order-1 lg:order-2">
-            <div className="relative w-full rounded-2xl overflow-hidden drop-shadow-md">
+            <div className="relative w-full flex justify-center items-center select-none">
+              {/* Ambient Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] bg-purple-200/40 blur-3xl rounded-full pointer-events-none" />
+
               <img
                 src="/images/chamba_workers_feathered.png"
                 alt="Chamba Profesionales Reales"
-                className={`w-full h-auto object-contain max-h-[440px] mx-auto select-none transition-opacity duration-200 ${
+                className={`w-full h-auto object-contain max-h-[460px] mx-auto select-none transition-opacity duration-300 ${
                   activeRole === "client" ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"
                 }`}
               />
               <img
-                src="/images/feature2.png"
+                src="/images/feature_worker_feathered.png"
                 alt="Chambero Profesional"
-                className={`w-full h-auto object-contain max-h-[440px] mx-auto select-none rounded-2xl transition-opacity duration-200 ${
+                className={`w-full h-auto object-contain max-h-[460px] mx-auto select-none drop-shadow-[0_20px_45px_rgba(139,92,246,0.18)] transition-opacity duration-300 ${
                   activeRole === "worker" ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"
                 }`}
               />
