@@ -21,7 +21,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {notFound} from 'next/navigation';
-import StarfieldBackground from "@/components/StarfieldBackground";
+import VideoBackground from "@/components/VideoBackground";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
@@ -53,7 +53,7 @@ export default async function RootLayout({
         <link rel="preload" href="/images/client.png" as="image" />
       </head>
       <body className="min-h-full flex flex-col bg-[#f8fafc] text-slate-900 selection:bg-purple-600 selection:text-white">
-        <StarfieldBackground />
+        <VideoBackground />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

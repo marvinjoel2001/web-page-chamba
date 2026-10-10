@@ -13,7 +13,7 @@ export default function CTA({ activeRole }: CTAProps) {
   return (
     <section id="descargar" className="py-20 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="backdrop-blur-2xl bg-white/85 rounded-3xl p-8 sm:p-12 md:p-14 border border-white/90 shadow-[0_20px_60px_rgba(139,92,246,0.12)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="backdrop-blur-xl bg-white/72 rounded-3xl p-8 sm:p-12 md:p-14 border border-white/70 shadow-[0_20px_60px_rgba(139,92,246,0.12)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
           
           <div className="flex-1 text-center md:text-left">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
@@ -70,7 +70,7 @@ export default function CTA({ activeRole }: CTAProps) {
           </div>
 
           {/* Right column: Interactive Premium QR Mockup */}
-          <div className="flex flex-col items-center shrink-0 backdrop-blur-xl bg-white/70 border border-white/80 p-5 rounded-3xl shadow-2xs w-full max-w-[210px]">
+          <div className="flex flex-col items-center shrink-0 backdrop-blur-lg bg-white/62 border border-white/80 p-5 rounded-3xl shadow-2xs w-full max-w-[210px]">
             {/* Visual QR Code Simulator */}
             <div className="w-36 h-36 border border-slate-200/80 rounded-2xl p-2.5 bg-white flex flex-col justify-between items-center relative shadow-sm">
               {/* Outer corners mock styling */}

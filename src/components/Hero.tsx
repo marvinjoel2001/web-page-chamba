@@ -35,7 +35,7 @@ interface HeroProps {
 
 export default function Hero({ activeRole }: HeroProps) {
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-gradient-to-b from-white via-purple-50/20 to-[#f8fafc]">
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
       {/* Background Decorative Ambient Aura (Light mode Glassmorphic depth) */}
       <div className="absolute top-10 right-0 w-[600px] h-[600px] bg-purple-200/35 blur-[130px] rounded-full pointer-events-none -z-10" />
       <div className="absolute top-36 left-4 w-[420px] h-[420px] bg-indigo-100/40 blur-[120px] rounded-full pointer-events-none -z-10" />
@@ -59,14 +59,14 @@ export default function Hero({ activeRole }: HeroProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             
             {/* Left Column: Headline, Concept, Search Bar, Quick Chips, Pillars, Stats */}
-            <div className="lg:col-span-7 xl:col-span-7 flex flex-col items-start text-left z-20">
+            <div className="lg:col-span-7 xl:col-span-7 flex flex-col items-start text-left z-20 rounded-[2rem] p-6 sm:p-8 bg-white/60 backdrop-blur-xl backdrop-saturate-150 border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.16),inset_0_1px_0_rgba(255,255,255,0.75)]">
               
               {/* Badge: Glassmorphic Capsule */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/85 border border-purple-200/70 text-purple-700 text-xs font-bold mb-5 shadow-xs"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/72 border border-purple-200/70 text-purple-700 text-xs font-bold mb-5 shadow-xs"
               >
                 <Sparkles className="w-3.5 h-3.5 text-purple-600" />
                 <span>Pides lo que necesitas · Te mandan al que acepte tu oferta</span>
@@ -87,7 +87,7 @@ export default function Hero({ activeRole }: HeroProps) {
               </p>
 
               {/* Glassmorphic Visual Search Bar (Refleja la pantalla real de la app) */}
-              <div className="mt-6 w-full max-w-xl backdrop-blur-xl bg-white/85 border border-purple-100 rounded-2xl sm:rounded-full p-2 sm:p-1.5 pl-4 sm:pl-5 flex flex-col sm:flex-row items-center gap-2 sm:gap-0 shadow-[0_12px_36px_rgba(139,92,246,0.08)] select-none">
+              <div className="mt-6 w-full max-w-xl backdrop-blur-lg bg-white/72 border border-purple-100 rounded-2xl sm:rounded-full p-2 sm:p-1.5 pl-4 sm:pl-5 flex flex-col sm:flex-row items-center gap-2 sm:gap-0 shadow-[0_12px_36px_rgba(139,92,246,0.08)] select-none">
                 <div className="flex items-center flex-1 min-w-0 w-full sm:w-auto pr-2">
                   <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mr-2.5 shrink-0">
                     <Mic className="w-4 h-4 text-purple-600" />
@@ -126,7 +126,7 @@ export default function Hero({ activeRole }: HeroProps) {
                 ].map((chip, idx) => (
                   <div
                     key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/75 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700 shadow-2xs hover:border-purple-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/68 border border-slate-200/80 text-xs sm:text-sm font-medium text-slate-700 shadow-2xs hover:border-purple-300 transition-colors"
                   >
                     {chip.icon}
                     <span>{chip.label}</span>
@@ -136,7 +136,7 @@ export default function Hero({ activeRole }: HeroProps) {
 
               {/* 4 Pillars / Features Row in Glassmorphic Micro-cards */}
               <div className="mt-8 pt-5 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-xl">
-                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/70 border border-white/80 shadow-2xs flex flex-col">
+                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/62 border border-white/80 shadow-2xs flex flex-col">
                   <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 mb-2">
                     <ShieldCheck className="w-4 h-4 text-purple-600" />
                   </div>
@@ -144,7 +144,7 @@ export default function Hero({ activeRole }: HeroProps) {
                   <span className="text-[10px] text-slate-500 mt-0.5">Seguridad ante todo</span>
                 </div>
 
-                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/70 border border-white/80 shadow-2xs flex flex-col">
+                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/62 border border-white/80 shadow-2xs flex flex-col">
                   <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 mb-2">
                     <Tag className="w-4 h-4 text-purple-600" />
                   </div>
@@ -152,7 +152,7 @@ export default function Hero({ activeRole }: HeroProps) {
                   <span className="text-[10px] text-slate-500 mt-0.5">Precios claros</span>
                 </div>
 
-                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/70 border border-white/80 shadow-2xs flex flex-col">
+                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/62 border border-white/80 shadow-2xs flex flex-col">
                   <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 mb-2">
                     <Calendar className="w-4 h-4 text-purple-600" />
                   </div>
@@ -160,7 +160,7 @@ export default function Hero({ activeRole }: HeroProps) {
                   <span className="text-[10px] text-slate-500 mt-0.5">Llegan en minutos</span>
                 </div>
 
-                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/70 border border-white/80 shadow-2xs flex flex-col">
+                <div className="p-2.5 rounded-2xl backdrop-blur-md bg-white/62 border border-white/80 shadow-2xs flex flex-col">
                   <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 mb-2">
                     <MessageSquare className="w-4 h-4 text-purple-600" />
                   </div>
@@ -230,14 +230,14 @@ export default function Hero({ activeRole }: HeroProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
               
               {/* Left Column: Worker Headline, Subtitle, Value Points, Trade Cards, CTA */}
-              <div className="lg:col-span-7 xl:col-span-7 flex flex-col items-start text-left z-20">
+              <div className="lg:col-span-7 xl:col-span-7 flex flex-col items-start text-left z-20 rounded-[2rem] p-6 sm:p-8 bg-white/60 backdrop-blur-xl backdrop-saturate-150 border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.16),inset_0_1px_0_rgba(255,255,255,0.75)]">
                 
                 {/* Badge: Glassmorphic Capsule */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/85 border border-emerald-200/80 text-emerald-800 text-xs font-bold mb-5 shadow-xs"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-md bg-white/72 border border-emerald-200/80 text-emerald-800 text-xs font-bold mb-5 shadow-xs"
                 >
                   <Radio className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                   <span>¿Estás libre o buscando trabajo? Habilítate y genera ingresos</span>
@@ -259,7 +259,7 @@ export default function Hero({ activeRole }: HeroProps) {
 
                 {/* 3 Simplicity Pillars for Workers */}
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl">
-                  <div className="p-3.5 rounded-2xl backdrop-blur-md bg-white/80 border border-white/90 shadow-2xs flex flex-col">
+                  <div className="p-3.5 rounded-2xl backdrop-blur-md bg-white/68 border border-white/70 shadow-2xs flex flex-col">
                     <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-600 mb-2">
                       <Radio className="w-4 h-4 text-emerald-600" />
                     </div>
@@ -269,7 +269,7 @@ export default function Hero({ activeRole }: HeroProps) {
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-2xl backdrop-blur-md bg-white/80 border border-white/90 shadow-2xs flex flex-col">
+                  <div className="p-3.5 rounded-2xl backdrop-blur-md bg-white/68 border border-white/70 shadow-2xs flex flex-col">
                     <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-200/80 flex items-center justify-center text-purple-600 mb-2">
                       <MapPin className="w-4 h-4 text-purple-600" />
                     </div>
@@ -279,7 +279,7 @@ export default function Hero({ activeRole }: HeroProps) {
                     </span>
                   </div>
 
-                  <div className="p-3.5 rounded-2xl backdrop-blur-md bg-white/80 border border-white/90 shadow-2xs flex flex-col">
+                  <div className="p-3.5 rounded-2xl backdrop-blur-md bg-white/68 border border-white/70 shadow-2xs flex flex-col">
                     <div className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-600 mb-2">
                       <DollarSign className="w-4 h-4 text-amber-600" />
                     </div>
@@ -302,7 +302,7 @@ export default function Hero({ activeRole }: HeroProps) {
                   ].map((trade, idx) => (
                     <div
                       key={idx}
-                      className="backdrop-blur-md bg-white/75 border border-slate-200/80 rounded-xl p-2.5 flex flex-col items-center text-center justify-center shadow-2xs hover:border-purple-300 transition-all select-none"
+                      className="backdrop-blur-md bg-white/68 border border-slate-200/80 rounded-xl p-2.5 flex flex-col items-center text-center justify-center shadow-2xs hover:border-purple-300 transition-all select-none"
                     >
                       <div className="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center mb-1">
                         {trade.icon}

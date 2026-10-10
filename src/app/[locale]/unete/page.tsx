@@ -10,7 +10,7 @@ export default async function JoinUsPage({
 }) {
   const {locale} = await params;
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] font-sans selection:bg-purple-600 selection:text-white antialiased">
+    <div className="min-h-screen flex flex-col font-sans selection:bg-purple-600 selection:text-white antialiased">
       {/* 
         We pass a fixed activeRole if your Navbar requires it.
       */}
@@ -26,7 +26,7 @@ export default async function JoinUsPage({
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center max-w-6xl mx-auto">
             
             {/* Left Column: Copy & Benefits */}
-            <div className="space-y-8">
+            <div className="space-y-8 rounded-[2rem] bg-white/68 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] p-6 sm:p-9">
               <div className="space-y-4">
                 <div className="inline-flex items-center space-x-2 bg-purple-50 border border-purple-200 px-3.5 py-1 rounded-full text-purple-700 text-sm font-semibold">
                   <span className="relative flex h-2 w-2">

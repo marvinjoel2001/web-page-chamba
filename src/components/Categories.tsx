@@ -329,9 +329,9 @@ export default function Categories() {
   };
 
   return (
-    <section id="categorias" className="py-24 relative overflow-hidden bg-white">
+    <section id="categorias" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-14 rounded-[2rem] px-6 py-7 sm:px-10 sm:py-9 bg-white/60 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)]">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             {t("title")}
           </h2>
@@ -356,7 +356,7 @@ export default function Categories() {
                 onClick={() => setSelectedCategory(category)}
                 whileHover={{ y: -8 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative backdrop-blur-xl bg-white/85 hover:bg-white/95 border border-white/90 hover:border-purple-300 rounded-3xl overflow-hidden transition-all duration-300 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] flex flex-col justify-between cursor-pointer"
+                className="group relative backdrop-blur-lg bg-white/72 hover:bg-white/85 border border-white/70 hover:border-purple-300 rounded-3xl overflow-hidden transition-all duration-300 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] flex flex-col justify-between cursor-pointer"
               >
                 {/* Real Worker Photo Header */}
                 <div className="relative w-full h-48 overflow-hidden bg-slate-100">
@@ -446,7 +446,7 @@ export default function Categories() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.93, y: 15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="backdrop-blur-2xl bg-white/90 border border-white/80 rounded-3xl overflow-hidden w-full max-w-xl shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative max-h-[90vh] flex flex-col"
+              className="backdrop-blur-xl bg-white/90 border border-white/80 rounded-3xl overflow-hidden w-full max-w-xl shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative max-h-[90vh] flex flex-col"
             >
               {/* Close Button */}
               <button

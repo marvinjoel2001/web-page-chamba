@@ -149,7 +149,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
   const currentCards = activeRole === "client" ? clientCards : workerCards;
 
   return (
-    <section id="features" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-white via-purple-50/15 to-white">
+    <section id="features" className="py-20 sm:py-28 relative overflow-hidden">
       {/* Decorative ambient blurred blobs */}
       <div className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/20 blur-[130px] rounded-full pointer-events-none -z-10" />
       <div className="absolute top-1/2 right-0 w-[450px] h-[450px] bg-indigo-100/30 blur-[130px] rounded-full pointer-events-none -z-10" />
@@ -162,9 +162,9 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 rounded-[2rem] px-6 py-7 sm:px-10 sm:py-9 bg-white/60 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)]"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full backdrop-blur-md bg-white/80 border border-purple-200/80 text-purple-700 text-xs font-bold mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full backdrop-blur-md bg-white/68 border border-purple-200/80 text-purple-700 text-xs font-bold mb-3 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-purple-600" />
             <span>{activeRole === "client" ? "VENTAJAS PARA TI" : "VENTAJAS PARA EL CHAMBEADOR"}</span>
           </div>
@@ -207,7 +207,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-lg bg-white/72 border border-white/70 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
@@ -240,7 +240,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-lg bg-white/72 border border-white/70 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
@@ -299,7 +299,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-lg bg-white/72 border border-white/70 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
@@ -332,7 +332,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-lg bg-white/72 border border-white/70 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
@@ -369,7 +369,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="backdrop-blur-2xl bg-white/90 border border-white/80 rounded-3xl p-6 sm:p-8 w-full max-w-lg shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative"
+              className="backdrop-blur-xl bg-white/90 border border-white/80 rounded-3xl p-6 sm:p-8 w-full max-w-lg shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative"
             >
               {/* Close Button */}
               <button

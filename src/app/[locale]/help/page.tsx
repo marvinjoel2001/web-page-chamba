@@ -37,20 +37,22 @@ export default function HelpPage() {
   };
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen pt-24 text-slate-700">
+    <div className="min-h-screen pt-24 text-slate-700">
       <Navbar activeRole="client" />
       <div className="max-w-4xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Centro de Ayuda</h1>
-        <p className="text-slate-600 mb-12">Estamos aquí para ayudarte. Encuentra respuestas a las preguntas más frecuentes o contáctanos.</p>
+        <div className="rounded-[2rem] bg-white/68 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] p-6 sm:p-8 mb-10">
+          <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">Centro de Ayuda</h1>
+          <p className="text-slate-600 mt-3">Estamos aquí para ayudarte. Encuentra respuestas a las preguntas más frecuentes o contáctanos.</p>
+        </div>
         
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow p-6 rounded-2xl flex flex-col gap-4">
+          <div className="bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] hover:shadow-md transition-shadow p-6 rounded-2xl flex flex-col gap-4">
             <Mail className="w-8 h-8 text-purple-600" />
             <h3 className="text-lg font-bold text-slate-900">Soporte Técnico</h3>
             <p className="text-sm text-slate-600">¿Tienes problemas con la aplicación? Escríbenos directamente y te responderemos en menos de 24 horas.</p>
             <a href="mailto:soporte@chamba.app" className="text-purple-600 text-sm font-semibold hover:underline mt-auto">soporte@chamba.app</a>
           </div>
-          <div className="bg-white border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow p-6 rounded-2xl flex flex-col gap-4">
+          <div className="bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] hover:shadow-md transition-shadow p-6 rounded-2xl flex flex-col gap-4">
             <ShieldAlert className="w-8 h-8 text-amber-500" />
             <h3 className="text-lg font-bold text-slate-900">Reportar un problema</h3>
             <p className="text-sm text-slate-600">Si un usuario o trabajador incumplió nuestras normas de comunidad, por favor repórtalo inmediatamente.</p>
@@ -63,10 +65,10 @@ export default function HelpPage() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">Preguntas Frecuentes</h2>
+        <h2 className="inline-block rounded-2xl px-5 py-2 bg-white/68 backdrop-blur-lg border border-white/60 text-2xl font-bold text-slate-900 mb-6">Preguntas Frecuentes</h2>
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="bg-white border border-slate-200/80 p-5 rounded-xl shadow-xs">
+            <div key={idx} className="bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] p-5 rounded-xl shadow-xs">
               <h4 className="text-base font-semibold text-slate-900 flex gap-3 items-start">
                 <MessageCircleQuestion className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
                 {faq.q}

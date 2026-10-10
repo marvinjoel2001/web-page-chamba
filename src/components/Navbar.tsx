@@ -40,8 +40,8 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 backdrop-blur-xl bg-white/80 border-b border-white/60 shadow-[0_4px_25px_rgba(139,92,246,0.06)]"
-          : "py-4 backdrop-blur-sm bg-white/45 border-b border-white/30"
+          ? "py-3 backdrop-blur-2xl backdrop-saturate-150 bg-white/68 border-b border-white/60 shadow-[0_4px_25px_rgba(31,38,135,0.10),inset_0_-1px_0_rgba(255,255,255,0.5)]"
+          : "py-4 backdrop-blur-xl backdrop-saturate-150 bg-white/30 border-b border-white/40"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

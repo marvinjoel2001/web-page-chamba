@@ -20,7 +20,7 @@ export default function AboutUs() {
             className="relative"
           >
             {/* Artistic Glassmorphic Frame */}
-            <div className="relative rounded-3xl overflow-hidden border border-white/90 bg-white/60 shadow-[0_20px_50px_rgba(139,92,246,0.12)] aspect-[4/5] sm:aspect-square lg:aspect-[4/5] group">
+            <div className="relative rounded-3xl overflow-hidden border border-white/70 bg-white/72 shadow-[0_20px_50px_rgba(139,92,246,0.12)] aspect-[4/5] sm:aspect-square lg:aspect-[4/5] group">
               <img
                 src="/images/workers_diverse_bolivia.jpg"
                 alt="Profesionales de Chamba"
@@ -45,7 +45,7 @@ export default function AboutUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center rounded-[2rem] p-6 sm:p-9 bg-white/68 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)]"
           >
             <h2 className="text-sm font-bold tracking-widest text-purple-600 uppercase mb-3">
               {t("section_tag")}

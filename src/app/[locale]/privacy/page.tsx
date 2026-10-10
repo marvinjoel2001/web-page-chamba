@@ -6,10 +6,10 @@ import Footer from "@/components/Footer";
 
 export default function PrivacyPage() {
   return (
-    <div className="bg-[#f8fafc] min-h-screen pt-24 text-slate-700">
+    <div className="min-h-screen pt-24 text-slate-700">
       <Navbar activeRole="client" />
       <div className="max-w-4xl mx-auto px-4 py-16">
-        <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 shadow-sm">
+        <div className="bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] rounded-3xl p-8 sm:p-12 shadow-sm">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-8 tracking-tight">Políticas de Privacidad</h1>
           <div className="space-y-6 text-base leading-relaxed text-slate-600">
             <p>

@@ -137,7 +137,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
   };
 
   return (
-    <section id="como-funciona" className="py-24 relative overflow-hidden bg-gradient-to-b from-slate-50/50 via-white to-slate-50/50">
+    <section id="como-funciona" className="py-24 relative overflow-hidden">
       {/* Soft Ambient Glows behind HowItWorks */}
       <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-purple-200/25 blur-[120px] rounded-full pointer-events-none -z-10" />
       <div className="absolute bottom-10 right-0 w-[500px] h-[500px] bg-indigo-100/30 blur-[130px] rounded-full pointer-events-none -z-10" />
@@ -150,10 +150,10 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-14 sm:mb-18"
+          className="text-center max-w-3xl mx-auto mb-14 sm:mb-18 rounded-[2rem] px-6 py-7 sm:px-10 sm:py-9 bg-white/60 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)]"
         >
           {/* Tag */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full backdrop-blur-md bg-white/80 border border-purple-200/80 text-purple-700 text-xs font-bold mb-3 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full backdrop-blur-md bg-white/68 border border-purple-200/80 text-purple-700 text-xs font-bold mb-3 shadow-xs">
             <span>{t("tag")}</span>
           </div>
 
@@ -190,7 +190,7 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                   {/* Step Card Container in Light Glassmorphism */}
                   <motion.div
                     variants={itemVariants}
-                    className="flex-1 flex flex-col justify-between backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-5 sm:p-6 shadow-[0_10px_30px_rgba(139,92,246,0.06)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group overflow-hidden"
+                    className="flex-1 flex flex-col justify-between backdrop-blur-lg bg-white/72 border border-white/70 rounded-3xl p-5 sm:p-6 shadow-[0_10px_30px_rgba(139,92,246,0.06)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group overflow-hidden"
                   >
                     <div>
                       {/* Top Row: Number Box (Left) & Icon (Right) */}

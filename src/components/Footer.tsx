@@ -31,7 +31,7 @@ export default function Footer() {
     }
   };
   return (
-    <footer className="bg-white border-t border-slate-200/80 pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-white/68 backdrop-blur-2xl backdrop-saturate-150 border-t border-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] pt-16 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-slate-100">
           {/* Logo and Intro */}
