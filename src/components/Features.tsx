@@ -13,6 +13,7 @@ import {
   X,
   CheckCircle2,
   Sparkles,
+  Radio,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
@@ -93,53 +94,53 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
   const workerCards: FeatureCardItem[] = [
     {
       id: "worker_card_1",
-      icon: <DollarSign className="w-5 h-5 text-purple-600" />,
-      title: "Gana a tu propio ritmo",
-      desc: "Tú defines tus tarifas por trabajo o por hora, recibiendo el 100% de tus cobros acordados.",
-      badge: "Ingresos Transparentes",
+      icon: <Radio className="w-5 h-5 text-emerald-600" />,
+      title: "¿Libre? Actívate en 1 clic",
+      desc: "Pasa de desconectado a DISPONIBLE cuando tengas tiempo. Tú controlas tu horario al 100%.",
+      badge: "Disponibilidad Inmediata",
       highlights: [
-        "Sin deducciones sorpresivas: el dinero que acuerdas con el cliente es tuyo.",
-        "Trabaja en tus días libres o a tiempo completo según tu disponibilidad.",
-        "Pagos inmediatos directos de parte del cliente al finalizar la labor.",
+        "¿Sin hacer nada o buscando un ingreso extra? Te activas y empiezas a recibir solicitudes.",
+        "Sin horarios obligatorios: trabaja unas horas al día, en tus días libres o a tiempo completo.",
+        "Tú decides cuándo ponerte disponible y cuándo descansar.",
       ],
-      ctaText: "Registrarme como trabajador",
+      ctaText: "Habilitarme como trabajador",
     },
     {
       id: "worker_card_2",
       icon: <Compass className="w-5 h-5 text-purple-600" />,
       title: "Chambas en tu zona",
-      desc: "Recibe solicitudes de clientes cercanos en tiempo real con mapa y detalles precisos.",
+      desc: "Recibe solicitudes directas de personas en tu barrio con la tarea y el precio ya ofertado.",
       badge: "Menos Traslados",
       highlights: [
-        "Ahorra tiempo y combustible aceptando trabajos cerca de tu domicilio.",
-        "Notificaciones instantáneas en tu celular cada vez que alguien necesita tu oficio.",
-        "Visualiza ubicación exacta, fotos de la reparación y presupuesto estimado.",
+        "Ahorra tiempo y combustible aceptando trabajos cerca de donde estás.",
+        "Notificaciones instantáneas en tu celular cada vez que alguien publica una oferta en tu oficio.",
+        "Visualiza ubicación exacta, descripción de la labor y monto propuesto.",
       ],
       ctaText: "Ver solicitudes cercanas",
     },
     {
       id: "worker_card_3",
       icon: <MessageSquare className="w-5 h-5 text-purple-600" />,
-      title: "Trato directo y sin vueltas",
-      desc: "Chatea con el cliente, envía cotizaciones y coordina directamente sin intermediarios.",
-      badge: "Comunicación Clara",
+      title: "Aceptas la oferta y coordinas",
+      desc: "Si te conviene el precio, aceptas la chamba y conversas directo por chat sin intermediarios.",
+      badge: "Comunicación Directa",
       highlights: [
-        "Conversa con el cliente antes de ir para saber exactamente qué materiales necesitas.",
-        "Envía cotizaciones formales desde la misma aplicación con un clic.",
-        "Historial claro de acuerdos para evitar confusiones o reclamos.",
+        "Conversa con el cliente antes de ir para coordinar materiales y detalles.",
+        "Acepta la oferta al toque desde la misma aplicación con un solo clic.",
+        "Sin intermediarios entrometiéndose ni alterando los precios acordados.",
       ],
-      ctaText: "Descargar App de Chambero",
+      ctaText: "Descargar App de Chambeador",
     },
     {
       id: "worker_card_4",
-      icon: <Award className="w-5 h-5 text-purple-600" />,
-      title: "Construye tu reputación",
-      desc: "Acumula reseñas de 5 estrellas, perfil verificado y haz crecer tu cartera de clientes.",
-      badge: "Insignia Verificada",
+      icon: <Award className="w-5 h-5 text-amber-500" />,
+      title: "Cobras el 100% y sumas reputación",
+      desc: "Tu dinero íntegro para ti en efectivo o QR, sin comisiones abusivas, y sumas reseñas de 5 estrellas.",
+      badge: "100% Para Ti",
       highlights: [
-        "Insignia oficial de profesional verificado para ganar más confianza.",
-        "Tus buenas valoraciones te posicionan en los primeros lugares de búsqueda.",
-        "Crea un portafolio fotográfico digital de tus mejores trabajos.",
+        "Sin deducciones sorpresa: el monto acordado va íntegro a tu bolsillo.",
+        "Insignia oficial de profesional verificado para ganar la confianza de tus clientes.",
+        "Tus buenas calificaciones te posicionan para recibir aún más trabajos cada semana.",
       ],
       ctaText: "Crear mi perfil profesional",
     },
@@ -148,7 +149,11 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
   const currentCards = activeRole === "client" ? clientCards : workerCards;
 
   return (
-    <section id="features" className="py-20 sm:py-28 relative overflow-hidden bg-slate-50/50">
+    <section id="features" className="py-20 sm:py-28 relative overflow-hidden bg-gradient-to-b from-white via-purple-50/15 to-white">
+      {/* Decorative ambient blurred blobs */}
+      <div className="absolute top-1/2 left-0 w-[450px] h-[450px] bg-purple-200/20 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/2 right-0 w-[450px] h-[450px] bg-indigo-100/30 blur-[130px] rounded-full pointer-events-none -z-10" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -159,6 +164,11 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full backdrop-blur-md bg-white/80 border border-purple-200/80 text-purple-700 text-xs font-bold mb-3 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+            <span>{activeRole === "client" ? "VENTAJAS PARA TI" : "VENTAJAS PARA EL CHAMBEADOR"}</span>
+          </div>
+
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             {activeRole === "client" ? (
               <>
@@ -179,15 +189,15 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
           <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
             {activeRole === "client"
               ? t("subtitle")
-              : "Conectamos tu talento con clientes que buscan servicios en tu zona todos los días."}
+              : "Si estás libre o buscando trabajo, Chamba te conecta con clientes cerca de ti que necesitan tu oficio hoy mismo."}
           </p>
         </motion.div>
 
         {/* Main Showcase: Center Image with 4 Interactive Clickable Cards */}
-        <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-4 xl:gap-8">
+        <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-6">
           
           {/* Left Column Cards (Cards 1 & 2) */}
-          <div className="w-full lg:w-[280px] xl:w-[320px] flex flex-col gap-5 sm:gap-6 z-20 order-2 lg:order-1">
+          <div className="w-full lg:w-[300px] xl:w-[330px] flex flex-col gap-5 sm:gap-6 z-20 order-2 lg:order-1 shrink-0">
             {/* Card 1 */}
             <motion.div
               key={currentCards[0].id}
@@ -197,14 +207,14 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-md hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:border-purple-200 transition-colors">
+                  <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:scale-105 transition-all">
                     {currentCards[0].icon}
                   </div>
-                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
+                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
                     Ver detalle
                   </span>
                 </div>
@@ -230,14 +240,14 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-md hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:border-purple-200 transition-colors">
+                  <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:scale-105 transition-all">
                     {currentCards[1].icon}
                   </div>
-                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
+                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
                     Ver detalle
                   </span>
                 </div>
@@ -255,8 +265,8 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
             </motion.div>
           </div>
 
-          {/* Center Column: Workers Photo Showcase */}
-          <div className="w-full lg:flex-1 max-w-[580px] xl:max-w-[640px] flex justify-center items-center relative z-10 order-1 lg:order-2">
+          {/* Center Column: Workers Photo Showcase (Contenido sin solapamientos!) */}
+          <div className="w-full lg:w-[320px] xl:w-[360px] flex justify-center items-center relative z-10 order-1 lg:order-2 shrink-0">
             <div className="relative w-full flex justify-center items-center select-none">
               {/* Ambient Glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] bg-purple-200/40 blur-3xl rounded-full pointer-events-none" />
@@ -264,14 +274,14 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               <img
                 src="/images/chamba_workers_feathered.png"
                 alt="Chamba Profesionales Reales"
-                className={`w-full h-auto object-contain max-h-[460px] mx-auto select-none transition-opacity duration-300 ${
+                className={`w-full h-auto object-contain max-h-[420px] mx-auto select-none transition-opacity duration-300 ${
                   activeRole === "client" ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"
                 }`}
               />
               <img
                 src="/images/feature_worker_feathered.png"
                 alt="Chambero Profesional"
-                className={`w-full h-auto object-contain max-h-[460px] mx-auto select-none drop-shadow-[0_20px_45px_rgba(139,92,246,0.18)] transition-opacity duration-300 ${
+                className={`w-full h-auto object-contain max-h-[420px] mx-auto select-none drop-shadow-[0_20px_45px_rgba(139,92,246,0.18)] transition-opacity duration-300 ${
                   activeRole === "worker" ? "opacity-100 relative" : "opacity-0 absolute inset-0 pointer-events-none"
                 }`}
               />
@@ -279,7 +289,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
           </div>
 
           {/* Right Column Cards (Cards 3 & 4) */}
-          <div className="w-full lg:w-[280px] xl:w-[320px] flex flex-col gap-5 sm:gap-6 z-20 order-3">
+          <div className="w-full lg:w-[300px] xl:w-[330px] flex flex-col gap-5 sm:gap-6 z-20 order-3 shrink-0">
             {/* Card 3 */}
             <motion.div
               key={currentCards[2].id}
@@ -289,14 +299,14 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-md hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:border-purple-200 transition-colors">
+                  <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:scale-105 transition-all">
                     {currentCards[2].icon}
                   </div>
-                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
+                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
                     Ver detalle
                   </span>
                 </div>
@@ -322,14 +332,14 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               transition={{ duration: 0.3, delay: 0.05 }}
               whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 shadow-md hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+              className="backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:border-purple-300 hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] transition-all duration-300 group flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:border-purple-200 transition-colors">
+                  <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:bg-purple-100 group-hover:scale-105 transition-all">
                     {currentCards[3].icon}
                   </div>
-                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">
+                  <span className="text-[11px] font-bold text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
                     Ver detalle
                   </span>
                 </div>
@@ -350,16 +360,16 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
         </div>
       </div>
 
-      {/* Feature Detail Modal */}
+      {/* Feature Detail Modal in Glassmorphism */}
       <AnimatePresence>
         {selectedCard && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 w-full max-w-lg shadow-2xl relative"
+              className="backdrop-blur-2xl bg-white/90 border border-white/80 rounded-3xl p-6 sm:p-8 w-full max-w-lg shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative"
             >
               {/* Close Button */}
               <button
@@ -371,8 +381,8 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               </button>
 
               {/* Badge & Icon Header */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700 shadow-xs">
+              <div className="flex items-center gap-3 mb-4 pr-8">
+                <div className="w-12 h-12 rounded-2xl bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700 shadow-xs shrink-0">
                   {selectedCard.icon}
                 </div>
                 <div>
@@ -380,7 +390,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
                     <Sparkles className="w-3 h-3 text-purple-600" />
                     {selectedCard.badge}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1 leading-snug">
                     {selectedCard.title}
                   </h3>
                 </div>
@@ -392,7 +402,7 @@ export default function Features({ activeRole = "client" }: FeaturesProps) {
               </p>
 
               {/* Key Highlights Checklist */}
-              <div className="space-y-3 bg-slate-50/80 border border-slate-100 rounded-2xl p-4 sm:p-5 mb-6">
+              <div className="space-y-3 backdrop-blur-md bg-slate-50/80 border border-slate-100 rounded-2xl p-4 sm:p-5 mb-6">
                 <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                   ¿Cómo funciona en la práctica?
                 </h4>

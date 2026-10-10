@@ -19,20 +19,22 @@ export default function AboutUs() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            {/* Artistic Frame */}
-            <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-slate-100 shadow-xl aspect-[4/5] sm:aspect-square lg:aspect-[4/5]">
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent z-10" />
-              {/* Photo placeholder or image */}
-              <div className="w-full h-full bg-slate-100 flex items-center justify-center">
-                <span className="text-slate-400 font-medium">{t("photo_placeholder")}</span>
-              </div>
+            {/* Artistic Glassmorphic Frame */}
+            <div className="relative rounded-3xl overflow-hidden border border-white/90 bg-white/60 shadow-[0_20px_50px_rgba(139,92,246,0.12)] aspect-[4/5] sm:aspect-square lg:aspect-[4/5] group">
+              <img
+                src="/images/workers_diverse_bolivia.jpg"
+                alt="Profesionales de Chamba"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent z-10" />
 
-              {/* Info Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/30 text-amber-300 text-xs font-semibold mb-3 backdrop-blur-md">
+              {/* Info Overlay with Glass Badge */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-md bg-white/20 border border-white/30 text-amber-300 text-xs font-semibold mb-2">
                   <Target className="w-3.5 h-3.5" /> {t("badge_role")}
                 </div>
-                <p className="text-slate-200 mt-1 text-sm">{t("badge_desc")}</p>
+                <p className="text-slate-100 mt-1 text-sm sm:text-base font-medium leading-snug">{t("badge_desc")}</p>
               </div>
             </div>
           </motion.div>

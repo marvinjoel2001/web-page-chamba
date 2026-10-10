@@ -40,8 +40,8 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-white/85 backdrop-blur-md border-b border-slate-200/80 shadow-sm shadow-slate-200/50"
-          : "py-5 bg-transparent"
+          ? "py-3 backdrop-blur-xl bg-white/80 border-b border-white/60 shadow-[0_4px_25px_rgba(139,92,246,0.06)]"
+          : "py-4 backdrop-blur-sm bg-white/45 border-b border-white/30"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +71,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               href="https://agency-chamba.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-purple-700 bg-purple-50 hover:bg-purple-100/80 border border-purple-200/80 rounded-full transition-all duration-200 whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-purple-700 backdrop-blur-md bg-purple-50/80 hover:bg-purple-100/90 border border-purple-200/80 rounded-full transition-all duration-200 whitespace-nowrap shadow-2xs"
               title="Portal para Agencias de Servicios"
             >
               <Building2 className="w-3.5 h-3.5 text-purple-600 shrink-0" />
@@ -83,7 +83,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
           {/* Controls: Role Selector + CTA */}
           <div className="hidden md:flex items-center gap-4 relative">
             {/* Role Switcher */}
-            <div className="relative flex p-1 bg-slate-100 border border-slate-200/80 rounded-full shadow-inner">
+            <div className="relative flex p-1 backdrop-blur-md bg-white/70 border border-slate-200/80 rounded-full shadow-2xs">
               <div
                 className={`absolute top-1 bottom-1 w-[98px] bg-purple-600 rounded-full transition-transform duration-300 ease-out shadow-sm ${
                   activeRole === "worker" ? "translate-x-[98px]" : "translate-x-0"

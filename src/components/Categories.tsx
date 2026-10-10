@@ -356,7 +356,7 @@ export default function Categories() {
                 onClick={() => setSelectedCategory(category)}
                 whileHover={{ y: -8 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative bg-white hover:bg-slate-50/70 border border-slate-200/90 hover:border-purple-400 rounded-3xl overflow-hidden transition-all duration-300 shadow-md shadow-slate-200/50 hover:shadow-xl hover:shadow-purple-500/10 flex flex-col justify-between cursor-pointer"
+                className="group relative backdrop-blur-xl bg-white/85 hover:bg-white/95 border border-white/90 hover:border-purple-300 rounded-3xl overflow-hidden transition-all duration-300 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] flex flex-col justify-between cursor-pointer"
               >
                 {/* Real Worker Photo Header */}
                 <div className="relative w-full h-48 overflow-hidden bg-slate-100">
@@ -437,44 +437,44 @@ export default function Categories() {
         </motion.div>
       </div>
 
-      {/* Category Offers & Workers Modal */}
+      {/* Category Offers & Workers Modal with Glassmorphism */}
       <AnimatePresence>
         {selectedCategory && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
             <motion.div
               initial={{ opacity: 0, scale: 0.93, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.93, y: 15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="bg-white border border-slate-200 rounded-3xl overflow-hidden w-full max-w-xl shadow-2xl relative max-h-[90vh] flex flex-col"
+              className="backdrop-blur-2xl bg-white/90 border border-white/80 rounded-3xl overflow-hidden w-full max-w-xl shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative max-h-[90vh] flex flex-col"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="absolute top-4 right-4 z-20 text-white bg-black/40 hover:bg-black/70 w-8 h-8 flex items-center justify-center rounded-full backdrop-blur-sm transition-colors cursor-pointer"
+                className="absolute top-4 right-4 z-30 text-white bg-black/50 hover:bg-black/75 w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-md transition-colors cursor-pointer shadow-md"
                 aria-label="Cerrar modal"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Modal Cover Image */}
-              <div className="relative w-full h-40 shrink-0 overflow-hidden">
+              {/* Modal Cover Image with Safe Badge Spacing */}
+              <div className="relative w-full h-44 shrink-0 overflow-hidden">
                 <img
                   src={selectedCategory.image}
                   alt={selectedCategory.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-transparent" />
-                <div className="absolute bottom-4 left-5 right-5 text-white">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-bold bg-purple-600/90 px-2.5 py-0.5 rounded-full">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/35 to-transparent" />
+                <div className="absolute bottom-4 left-5 right-16 text-white">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className="text-xs font-bold bg-purple-600/90 px-2.5 py-0.5 rounded-full shadow-xs">
                       Santa Cruz de la Sierra
                     </span>
                     <span className="text-xs font-medium text-slate-200 flex items-center gap-1">
                       <Clock className="w-3.5 h-3.5" /> Disponibles hoy
                     </span>
                   </div>
-                  <h3 className="text-2xl font-black text-white">{selectedCategory.name}</h3>
+                  <h3 className="text-2xl font-black text-white leading-tight">{selectedCategory.name}</h3>
                 </div>
               </div>
 

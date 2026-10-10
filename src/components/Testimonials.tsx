@@ -62,7 +62,7 @@ export default function Testimonials() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ type: "spring", damping: 15, stiffness: 100, delay: index * 0.15 }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative bg-white hover:bg-slate-50/50 border border-slate-200/90 rounded-3xl p-6 transition-all duration-300 shadow-md shadow-slate-200/50 hover:shadow-xl hover:shadow-purple-500/10 hover:border-purple-300 flex flex-col justify-between"
+              className="group relative backdrop-blur-xl bg-white/85 hover:bg-white/95 border border-white/90 rounded-3xl p-6 sm:p-7 transition-all duration-300 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] hover:border-purple-300 flex flex-col justify-between"
             >
               {/* Decorative Quote Mark */}
               <Quote className="absolute right-6 top-6 w-8 h-8 text-slate-200 group-hover:text-purple-200 transition-colors" />

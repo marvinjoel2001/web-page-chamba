@@ -45,7 +45,7 @@ export default function Stats() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center text-center p-6 bg-white border border-slate-200/80 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
+              className="flex flex-col items-center text-center p-6 backdrop-blur-xl bg-white/85 border border-white/90 rounded-3xl shadow-[0_8px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_12px_36px_rgba(139,92,246,0.12)] hover:border-purple-300 transition-all"
             >
               <div className="p-3 bg-purple-50 border border-purple-100 rounded-2xl mb-4 text-purple-600">
                 {stat.icon}

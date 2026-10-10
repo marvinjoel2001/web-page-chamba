@@ -12,7 +12,7 @@ export default function AgencyBanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl border border-slate-200 bg-white/95 backdrop-blur-md p-8 sm:p-12 shadow-xl shadow-slate-200/50 overflow-hidden"
+          className="relative rounded-3xl border border-white/90 bg-white/85 backdrop-blur-2xl p-8 sm:p-12 shadow-[0_20px_50px_rgba(139,92,246,0.1)] overflow-hidden"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column: Info & Features */}
@@ -29,15 +29,15 @@ export default function AgencyBanner() {
 
               {/* Pillars */}
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl">
-                <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-purple-50/80 border border-purple-100">
+                <div className="flex items-center gap-2.5 p-3 rounded-2xl backdrop-blur-md bg-purple-50/80 border border-purple-100">
                   <Users className="w-4 h-4 text-purple-600 shrink-0" />
                   <span className="text-xs font-semibold text-slate-700">Multi-trabajador</span>
                 </div>
-                <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-purple-50/80 border border-purple-100">
+                <div className="flex items-center gap-2.5 p-3 rounded-2xl backdrop-blur-md bg-purple-50/80 border border-purple-100">
                   <Zap className="w-4 h-4 text-purple-600 shrink-0" />
                   <span className="text-xs font-semibold text-slate-700">Asignación en vivo</span>
                 </div>
-                <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-emerald-50/80 border border-emerald-100">
+                <div className="flex items-center gap-2.5 p-3 rounded-2xl backdrop-blur-md bg-emerald-50/80 border border-emerald-100">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span className="text-xs font-semibold text-slate-700">Liquidación clara</span>
                 </div>
@@ -46,7 +46,7 @@ export default function AgencyBanner() {
 
             {/* Right Column: Direct Access Card */}
             <div className="lg:col-span-4 flex flex-col items-stretch justify-center">
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col items-center text-center shadow-sm">
+              <div className="p-6 rounded-2xl backdrop-blur-xl bg-white/80 border border-white/90 flex flex-col items-center text-center shadow-xs">
                 <div className="w-14 h-14 rounded-2xl bg-purple-100 border border-purple-200/60 flex items-center justify-center text-purple-600 mb-4 shadow-sm">
                   <Building2 className="w-7 h-7" />
                 </div>
