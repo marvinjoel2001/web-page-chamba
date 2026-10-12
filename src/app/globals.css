@@ -136,14 +136,13 @@ body {
   background-color: rgba(43, 33, 26, 0.08);
 }
 
-/* Subrayado de acento para la palabra clave de cada título. */
+/* Texto de acento con un contorno fino que mantiene la legibilidad sobre el video. */
 .accent-underline {
-  text-decoration-line: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.16em;
-  text-decoration-skip-ink: none;
-  transition: text-decoration-color 0.4s;
+  color: var(--accent);
+  -webkit-text-stroke: 1.5px #fff;
+  paint-order: stroke fill;
+  text-shadow: none;
+  transition: color 0.4s;
 }
 
 /* Glassmorphism: solo lo usa el formulario de /unete. */

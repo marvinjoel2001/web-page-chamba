@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Download, Mic, CheckCircle2, Radio, Wallet } from "lucide-react";
 import React from "react";
 import AppPhoneMockup from "@/components/mockups/AppPhoneMockup";
+import WorkerRegistrationForm from "@/components/WorkerRegistrationForm";
 import type { Role } from "@/lib/role";
 
 interface HeroProps {
@@ -51,16 +52,16 @@ const content: Record<Role, HeroContent> = {
   },
   worker: {
     eyebrow: "Para quien quiere trabajar",
-    titleStart: "Actívate y recibe chambas",
-    titleHighlight: "cerca de ti.",
+    titleStart: "Crea tu cuenta y empieza",
+    titleHighlight: "en Chamba.",
     description:
-      "Con un toque te pones disponible. Te llegan pedidos de vecinos con el trabajo y el precio ya puestos: aceptas el que te convenga y cobras directo.",
+      "Regístrate con tus datos básicos. Entra a la app, explora y completa tu perfil a tu ritmo. Nuestro equipo te acompañará con la verificación para empezar a trabajar.",
     points: [
-      "Tú decides cuándo trabajar",
-      "Pedidos de tu misma zona",
-      "Cobras el 100% de lo acordado",
+      "Cuenta lista al terminar el registro",
+      "Tu perfil y documentos se completan después",
+      "Verifica tu identidad para aceptar trabajos",
     ],
-    primary: { label: "Empezar a trabajar", href: "/unete" },
+    primary: { label: "Crear mi cuenta", href: "#registro" },
     secondary: { label: "Descargar la app", href: "#descargar" },
     note: "Registro gratis · Sin horarios obligatorios",
     phone: {
@@ -76,7 +77,7 @@ export default function Hero({ activeRole }: HeroProps) {
   const c = content[activeRole];
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24">
+    <section className={`relative pt-28 pb-16 md:pb-24 ${activeRole === "worker" ? "md:pt-28" : "md:pt-36"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatePresence mode="wait">
           <motion.div
@@ -85,23 +86,23 @@ export default function Hero({ activeRole }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
+            className={`grid grid-cols-1 lg:grid-cols-12 lg:gap-12 items-center ${activeRole === "worker" ? "gap-6" : "gap-12"}`}
           >
-            <div className="lg:col-span-7 flex flex-col items-start">
+            <div className={`${activeRole === "worker" ? "lg:col-span-6" : "lg:col-span-7"} flex flex-col items-start`}>
               <p className="flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.12em] text-ink-soft">
                 <span className="w-2.5 h-2.5 rounded-full bg-accent" aria-hidden="true" />
                 {c.eyebrow}
               </p>
 
-              <h1 className="mt-5 text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] font-extrabold tracking-tight text-ink text-balance">
+              <h1 className={`mt-5 leading-[1.08] font-extrabold tracking-tight text-ink text-balance ${activeRole === "worker" ? "text-3xl sm:text-5xl lg:text-6xl" : "text-[2.6rem] sm:text-6xl lg:text-[4.25rem]"}`}>
                 {c.titleStart} <span className="accent-underline">{c.titleHighlight}</span>
               </h1>
 
-              <p className="mt-6 max-w-xl text-lg sm:text-xl leading-relaxed font-medium text-ink">
+              <p className={`${activeRole === "worker" ? "hidden lg:block" : ""} mt-6 max-w-xl text-lg sm:text-xl leading-relaxed font-medium text-ink`}>
                 {c.description}
               </p>
 
-              <ul className="mt-7 flex flex-col gap-3">
+              <ul className={`${activeRole === "worker" ? "hidden lg:flex" : "flex"} mt-7 flex-col gap-3`}>
                 {c.points.map((point) => (
                   <li key={point} className="flex items-center gap-3 text-base sm:text-lg font-semibold text-ink">
                     <span
@@ -116,7 +117,7 @@ export default function Hero({ activeRole }: HeroProps) {
                 ))}
               </ul>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3">
+              <div className={`${activeRole === "worker" ? "hidden lg:flex" : "flex"} mt-9 flex-wrap items-center gap-3`}>
                 <a href={c.primary.href} className="btn btn-primary">
                   {activeRole === "client" && <Download className="w-4 h-4" />}
                   <span>{c.primary.label}</span>
@@ -127,18 +128,18 @@ export default function Hero({ activeRole }: HeroProps) {
                 </a>
               </div>
 
-              <p className="mt-5 text-sm font-medium text-ink-soft">{c.note}</p>
+              <p className={`${activeRole === "worker" ? "hidden lg:block" : ""} mt-5 text-sm font-medium text-ink-soft`}>{c.note}</p>
             </div>
 
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-[340px] px-8">
+            <div className={`${activeRole === "worker" ? "lg:col-span-6" : "lg:col-span-5"} flex justify-center`}>
+              {activeRole === "worker" ? <WorkerRegistrationForm /> : <div className="relative w-full max-w-[340px] px-8">
                 <AppPhoneMockup
                   imageSrc={c.phone.image}
                   alt={c.phone.alt}
                   floatingBadgeTop={c.phone.top}
                   floatingBadgeBottom={c.phone.bottom}
                 />
-              </div>
+              </div>}
             </div>
           </motion.div>
         </AnimatePresence>

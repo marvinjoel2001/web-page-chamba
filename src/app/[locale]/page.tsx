@@ -37,7 +37,10 @@ export default function Home() {
         Saltar al contenido
       </a>
 
-      <Navbar activeRole={activeRole} setActiveRole={setActiveRole} />
+      <Navbar activeRole={activeRole} setActiveRole={(role) => {
+        setActiveRole(role);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }} />
 
       {/* Anuncia el cambio de modo a lectores de pantalla. */}
       <p className="sr-only" aria-live="polite">
@@ -48,7 +51,7 @@ export default function Home() {
 
       <main id="contenido" className="flex-1">
         <Hero activeRole={activeRole} />
-        <HowItWorks activeRole={activeRole} />
+        {activeRole === "client" && <HowItWorks activeRole={activeRole} />}
         <Features activeRole={activeRole} />
         {activeRole === "client" && <Categories />}
         <Stats activeRole={activeRole} />
