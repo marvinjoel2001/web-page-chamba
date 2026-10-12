@@ -3,21 +3,47 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+interface FloatingBadge {
+  icon?: React.ReactNode;
+  title: string;
+  subtitle?: string;
+}
+
 interface AppPhoneMockupProps {
-  imageSrc: string;
+  /** Captura real de la app (1080 px de ancho, proporción ~9:20). */
+  imageSrc?: string;
   alt: string;
-  floatingBadgeTop?: {
-    icon?: React.ReactNode;
-    title: string;
-    subtitle?: string;
-  };
-  floatingBadgeBottom?: {
-    icon?: React.ReactNode;
-    title: string;
-    subtitle?: string;
-  };
+  /** Contenido dibujado en lugar de una captura (se muestra dentro del mismo marco). */
+  children?: React.ReactNode;
+  floatingBadgeTop?: FloatingBadge;
+  floatingBadgeBottom?: FloatingBadge;
   className?: string;
   priority?: boolean;
+}
+
+/** Etiqueta flotante: superficie sólida (no glass) para que se lea sobre el video. */
+function Badge({ badge, className, delay }: { badge: FloatingBadge; className: string; delay: number }) {
+  return (
+    <motion.div
+      data-solid
+      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.4, delay }}
+      className={`absolute z-30 bg-[#FFFDF9] border border-line shadow-[0_10px_30px_-6px_rgba(43,33,26,0.25)] rounded-2xl px-3.5 py-2.5 flex items-center gap-2.5 max-w-[220px] ${className}`}
+    >
+      {badge.icon && (
+        <div className="w-8 h-8 rounded-xl bg-accent text-on-accent flex items-center justify-center shrink-0 transition-colors duration-300">
+          {badge.icon}
+        </div>
+      )}
+      <div className="min-w-0">
+        <span className="text-sm font-bold text-ink block leading-tight">{badge.title}</span>
+        {badge.subtitle && (
+          <span className="text-xs font-medium text-ink-soft block leading-snug mt-0.5">{badge.subtitle}</span>
+        )}
+      </div>
+    </motion.div>
+  );
 }
 
 export default function AppPhoneMockup({
@@ -25,98 +51,26 @@ export default function AppPhoneMockup({
   alt,
   floatingBadgeTop,
   floatingBadgeBottom,
+  children,
   className = "",
 }: AppPhoneMockupProps) {
   return (
     <div className={`relative flex items-center justify-center select-none ${className}`}>
-      {/* Outer Floating Glow */}
-      <div className="absolute inset-0 bg-purple-500/15 blur-2xl rounded-[40px] pointer-events-none transform -translate-y-2 scale-95" />
+      {floatingBadgeTop && <Badge badge={floatingBadgeTop} className="top-6 -left-8 sm:-left-12" delay={0.2} />}
 
-      {/* Top Floating Glass Badge */}
-      {floatingBadgeTop && (
-        <motion.div
-          initial={{ opacity: 0, y: -12, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="absolute -top-3 -left-4 sm:-left-8 z-30 backdrop-blur-xl bg-white/90 border border-white/80 shadow-[0_12px_32px_rgba(139,92,246,0.18)] rounded-2xl px-3.5 py-2.5 flex items-center gap-2.5 max-w-[210px] sm:max-w-[240px]"
-        >
-          {floatingBadgeTop.icon && (
-            <div className="w-8 h-8 rounded-xl bg-purple-100 border border-purple-200/80 flex items-center justify-center text-purple-700 shrink-0 shadow-xs">
-              {floatingBadgeTop.icon}
-            </div>
+      {/* Un solo marco para todas las capturas: pantalla 9:20, igual que los teléfonos de las capturas. */}
+      <div className="relative w-full max-w-[220px] sm:max-w-[240px] lg:max-w-[255px] rounded-[36px] p-[6px] bg-[#1F1A17] shadow-[0_24px_50px_-12px_rgba(43,33,26,0.45)]">
+        <div className="relative w-full aspect-[9/20] rounded-[30px] overflow-hidden bg-[#0B172A]">
+          {children ?? (
+            <img src={imageSrc} alt={alt} className="w-full h-full object-cover object-top" loading="lazy" />
           )}
-          <div className="min-w-0">
-            <span className="text-xs font-black text-slate-900 block leading-tight truncate">
-              {floatingBadgeTop.title}
-            </span>
-            {floatingBadgeTop.subtitle && (
-              <span className="text-[10px] font-semibold text-purple-700 block truncate mt-0.5">
-                {floatingBadgeTop.subtitle}
-              </span>
-            )}
-          </div>
-        </motion.div>
-      )}
-
-      {/* Main Titanium / Glass Phone Chassis */}
-      <div className="relative w-full max-w-[220px] sm:max-w-[240px] lg:max-w-[255px] aspect-[9/18.8] rounded-[36px] p-[6px] bg-gradient-to-b from-slate-700 via-slate-800 to-slate-950 shadow-[0_25px_60px_-10px_rgba(15,23,42,0.35)] border border-white/20 transition-transform duration-300 group-hover:scale-[1.02]">
-        
-        {/* Phone Glass Inner Screen Frame */}
-        <div className="relative w-full h-full rounded-[30px] overflow-hidden bg-slate-950 flex flex-col justify-between">
-          
-          {/* Glass Glare Overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.03] to-white/[0.12] z-30" />
-
-          {/* Dynamic Island Capsule */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-40 flex items-center justify-end px-1.5 border border-white/5">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#1e293b]" />
-          </div>
-
-          {/* Actual Real App Screenshot */}
-          <div className="relative w-full h-full overflow-hidden">
-            <img
-              src={imageSrc}
-              alt={alt}
-              className="w-full h-full object-cover object-top"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Bottom Home Indicator Bar */}
-          <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 z-40">
-            <div className="w-16 h-1 bg-white/40 rounded-full" />
-          </div>
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black rounded-full z-40" aria-hidden="true" />
         </div>
       </div>
 
-      {/* Bottom Floating Glass Badge */}
       {floatingBadgeBottom && (
-        <motion.div
-          initial={{ opacity: 0, y: 12, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="absolute -bottom-3 -right-4 sm:-right-8 z-30 backdrop-blur-xl bg-white/90 border border-white/80 shadow-[0_12px_32px_rgba(139,92,246,0.18)] rounded-2xl px-3.5 py-2.5 flex items-center gap-2.5 max-w-[210px] sm:max-w-[240px]"
-        >
-          {floatingBadgeBottom.icon && (
-            <div className="w-8 h-8 rounded-xl bg-emerald-100 border border-emerald-200/80 flex items-center justify-center text-emerald-700 shrink-0 shadow-xs">
-              {floatingBadgeBottom.icon}
-            </div>
-          )}
-          <div className="min-w-0">
-            <span className="text-xs font-black text-slate-900 block leading-tight truncate">
-              {floatingBadgeBottom.title}
-            </span>
-            {floatingBadgeBottom.subtitle && (
-              <span className="text-[10px] font-semibold text-emerald-700 block truncate mt-0.5">
-                {floatingBadgeBottom.subtitle}
-              </span>
-            )}
-          </div>
-        </motion.div>
+        <Badge badge={floatingBadgeBottom} className="bottom-10 -right-8 sm:-right-12" delay={0.35} />
       )}
-
-      {/* Physics Gravity Contact Shadow */}
-      <div className="absolute -bottom-4 w-[75%] h-4 bg-slate-900/25 blur-lg rounded-full pointer-events-none" />
     </div>
   );
 }

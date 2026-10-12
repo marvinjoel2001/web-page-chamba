@@ -1,102 +1,76 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
+import SectionHeader from "@/components/SectionHeader";
+import type { Role } from "@/lib/role";
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  activeRole: Role;
+}
+
+export default function Testimonials({ activeRole }: TestimonialsProps) {
   const t = useTranslations("Testimonials");
-  const reviews = [
-    {
-      role: "client",
-      name: t("rev_1_name"),
-      title: t("rev_1_title"),
-      photo: "/testimonials/maria-laura.jpg",
-      stars: 5,
-      comment: t("rev_1_comment"),
-    },
-    {
-      role: "worker",
-      name: t("rev_2_name"),
-      title: t("rev_2_title"),
-      photo: "/testimonials/jhonny.jpg",
-      stars: 5,
-      comment: t("rev_2_comment"),
-    },
-    {
-      role: "worker",
-      name: t("rev_3_name"),
-      title: t("rev_3_title"),
-      photo: "/testimonials/rosmery.jpg",
-      stars: 5,
-      comment: t("rev_3_comment"),
-    },
-    {
-      role: "client",
-      name: t("rev_4_name"),
-      title: t("rev_4_title"),
-      photo: "/testimonials/carlos.jpg",
-      stars: 5,
-      comment: t("rev_4_comment"),
-    },
+  const reviews: { role: Role; key: string; photo: string }[] = [
+    { role: "client", key: "rev_1", photo: "/testimonials/maria-laura.jpg" },
+    { role: "worker", key: "rev_2", photo: "/testimonials/jhonny.jpg" },
+    { role: "worker", key: "rev_3", photo: "/testimonials/rosmery.jpg" },
+    { role: "client", key: "rev_4", photo: "/testimonials/carlos.jpg" },
   ];
+  const visible = reviews.filter((rev) => rev.role === activeRole);
 
   return (
-    <section id="testimonios" className="py-20 relative overflow-hidden">
+    <section id="testimonios" className="py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16 rounded-[2rem] px-6 py-7 sm:px-10 sm:py-9 bg-white/60 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)]">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            {t("title")}
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600">
-            {t("subtitle")}
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow={t("title")}
+          title={
+            activeRole === "client" ? (
+              <>Clientes que ya <span className="accent-underline">resolvieron</span></>
+            ) : (
+              <>Trabajadores que ya <span className="accent-underline">generan ingresos</span></>
+            )
+          }
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {reviews.map((rev, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30, scale: 0.95, rotate: index % 2 === 0 ? -1 : 1 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ type: "spring", damping: 15, stiffness: 100, delay: index * 0.15 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative backdrop-blur-lg bg-white/72 hover:bg-white/85 border border-white/70 rounded-3xl p-6 sm:p-7 transition-all duration-300 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] hover:border-purple-300 flex flex-col justify-between"
-            >
-              {/* Decorative Quote Mark */}
-              <Quote className="absolute right-6 top-6 w-8 h-8 text-slate-200 group-hover:text-purple-200 transition-colors" />
-
-              <div>
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(rev.stars)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed italic mb-6">
-                  "{rev.comment}"
-                </p>
-              </div>
-
-              {/* Author Info */}
-              <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
-                <img
-                  src={rev.photo}
-                  alt={rev.name}
-                  className="w-11 h-11 rounded-full object-cover border border-slate-200 shadow-sm"
-                />
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-purple-600 transition-colors">
-                    {rev.name}
-                  </h4>
-                  <p className="text-xs text-slate-500">{rev.title}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.ul
+            key={activeRole}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3 }}
+            className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12"
+          >
+            {visible.map((rev) => (
+              <li key={rev.key}>
+                <figure className="h-full flex flex-col border-t-2 border-line pt-7">
+                  <div className="flex gap-1" aria-label="5 de 5 estrellas" role="img">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-[#D99A06] fill-[#F2B01E]" aria-hidden="true" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-lg sm:text-xl leading-relaxed font-medium text-ink">
+                    “{t(`${rev.key}_comment` as never)}”
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-4">
+                    <img
+                      src={rev.photo}
+                      alt=""
+                      className="w-14 h-14 rounded-full object-cover"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="text-base font-bold text-ink">{t(`${rev.key}_name` as never)}</p>
+                      <p className="text-sm font-medium text-ink-soft">{t(`${rev.key}_title` as never)}</p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </motion.ul>
+        </AnimatePresence>
       </div>
     </section>
   );

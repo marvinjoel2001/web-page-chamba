@@ -11,9 +11,11 @@
     "install_app": "Instalar App",
     "income_question": "¿Buscas generar ingresos?",
     "work_with_us": "Trabaja con nosotros",
-    "view_mode": "Modo de Vista:",
+    "view_mode": "Modo de vista",
     "menu_agencies": "Agencias",
-    "portal_agencies": "Chamba Agencias"
+    "portal_agencies": "Chamba Agencias",
+    "role_client_long": "Necesito un servicio",
+    "role_worker_long": "Quiero trabajar"
   },
   "Hero": {
     "client_title_line1": "Encuentra a alguien",
@@ -48,7 +50,7 @@
     "stat_responses": "Respuestas"
   },
   "Footer": {
-    "desc": "La plataforma móvil líder en conexión de servicios locales. Ayudando a construir comunidades de confianza, conectando clientes con el mejor talento local sin intermediarios.",
+    "desc": "Conectamos a personas que necesitan un servicio con trabajadores de su zona, sin intermediarios.",
     "company": "Empresa",
     "about": "Sobre nosotros",
     "testimonials": "Testimonios",
@@ -57,15 +59,15 @@
     "resources": "Recursos",
     "support": "Soporte técnico",
     "help": "Centro de ayuda",
-    "terms": "Acuerdo Legal (Términos)",
-    "privacy": "Privacidad",
-    "newsletter_title": "Suscríbete a novedades",
-    "newsletter_desc": "Recibe notificaciones sobre nuevas especialidades en tu zona y lanzamientos de nuevas versiones de la aplicación.",
+    "terms": "Términos y condiciones",
+    "privacy": "Política de privacidad",
+    "newsletter_title": "Recibe novedades",
+    "newsletter_desc": "Te avisamos cuando haya nuevos oficios en tu zona o una versión nueva de la app.",
     "email_placeholder": "Tu correo electrónico",
     "subscribe": "Suscribirse",
     "rights": "© {year} Chamba App Inc. Todos los derechos reservados.",
     "terms_footer": "Términos de servicio",
-    "privacy_footer": "Políticas de privacidad",
+    "privacy_footer": "Política de privacidad",
     "help_footer": "Ayuda"
   },
   "Features": {
@@ -94,7 +96,7 @@
     "client_step_2_desc": "Tu solicitud llega al instante a profesionales disponibles que están cerca de tu barrio.",
     "client_step_2_badge": "Profesionales cerca de ti",
     "client_step_3_title": "Te mandan al que acepte tu oferta",
-    "client_step_3_desc": "El trabajador acepta tu precio ofrecido y coordinan directo por chat en la app sin intermediarios.",
+    "client_step_3_desc": "El trabajador acepta tu precio y coordinan directo por el chat de la app.",
     "client_step_3_badge": "Oferta aceptada en minutos",
     "client_step_4_title": "El trabajador llega y resuelve",
     "client_step_4_desc": "Llega a tu ubicación, realiza la labor y le pagas de forma directa y segura.",
@@ -102,11 +104,11 @@
     "client_step_5_title": "¡Listo! Trabajo resuelto",
     "client_step_5_desc": "Verificas la labor, calificas el servicio con estrellas y disfrutas tu problema solucionado.",
     "client_step_5_badge": "100% Satisfecho",
-    "worker_step_1_title": "¿Estás libre? Te activas en 1 clic",
-    "worker_step_1_desc": "Si estás sin hacer nada o buscando trabajo, abres la app y pones tu estado en 'DISPONIBLE'.",
+    "worker_step_1_title": "¿Estás libre? Actívate con un toque",
+    "worker_step_1_desc": "Abres la app y pones tu estado en «Disponible». Desde ese momento te empiezan a llegar pedidos.",
     "worker_step_1_badge": "1 toque para estar Disponible",
     "worker_step_2_title": "Te caen chambas al instante",
-    "worker_step_2_desc": "Recibes notificaciones de vecinos que ya publicaron su necesidad y cuánto ofrecen pagar.",
+    "worker_step_2_desc": "Te avisa cuando un vecino publica lo que necesita y cuánto ofrece pagar.",
     "worker_step_2_badge": "Alertas de trabajo en tu zona",
     "worker_step_3_title": "Aceptas la oferta y coordinas",
     "worker_step_3_desc": "Si te gusta el precio, aceptas la chamba y conversas con el cliente por chat sin intermediarios.",
@@ -115,14 +117,14 @@
     "worker_step_4_desc": "Llegas con el mapa al domicilio del cliente y realizas la reparación u oficio acordado.",
     "worker_step_4_badge": "Trato directo y profesional",
     "worker_step_5_title": "Cobras el 100% de tu dinero",
-    "worker_step_5_desc": "Recibes tu pago completo sin deducciones abusivas y acumulas reseñas de 5 estrellas.",
+    "worker_step_5_desc": "El cliente te paga el monto completo, sin descuentos, y cada trabajo suma reseñas a tu perfil.",
     "worker_step_5_badge": "100% para tu bolsillo"
   },
   "Categories": {
     "tag": "Los oficios que más se buscan",
-    "title": "Categorías Más Demandadas",
-    "subtitle": "Miles de personas ya buscan estos servicios cada semana. Encuentra expertos calificados en tu zona, listos para trabajar hoy mismo.",
-    "view_offers": "Ver ofertas",
+    "title": "Lo que más se pide en Chamba",
+    "subtitle": "Elige una categoría para ver precios de referencia y trabajadores de ejemplo cerca de ti.",
+    "view_offers": "Ver detalles",
     "popular": "Popular",
     "cta_title": "¿No ves tu oficio?",
     "cta_desc": "Chamba es abierto: publica cualquier tarea o servicio y recibe ofertas de profesionales cerca de ti.",
@@ -145,7 +147,7 @@
     "cat_8_desc": "Armado de muebles, reparación de puertas, cajonería y chapas.",
     "cat_9_name": "Mecánica",
     "cat_9_desc": "Auxilio mecánico ligero, cambio de llantas, batería y afinado.",
-    "cat_10_name": "Servicio General",
+    "cat_10_name": "Servicio general",
     "cat_10_desc": "Ayudantes para mudanzas, armado de racks y tareas varias."
   },
   "AboutUs": {
@@ -170,14 +172,14 @@
     "vision_desc": "Una comunidad donde encontrar trabajo sea simple."
   },
   "Stats": {
-    "stat_1_label": "Trabajos Realizados",
-    "stat_1_desc": "Servicios domésticos y reparaciones ejecutados exitosamente en la plataforma.",
-    "stat_2_label": "Valoración Promedio",
-    "stat_2_desc": "Excelente reputación construida gracias al compromiso y calidad de nuestros trabajadores.",
-    "stat_3_label": "Tiempo de Respuesta",
-    "stat_3_desc": "Nuestra red de geolocalización asegura ofertas instantáneas de técnicos cercanos.",
-    "stat_4_label": "Comisión de Publicación",
-    "stat_4_desc": "Publica solicitudes de forma totalmente gratuita y paga directo al profesional acordado."
+    "stat_1_label": "Trabajos realizados",
+    "stat_1_desc": "Reparaciones y servicios del hogar terminados en la app.",
+    "stat_2_label": "Calificación promedio",
+    "stat_2_desc": "Lo que califican los clientes después de cada trabajo.",
+    "stat_3_label": "Tiempo de respuesta",
+    "stat_3_desc": "Lo que tarda en llegar la primera oferta de un trabajador cercano.",
+    "stat_4_label": "Cuesta publicar un pedido",
+    "stat_4_desc": "Publicar es gratis. Le pagas directo al trabajador lo que acuerden."
   },
   "Testimonials": {
     "title": "Lo que dicen nuestros usuarios",
@@ -196,10 +198,10 @@
     "rev_4_comment": "Quería pintar la casa antes de las fiestas y todos los pintores que conocía estaban ocupadazos. En Chamba encontré uno a cinco cuadras, vi las fotos de sus trabajos anteriores, cerramos un precio que nos convenía a los dos y en dos días quedó lista. Buenazo, ni un dolor de cabeza."
   },
   "CTA": {
-    "client_title": "¿Listo para resolver tus tareas domésticas?",
+    "client_title": "¿Necesitas ayuda con algo en tu casa?",
     "worker_title": "¿Listo para ganar más con tu oficio?",
-    "client_desc": "Descarga Chamba App hoy. Publica tu primer requerimiento de forma gratuita y conéctate con trabajadores verificados en tu vecindario al instante.",
-    "worker_desc": "Descarga la aplicación, regístrate como profesional y empieza a recibir ofertas de trabajo locales en tu zona. ¡El control es tuyo!",
+    "client_desc": "Descarga Chamba, publica tu pedido gratis y recibe ofertas de trabajadores verificados de tu zona.",
+    "worker_desc": "Descarga la app, regístrate como trabajador y empieza a recibir pedidos de tu zona. Tú decides cuáles aceptar.",
     "scan_to_download": "Escanea para descargar"
   },
   "WorkerRegistrationForm": {

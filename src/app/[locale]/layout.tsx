@@ -48,11 +48,7 @@ export default async function RootLayout({
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <link rel="preload" href="/images/worker.png" as="image" />
-        <link rel="preload" href="/images/client.png" as="image" />
-      </head>
-      <body className="min-h-full flex flex-col bg-[#f8fafc] text-slate-900 selection:bg-purple-600 selection:text-white">
+      <body className="min-h-full flex flex-col bg-transparent text-slate-900 selection:bg-purple-600 selection:text-white">
         <VideoBackground />
         <NextIntlClientProvider messages={messages}>
           {children}

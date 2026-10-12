@@ -3,117 +3,116 @@
 import { useEffect, useRef } from "react";
 
 /**
- * El video termina (~29 s) con una tarjeta del logo sobre morado oscuro. Como
- * fondo oscurece toda la página y el texto oscuro deja de verse, así que el
- * bucle se corta antes. Si se reemplaza el video por otro sin esa tarjeta,
- * poner `null` para dejar que se repita completo.
+ * El video termina (~29 s) con una tarjeta del logo sobre morado oscuro.
+ * Cortamos el bucle en 28.2s para mantener la escena del living iluminada.
  */
-const LOOP_END_SECONDS: number | null = 28.4;
-
-type FrameVideo = HTMLVideoElement & {
-  requestVideoFrameCallback?: (callback: () => void) => number;
-  cancelVideoFrameCallback?: (handle: number) => void;
-};
+const LOOP_END_SECONDS = 28.2;
 
 /**
- * Video de fondo fijo para toda la web. Va detrás del contenido (-z-20) y bajo
- * dos capas: un velo claro que garantiza el contraste del texto y un tinte de
- * marca. Las tarjetas "glass" de cada sección lo desenfocan por encima.
- *
- * Respeta `prefers-reduced-motion` (queda en pausa en el primer cuadro) y
- * `Save-Data` (no descarga el video; queda solo el degradado).
- *
- * Sin estado de React a propósito: el video puede terminar de cargar antes de
- * la hidratación, así que la visibilidad se maneja directamente sobre el nodo.
+ * Opacidad del velo que cubre el video. Arriba (hero, texto grande) deja ver
+ * más el video; al bajar hacia secciones con más texto se vuelve más opaco
+ * para que los párrafos se lean bien (contraste >= 4.5:1 en cualquier cuadro).
  */
+const VEIL_TOP = 0.7;
+const VEIL_CONTENT = 0.86;
+
 export default function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const veilRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const connection = (
-      navigator as Navigator & { connection?: { saveData?: boolean } }
-    ).connection;
-    if (connection?.saveData) {
-      video.removeAttribute("src");
-      video.load();
-      return;
-    }
+    // Obligatorio para las políticas de autoplay de Chrome, Safari y Edge
+    video.muted = true;
+    video.defaultMuted = true;
 
-    const show = () => {
-      video.style.opacity = "1";
-    };
-    const frameVideo = video as FrameVideo;
-    const loopEnd = () =>
-      LOOP_END_SECONDS === null
-        ? Infinity
-        : Math.min(LOOP_END_SECONDS, (video.duration || Infinity) - 0.1);
-    const rewindIfNeeded = () => {
-      if (video.currentTime >= loopEnd()) video.currentTime = 0;
-    };
-    let frameHandle = 0;
-    const onFrame = () => {
-      rewindIfNeeded();
-      frameHandle = frameVideo.requestVideoFrameCallback!(onFrame);
-    };
-    // Los frames dan precisión; `timeupdate` (~4 veces/s) es el respaldo cuando
-    // no hay frames presentados (pestaña oculta) o el navegador no lo soporta.
-    if (frameVideo.requestVideoFrameCallback) {
-      frameHandle = frameVideo.requestVideoFrameCallback(onFrame);
-    }
-    video.addEventListener("timeupdate", rewindIfNeeded);
-    const onEnded = () => {
-      video.currentTime = 0;
-      video.play().catch(() => {});
-    };
-    video.addEventListener("ended", onEnded);
-    if (video.readyState >= 2) show();
-    video.addEventListener("loadeddata", show);
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => {
-      if (reduceMotion.matches) {
-        video.pause();
-      } else {
-        video.play().catch(() => {
-          /* autoplay bloqueado: se queda en el primer cuadro */
-        });
+    const playVideo = () => {
+      if (video.paused) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Si el navegador bloquea autoplay, se reproducirá al primer toque/click
+          });
+        }
       }
     };
-    sync();
-    reduceMotion.addEventListener("change", sync);
+
+    // Intentar reproducción inmediata
+    playVideo();
+
+    // Monitorear el corte antes de la placa oscura final
+    const onTimeUpdate = () => {
+      if (video.currentTime >= LOOP_END_SECONDS) {
+        video.currentTime = 0;
+        playVideo();
+      }
+    };
+
+    const onEnded = () => {
+      video.currentTime = 0;
+      playVideo();
+    };
+
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("ended", onEnded);
+
+    // Intentar reanudar en foco o primera interacción del usuario
+    window.addEventListener("focus", playVideo);
+    window.addEventListener("touchstart", playVideo, { once: true });
+    window.addEventListener("click", playVideo, { once: true });
+
+    // Sin estado de React: el velo se actualiza directo en el nodo al hacer scroll.
+    let frame = 0;
+    const updateVeil = () => {
+      frame = 0;
+      const veil = veilRef.current;
+      if (!veil) return;
+      const progress = Math.min(1, window.scrollY / (window.innerHeight * 0.6));
+      veil.style.opacity = String(VEIL_TOP + (VEIL_CONTENT - VEIL_TOP) * progress);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(updateVeil);
+    };
+    updateVeil();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
     return () => {
-      if (frameHandle) frameVideo.cancelVideoFrameCallback?.(frameHandle);
-      video.removeEventListener("timeupdate", rewindIfNeeded);
+      video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("ended", onEnded);
-      video.removeEventListener("loadeddata", show);
-      reduceMotion.removeEventListener("change", sync);
+      window.removeEventListener("focus", playVideo);
+      window.removeEventListener("touchstart", playVideo);
+      window.removeEventListener("click", playVideo);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-[#e8e1d8]"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#e8e1d8]"
     >
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
-        style={{ opacity: 0 }}
+        className="absolute inset-0 h-full w-full object-cover"
         src="/videos/chamba-bg.mp4"
         autoPlay
         muted
+        loop
         playsInline
         preload="auto"
         disablePictureInPicture
       />
-      {/* Velo claro: mantiene legible el texto sobre cualquier cuadro. */}
-      <div className="absolute inset-0 bg-white/40" />
-      {/* Tinte de marca. */}
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(139,92,246,0.20)_0%,rgba(255,255,255,0)_45%,rgba(234,179,8,0.10)_100%)]" />
+      {/* Velo de un solo color (cambia de tono con el modo cliente/trabajador). */}
+      <div
+        ref={veilRef}
+        className="absolute inset-0 bg-veil transition-[background-color] duration-500"
+        style={{ opacity: VEIL_TOP }}
+      />
     </div>
   );
 }

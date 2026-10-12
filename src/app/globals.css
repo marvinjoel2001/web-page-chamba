@@ -5,39 +5,55 @@
   --color-brand-primary-light: #A78BFA;
   --color-brand-primary-dark: #6D28D9;
   --color-brand-highlight: #EAB308;
-  
+
   --color-dark-bg: #07111F;
   --color-dark-card: #0B172A;
   --color-dark-border: rgba(255, 255, 255, 0.12);
   --color-light-bg: #f8fafc;
   --color-light-card: #ffffff;
   --color-light-border: #e2e8f0;
-  
+
+  /* Texto sobre el video: tinta cálida en vez de negro puro. */
+  --color-ink: #2B211A;
+  --color-ink-soft: #4D4038;
+  --color-line: rgba(43, 33, 26, 0.16);
+
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
   --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-glow: glow 2s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.15);
-  }
-  to {
-    text-shadow: 0 0 20px rgba(139, 92, 246, 0.35), 0 0 30px rgba(139, 92, 246, 0.25);
-  }
+/* Colores que cambian con el modo de la landing (cliente / trabajador). */
+@theme inline {
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-accent-tint: var(--accent-tint);
+  --color-veil: rgb(var(--veil));
 }
 
-/* Light mode by default */
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+/*
+ * Modo cliente: morado de marca. Modo trabajador: amarillo de marca.
+ * `--veil` es el velo uniforme que cubre el video (sin degradados) y también
+ * cambia de tono, para que el cambio de modo se note en toda la página.
+ * `--accent-strong` es la versión oscura del acento para iconos sobre el velo.
+ */
+:root,
+:root[data-role="client"] {
+  --accent: #6D28D9;
+  --accent-strong: #6D28D9;
+  --on-accent: #FFFFFF;
+  --accent-tint: rgba(109, 40, 217, 0.12);
+  --veil: 250 246 240;
 }
 
-.dark {
-  --background: #04060a;
-  --foreground: #F8FAFC;
+:root[data-role="worker"] {
+  --accent: #F2B01E;
+  --accent-strong: #8F5A00;
+  --on-accent: #2B211A;
+  --accent-tint: rgba(242, 176, 30, 0.2);
+  --veil: 251 241 220;
 }
 
 /* Custom scrollbar */
@@ -48,63 +64,105 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.35);
+  background: rgba(77, 64, 56, 0.35);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.55);
+  background: rgba(77, 64, 56, 0.55);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
-  background-color: #f8fafc;
-  color: var(--foreground);
+  background-color: rgb(var(--veil));
+  color: var(--color-ink);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   overflow-x: hidden;
 }
 
-/* Glassmorphism utilities: pensadas para ir sobre el video de fondo */
-.glass,
-.glass-light,
-.glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow:
-    0 12px 40px -8px rgba(31, 38, 135, 0.14),
-    0 2px 8px rgba(31, 38, 135, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+/*
+ * Texto directamente sobre el video: un halo del color del velo separa las
+ * letras de las zonas oscuras del cuadro sin poner una caja detrás.
+ */
+.on-video {
+  text-shadow:
+    0 0 1px rgb(var(--veil) / 0.9),
+    0 0 14px rgb(var(--veil) / 0.95),
+    0 0 28px rgb(var(--veil) / 0.8);
+}
+.on-video :is(.btn, input, button[data-solid], [data-solid]) {
+  text-shadow: none;
 }
 
-.glass-light {
-  background: rgba(255, 255, 255, 0.6);
+/* Botones: un solo estilo primario y uno secundario en toda la landing. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.15s;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:focus-visible,
+.focus-ring:focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--on-accent);
+}
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--accent) 88%, #2B211A);
+}
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-ink);
+}
+.btn-secondary:hover {
+  background-color: rgba(43, 33, 26, 0.08);
 }
 
-.glass-card {
-  border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
+/* Subrayado de acento para la palabra clave de cada título. */
+.accent-underline {
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: none;
+  transition: text-decoration-color 0.4s;
 }
 
-/* Sin soporte de backdrop-filter el texto perderia contraste: se vuelve opaco. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass,
-  .glass-light,
-  .glass-card {
-    background: rgba(255, 255, 255, 0.92);
-  }
+/* Glassmorphism: solo lo usa el formulario de /unete. */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 12px 40px -8px rgba(43, 33, 26, 0.14);
 }
 
-/* Glow effects */
-.glow-primary {
-  box-shadow: 0 0 40px -5px rgba(139, 92, 246, 0.2);
-}
+.glow-primary,
 .glow-highlight {
-  box-shadow: 0 0 40px -5px rgba(234, 179, 8, 0.15);
+  box-shadow: 0 12px 40px -8px rgba(43, 33, 26, 0.14);
 }
 
 .bg-grid-pattern {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(77, 64, 56, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(77, 64, 56, 0.08) 1px, transparent 1px);
 }

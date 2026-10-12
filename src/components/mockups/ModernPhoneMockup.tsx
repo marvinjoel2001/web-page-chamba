@@ -24,19 +24,37 @@ import {
 interface ModernPhoneMockupProps {
   step: 1 | 2 | 3 | 4 | 5;
   role?: "client" | "worker";
+  /** Solo la pantalla, para mostrarla dentro del marco común de AppPhoneMockup. */
+  bare?: boolean;
 }
 
-export default function ModernPhoneMockup({ step, role = "client" }: ModernPhoneMockupProps) {
+export default function ModernPhoneMockup({ step, role = "client", bare = false }: ModernPhoneMockupProps) {
+  if (bare) {
+    return (
+      <div className="relative w-full h-full bg-[#07090e] flex flex-col text-white select-none">
+        <div className="pt-2 px-4 flex items-center justify-between text-[8px] font-semibold text-slate-300">
+          <span>9:41</span>
+          <span>5G</span>
+        </div>
+        <div className="relative flex-1 flex flex-col px-2.5 pt-3 pb-1.5 overflow-hidden">
+          {role === "client" ? <ClientScreen step={step} /> : <WorkerScreen step={step} />}
+        </div>
+        <div className="pb-1.5 flex justify-center">
+          <div className="w-11 h-0.5 bg-white/30 rounded-full" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative mx-auto w-full max-w-[185px] sm:max-w-[195px] aspect-[9/17.5] select-none">
       {/* Outer Phone Frame (Titanium Dark Finish with Gloss Bezel) */}
-      <div className="relative w-full h-full rounded-[30px] p-[3.5px] bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-950 shadow-[0_18px_36px_rgba(0,0,0,0.85)] border border-white/10 flex flex-col justify-between overflow-hidden">
+      <div className="relative w-full h-full rounded-[30px] p-[3.5px] bg-[#1F1A17] shadow-[0_24px_50px_-12px_rgba(43,33,26,0.45)] flex flex-col justify-between overflow-hidden">
         
         {/* Inner Phone Screen */}
         <div className="relative w-full h-full rounded-[26px] bg-[#07090e] overflow-hidden flex flex-col justify-between text-white">
           
           {/* Glass Glare Overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.08] z-30" />
 
           {/* Top Status Bar & Dynamic Island */}
           <div className="relative z-40 pt-1.5 px-3 flex items-center justify-between text-[8px] font-semibold text-slate-300">

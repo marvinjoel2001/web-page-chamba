@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Paintbrush,
   Droplet,
@@ -21,16 +21,18 @@ import {
   MapPin,
   Clock,
   ShieldCheck,
+  type LucideIcon,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import SectionHeader from "@/components/SectionHeader";
 
 interface CategoryItem {
   id: string;
   image: string;
   name: string;
   desc: string;
-  icon: any;
+  icon: LucideIcon;
   iconWrap: string;
   popular: boolean;
   priceRange: string;
@@ -309,285 +311,166 @@ export default function Categories() {
     },
   ];
 
-  const containerVariants: Variants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  };
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: "spring", damping: 15, stiffness: 100 },
-    },
-  };
+  useEffect(() => {
+    if (!selectedCategory) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setSelectedCategory(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedCategory]);
 
   return (
-    <section id="categorias" className="py-24 relative overflow-hidden">
+    <section id="categorias" className="py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14 rounded-[2rem] px-6 py-7 sm:px-10 sm:py-9 bg-white/60 backdrop-blur-lg border border-white/60 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)]">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            {t("title")}
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600">
-            {t("subtitle")}
-          </p>
-        </div>
+        <SectionHeader eyebrow={t("tag")} title={t("title")} description={t("subtitle")} />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
-          {categoriesList.map((category) => {
-            const Icon = category.icon;
-            return (
-              <motion.div
-                key={category.id}
-                variants={cardVariants}
+        <ul className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-6 gap-y-10">
+          {categoriesList.map((category) => (
+            <li key={category.id}>
+              <button
+                type="button"
                 onClick={() => setSelectedCategory(category)}
-                whileHover={{ y: -8 }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative backdrop-blur-lg bg-white/72 hover:bg-white/85 border border-white/70 hover:border-purple-300 rounded-3xl overflow-hidden transition-all duration-300 shadow-[0_10px_30px_rgba(139,92,246,0.05)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.12)] flex flex-col justify-between cursor-pointer"
+                className="focus-ring group w-full text-left rounded-2xl"
               >
-                {/* Real Worker Photo Header */}
-                <div className="relative w-full h-48 overflow-hidden bg-slate-100">
+                <div data-solid className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-[#e8e1d8]">
                   <img
                     src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out"
+                    alt=""
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
-                  {/* Subtle gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-
-                  {/* Icon badge floating top-left */}
-                  <div
-                    className={`absolute top-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-md border shadow-lg transition-transform duration-300 group-hover:scale-110 ${category.iconWrap}`}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </div>
-
-                  {/* Popular badge */}
                   {category.popular && (
-                    <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-400 border border-amber-300 text-[10px] font-black text-slate-950 uppercase tracking-wider shadow-md">
-                      <TrendingUp className="w-3 h-3 text-slate-950" />
+                    <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F2B01E] text-xs font-bold text-ink">
+                      <TrendingUp className="w-3.5 h-3.5" />
                       {t("popular")}
-                    </div>
+                    </span>
                   )}
                 </div>
+                <h3 className="mt-4 text-xl font-bold text-ink">{category.name}</h3>
+                <p className="mt-1.5 text-base leading-relaxed font-medium text-ink-soft">{category.desc}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-[15px] font-bold text-ink underline decoration-accent decoration-2 underline-offset-[6px] group-hover:decoration-[3px]">
+                  {t("view_offers")}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
 
-                {/* Content Section */}
-                <div className="p-5 pt-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-1.5 group-hover:text-purple-600 transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed line-clamp-2">
-                      {category.desc}
-                    </p>
-                  </div>
-
-                  {/* Interactive Indicator */}
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600 group-hover:text-purple-700 transition-colors">
-                    <span className="flex items-center gap-1">
-                      {t("view_offers")}
-                    </span>
-                    <div className="w-7 h-7 rounded-full bg-purple-50 group-hover:bg-purple-600 text-purple-600 group-hover:text-white flex items-center justify-center transition-all group-hover:translate-x-1 shadow-xs">
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-
-          {/* Open-ended CTA card: any task can be posted */}
-          <motion.a
-            href="#descargar"
-            variants={cardVariants}
-            whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-3xl p-6 flex flex-col justify-between items-start text-left bg-gradient-to-br from-purple-600 to-purple-800 border border-purple-500/60 shadow-xl shadow-purple-600/25 hover:shadow-2xl hover:shadow-purple-600/35 transition-all duration-300 min-h-[300px]"
-          >
-            <div className="absolute -right-6 -top-6 w-36 h-36 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center mb-5 group-hover:rotate-90 transition-transform duration-300 text-white">
-                <Plus className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                {t("cta_title")}
-              </h3>
-              <p className="text-xs text-white/90 leading-relaxed">
-                {t("cta_desc")}
-              </p>
-            </div>
-            <div className="mt-6 flex items-center text-xs font-bold text-white bg-white/15 hover:bg-white/25 px-4 py-2.5 rounded-full border border-white/20 transition-all">
-              <span>{t("cta_button")}</span>
-              <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </motion.a>
-        </motion.div>
+        <div className="mt-16 max-w-2xl mx-auto text-center">
+          <h3 className="text-2xl font-extrabold text-ink">{t("cta_title")}</h3>
+          <p className="mt-3 text-lg font-medium leading-relaxed text-ink-soft">{t("cta_desc")}</p>
+          <a href="#descargar" className="btn btn-primary mt-6">
+            <Plus className="w-4 h-4" />
+            {t("cta_button")}
+          </a>
+        </div>
       </div>
 
-      {/* Category Offers & Workers Modal with Glassmorphism */}
       <AnimatePresence>
         {selectedCategory && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+          <motion.div
+            data-solid
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(43,33,26,0.55)]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCategory(null)}
+          >
             <motion.div
-              initial={{ opacity: 0, scale: 0.93, y: 15 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="category-modal-title"
+              initial={{ opacity: 0, scale: 0.95, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.93, y: 15 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="backdrop-blur-xl bg-white/90 border border-white/80 rounded-3xl overflow-hidden w-full max-w-xl shadow-[0_25px_70px_rgba(139,92,246,0.2)] relative max-h-[90vh] flex flex-col"
+              exit={{ opacity: 0, scale: 0.95, y: 12 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden rounded-3xl bg-[#FFFDF9] shadow-2xl"
             >
-              {/* Close Button */}
               <button
+                type="button"
                 onClick={() => setSelectedCategory(null)}
-                className="absolute top-4 right-4 z-30 text-white bg-black/50 hover:bg-black/75 w-9 h-9 flex items-center justify-center rounded-full backdrop-blur-md transition-colors cursor-pointer shadow-md"
-                aria-label="Cerrar modal"
+                className="focus-ring absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-[#FFFDF9] text-ink shadow-md"
+                aria-label="Cerrar"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Modal Cover Image with Safe Badge Spacing */}
-              <div className="relative w-full h-44 shrink-0 overflow-hidden">
-                <img
-                  src={selectedCategory.image}
-                  alt={selectedCategory.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/35 to-transparent" />
-                <div className="absolute bottom-4 left-5 right-16 text-white">
-                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                    <span className="text-xs font-bold bg-purple-600/90 px-2.5 py-0.5 rounded-full shadow-xs">
-                      Santa Cruz de la Sierra
-                    </span>
-                    <span className="text-xs font-medium text-slate-200 flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" /> Disponibles hoy
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-black text-white leading-tight">{selectedCategory.name}</h3>
-                </div>
-              </div>
+              <img src={selectedCategory.image} alt="" className="w-full h-40 object-cover shrink-0" />
 
-              {/* Modal Scrollable Content */}
-              <div className="p-6 overflow-y-auto space-y-5">
-                
-                {/* Price Reference Box */}
-                <div className="bg-purple-50/80 border border-purple-200/70 rounded-2xl p-4 flex items-center justify-between">
-                  <div>
-                    <span className="text-xs text-purple-700 font-bold block uppercase tracking-wide">
-                      Tarifa de referencia
-                    </span>
-                    <span className="text-sm font-extrabold text-slate-900">
-                      {selectedCategory.priceRange}
-                    </span>
-                  </div>
-                  <span className="text-[11px] font-semibold text-purple-700 bg-white px-2.5 py-1 rounded-full border border-purple-200 shadow-xs">
-                    Trato directo
-                  </span>
+              <div className="p-6 overflow-y-auto">
+                <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink-soft">
+                  <MapPin className="w-4 h-4" /> Santa Cruz de la Sierra
+                  <span aria-hidden="true">·</span>
+                  <Clock className="w-4 h-4" /> Disponibles hoy
+                </p>
+                <h3 id="category-modal-title" className="mt-1 text-2xl font-extrabold text-ink">
+                  {selectedCategory.name}
+                </h3>
+
+                <div className="mt-5 border-t border-line pt-4">
+                  <p className="text-sm font-bold uppercase tracking-wider text-ink-soft">Precio de referencia</p>
+                  <p className="mt-1 text-lg font-bold text-ink">{selectedCategory.priceRange}</p>
+                  <p className="mt-1 text-sm text-ink-soft">El precio final lo acuerdas directo con el trabajador.</p>
                 </div>
 
-                {/* Popular Jobs tags */}
-                <div>
-                  <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5">
-                    Servicios más solicitados en esta categoría:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedCategory.popularJobs.map((job, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs font-medium bg-slate-100 text-slate-700 px-3 py-1.5 rounded-xl border border-slate-200/80"
-                      >
-                        ✓ {job}
-                      </span>
+                <div className="mt-5 border-t border-line pt-4">
+                  <p className="text-sm font-bold uppercase tracking-wider text-ink-soft">Lo que más se pide</p>
+                  <ul className="mt-2 flex flex-col gap-1.5">
+                    {selectedCategory.popularJobs.map((job) => (
+                      <li key={job} className="flex items-center gap-2 text-base text-ink">
+                        <CheckCircle2 className="w-4 h-4 text-accent-strong shrink-0" />
+                        {job}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
 
-                {/* Live Verified Workers Sample */}
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                      Profesionales destacados cerca:
-                    </h4>
-                    <span className="text-[11px] font-bold text-emerald-600 flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5" /> Verificados
+                <div className="mt-5 border-t border-line pt-4">
+                  <p className="flex items-center justify-between text-sm font-bold uppercase tracking-wider text-ink-soft">
+                    Trabajadores de ejemplo
+                    <span className="flex items-center gap-1 normal-case tracking-normal text-[#15803D]">
+                      <ShieldCheck className="w-4 h-4" /> Verificados
                     </span>
-                  </div>
-
-                  <div className="space-y-2.5">
-                    {selectedCategory.sampleWorkers.map((worker, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3 bg-white border border-slate-200 rounded-2xl flex items-center justify-between shadow-xs hover:border-purple-300 transition-colors"
-                      >
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={worker.avatar}
-                            alt={worker.name}
-                            className="w-11 h-11 rounded-full object-cover border border-purple-200"
-                          />
-                          <div>
-                            <div className="flex items-center gap-1.5">
-                              <span className="text-sm font-bold text-slate-900">{worker.name}</span>
-                              <CheckCircle2 className="w-3.5 h-3.5 text-purple-600" />
-                            </div>
-                            <span className="text-xs text-slate-500 block">{worker.specialty}</span>
-                            <div className="flex items-center gap-2 mt-0.5 text-[11px] text-slate-500">
-                              <span className="font-bold text-amber-500 flex items-center gap-0.5">
-                                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                  </p>
+                  <ul className="mt-3 flex flex-col divide-y divide-[rgba(43,33,26,0.12)]">
+                    {selectedCategory.sampleWorkers.map((worker) => (
+                      <li key={worker.name} className="py-3 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img src={worker.avatar} alt="" className="w-11 h-11 rounded-full object-cover shrink-0" />
+                          <div className="min-w-0">
+                            <p className="text-base font-bold text-ink truncate">{worker.name}</p>
+                            <p className="text-sm text-ink-soft truncate">{worker.specialty}</p>
+                            <p className="mt-0.5 flex items-center gap-2 text-sm text-ink-soft">
+                              <span className="flex items-center gap-0.5 font-semibold text-ink">
+                                <Star className="w-3.5 h-3.5 fill-[#F2B01E] text-[#F2B01E]" />
                                 {worker.rating} ({worker.reviews})
                               </span>
-                              <span>·</span>
-                              <span className="flex items-center gap-0.5 text-slate-500">
-                                <MapPin className="w-3 h-3 text-purple-600" />
-                                {worker.distance}
-                              </span>
-                            </div>
+                              <span aria-hidden="true">·</span>
+                              {worker.distance}
+                            </p>
                           </div>
                         </div>
-
-                        <div className="text-right">
-                          <span className="text-xs font-extrabold text-purple-700 block">
-                            Desde {worker.priceFrom}
-                          </span>
-                          <span className="text-[10px] text-slate-400 font-medium">por trabajo</span>
-                        </div>
-                      </div>
+                        <p className="text-right shrink-0">
+                          <span className="block text-sm font-bold text-ink">Desde {worker.priceFrom}</span>
+                          <span className="text-xs text-ink-soft">por trabajo</span>
+                        </p>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-
               </div>
 
-              {/* Modal Footer CTA */}
-              <div className="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/70 flex items-center gap-3">
-                <a
-                  href="#descargar"
-                  onClick={() => setSelectedCategory(null)}
-                  className="flex-1 py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm text-center shadow-lg shadow-purple-600/25 transition-all hover:scale-[1.01] active:scale-[0.99]"
-                >
-                  Solicitar cotizaciones en la App
+              <div className="p-4 sm:p-5 border-t border-line flex gap-3">
+                <a href="#descargar" onClick={() => setSelectedCategory(null)} className="btn btn-primary flex-1">
+                  Pedir este servicio en la app
                 </a>
-                <button
-                  onClick={() => setSelectedCategory(null)}
-                  className="py-3 px-4 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 font-semibold text-sm transition-colors cursor-pointer"
-                >
+                <button type="button" onClick={() => setSelectedCategory(null)} className="btn btn-secondary">
                   Cerrar
                 </button>
               </div>
-
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </section>
