@@ -136,13 +136,43 @@ body {
   background-color: rgba(43, 33, 26, 0.08);
 }
 
-/* Texto de acento con un contorno fino que mantiene la legibilidad sobre el video. */
+/*
+ * Texto de acento con profundidad, sin contorno: una "extrusión" del mismo
+ * color oscurecido le da borde y volumen, y una sombra suave lo despega del
+ * video. Se calcula desde --accent, así sirve para amarillo y morado. Los
+ * desplazamientos van en `em` para que la profundidad sea proporcional al
+ * tamaño de cada título.
+ */
 .accent-underline {
+  position: relative;
   color: var(--accent);
-  -webkit-text-stroke: 1.5px #fff;
-  paint-order: stroke fill;
-  text-shadow: none;
-  transition: color 0.4s;
+  text-shadow:
+    0 0.012em 0 color-mix(in srgb, var(--accent) 72%, #2B211A),
+    0 0.024em 0 color-mix(in srgb, var(--accent) 60%, #2B211A),
+    0 0.036em 0 color-mix(in srgb, var(--accent) 48%, #2B211A),
+    0 0.1em 0.16em rgb(43 33 26 / 0.24),
+    0 0.22em 0.45em rgb(43 33 26 / 0.16);
+  transition: color 0.4s, text-shadow 0.4s;
+}
+
+/*
+ * Destello al final del texto de acento (tres rayitas). Va en posición
+ * absoluta con `right`/`bottom`, que en un inline se miden desde el ÚLTIMO
+ * renglón: queda pegado al final aunque el texto ocupe dos líneas y nunca
+ * baja solo a otra línea. La forma es una máscara SVG pintada con --accent.
+ */
+.accent-underline::after {
+  content: "";
+  position: absolute;
+  right: -0.56em;
+  bottom: 0.78em;
+  width: 0.54em;
+  height: 0.54em;
+  background-color: var(--accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4.6' stroke-linecap='round'%3E%3Cpath d='M6.5 12 7.8 2.5'/%3E%3Cpath d='M11 15.5 19 7.8'/%3E%3Cpath d='M12.8 21.5 22 19.6'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4.6' stroke-linecap='round'%3E%3Cpath d='M6.5 12 7.8 2.5'/%3E%3Cpath d='M11 15.5 19 7.8'/%3E%3Cpath d='M12.8 21.5 22 19.6'/%3E%3C/svg%3E") no-repeat center / contain;
+  pointer-events: none;
+  transition: background-color 0.4s;
 }
 
 /* Glassmorphism: solo lo usa el formulario de /unete. */

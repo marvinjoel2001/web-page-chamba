@@ -1,10 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
 import React from "react";
 import AppPhoneMockup from "@/components/mockups/AppPhoneMockup";
-import ModernPhoneMockup from "@/components/mockups/ModernPhoneMockup";
 import SectionHeader from "@/components/SectionHeader";
 import type { Role } from "@/lib/role";
 
@@ -15,27 +14,40 @@ interface HowItWorksProps {
 interface StepItem {
   titleKey: string;
   descKey: string;
-  /** Captura de la app. Sin imagen se dibuja la pantalla (paso 2 del trabajador). */
-  image?: string;
+  /** Captura real de la app (pruebas del 13/10/2026). */
+  image: string;
 }
+
+const SCREENS = "/images/app-screens/v2";
 
 const steps: Record<Role, StepItem[]> = {
   client: [
-    { titleKey: "client_step_1_title", descKey: "client_step_1_desc", image: "/images/app-screens/cliente_01_inicio.png" },
-    { titleKey: "client_step_2_title", descKey: "client_step_2_desc", image: "/images/how-it-works/step2_offers_screen.png" },
-    { titleKey: "client_step_3_title", descKey: "client_step_3_desc", image: "/images/how-it-works/step3_accepted_screen.png" },
-    { titleKey: "client_step_5_title", descKey: "client_step_5_desc", image: "/images/how-it-works/step4_completed_screen.png" },
+    { titleKey: "client_step_1_title", descKey: "client_step_1_desc", image: `${SCREENS}/cliente-pedido-voz.webp` },
+    { titleKey: "client_step_2_title", descKey: "client_step_2_desc", image: `${SCREENS}/cliente-ofertas.webp` },
+    { titleKey: "client_step_3_title", descKey: "client_step_3_desc", image: `${SCREENS}/cliente-oferta-aceptada.webp` },
+    { titleKey: "client_step_5_title", descKey: "client_step_5_desc", image: `${SCREENS}/cliente-calificar.webp` },
   ],
   worker: [
-    { titleKey: "worker_step_1_title", descKey: "worker_step_1_desc", image: "/images/app-screens/worker_01_inicio.png" },
-    { titleKey: "worker_step_2_title", descKey: "worker_step_2_desc" },
-    { titleKey: "worker_step_3_title", descKey: "worker_step_3_desc", image: "/images/app-screens/cliente_90_chat-historial.png" },
-    { titleKey: "worker_step_5_title", descKey: "worker_step_5_desc", image: "/images/app-screens/worker_90_trabajo-completado-anon.png" },
+    { titleKey: "worker_step_1_title", descKey: "worker_step_1_desc", image: `${SCREENS}/trabajador-disponible.webp` },
+    { titleKey: "worker_step_2_title", descKey: "worker_step_2_desc", image: `${SCREENS}/trabajador-solicitud.webp` },
+    { titleKey: "worker_step_4_title", descKey: "worker_step_4_desc", image: `${SCREENS}/trabajador-en-trabajo.webp` },
+    { titleKey: "worker_step_5_title", descKey: "worker_step_5_desc", image: `${SCREENS}/trabajador-billetera.webp` },
   ],
+};
+
+// Los pasos aparecen uno tras otro al entrar en pantalla.
+const listVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.14 } },
+};
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 export default function HowItWorks({ activeRole }: HowItWorksProps) {
   const t = useTranslations("HowItWorks");
+  const reduce = useReducedMotion();
 
   return (
     <section id="como-funciona" className="py-20 sm:py-28">
@@ -59,14 +71,15 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
         <AnimatePresence mode="wait">
           <motion.ol
             key={activeRole}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            variants={reduce ? undefined : listVariants}
+            initial={reduce ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            exit={{ opacity: 0, y: -16, transition: { duration: 0.25 } }}
             className="mt-14 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14"
           >
             {steps[activeRole].map((st, index) => (
-              <li key={st.titleKey} className="flex flex-col">
+              <motion.li key={st.titleKey} variants={reduce ? undefined : itemVariants} className="flex flex-col">
                 <div className="flex items-center gap-3">
                   <span
                     data-solid
@@ -84,13 +97,16 @@ export default function HowItWorks({ activeRole }: HowItWorksProps) {
                 <p className="mt-2 text-base leading-relaxed font-medium text-ink-soft">{t(st.descKey as never)}</p>
 
                 <div className="mt-auto pt-6 flex justify-center">
-                  <div className="w-full max-w-[210px]" data-solid>
-                    <AppPhoneMockup imageSrc={st.image} alt={t(st.titleKey as never)}>
-                      {st.image ? undefined : <ModernPhoneMockup step={2} role="worker" bare />}
-                    </AppPhoneMockup>
-                  </div>
+                  <motion.div
+                    className="w-full max-w-[210px]"
+                    data-solid
+                    whileHover={reduce ? undefined : { y: -8, rotate: index % 2 ? 1.2 : -1.2 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  >
+                    <AppPhoneMockup imageSrc={st.image} alt={t(st.titleKey as never)} />
+                  </motion.div>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </motion.ol>
         </AnimatePresence>

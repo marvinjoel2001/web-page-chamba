@@ -1,9 +1,22 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Download, Mic, CheckCircle2, Radio, Wallet } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Check,
+  CheckCircle2,
+  Clock,
+  Download,
+  MapPin,
+  MessageCircle,
+  Mic,
+  Radio,
+  Tag,
+  Wallet,
+} from "lucide-react";
 import React from "react";
-import AppPhoneMockup from "@/components/mockups/AppPhoneMockup";
+import AppPhoneMockup, { type PhoneSlide } from "@/components/mockups/AppPhoneMockup";
 import WorkerRegistrationForm from "@/components/WorkerRegistrationForm";
 import type { Role } from "@/lib/role";
 
@@ -28,6 +41,37 @@ interface HeroContent {
   };
 }
 
+/**
+ * Recorrido del cliente con capturas reales de la app (13/10/2026). Cada
+ * pantalla trae sus propias etiquetas flotantes.
+ */
+const clientSlides: PhoneSlide[] = [
+  {
+    src: "/images/app-screens/v2/cliente-inicio.webp",
+    alt: "Inicio de Chamba: mapa y campo para pedir un servicio",
+    top: { icon: <Mic className="w-4 h-4" />, title: "Pide por voz o escribe", subtitle: "Tú pones el precio en Bs" },
+    bottom: { icon: <MapPin className="w-4 h-4" />, title: "Trabajadores cerca", subtitle: "En Santa Cruz de la Sierra" },
+  },
+  {
+    src: "/images/app-screens/v2/cliente-modalidad.webp",
+    alt: "Elegir cómo contratar: por trabajo, por hora o por día",
+    top: { icon: <Clock className="w-4 h-4" />, title: "Por trabajo, hora o día", subtitle: "Tú eliges cómo contratar" },
+    bottom: { icon: <Wallet className="w-4 h-4" />, title: "Pagas directo", subtitle: "Sin intermediarios" },
+  },
+  {
+    src: "/images/app-screens/v2/cliente-ofertas.webp",
+    alt: "Ofertas recibidas de trabajadores verificados",
+    top: { icon: <BadgeCheck className="w-4 h-4" />, title: "Trabajadores verificados", subtitle: "Ves perfil y calificación" },
+    bottom: { icon: <Tag className="w-4 h-4" />, title: "Recibes ofertas", subtitle: "Eliges la que te conviene" },
+  },
+  {
+    src: "/images/app-screens/v2/cliente-oferta-aceptada.webp",
+    alt: "Oferta aceptada: el trabajador queda confirmado",
+    top: { icon: <CheckCircle2 className="w-4 h-4" />, title: "Oferta aceptada", subtitle: "El trabajador va en camino" },
+    bottom: { icon: <MessageCircle className="w-4 h-4" />, title: "Coordinan por chat", subtitle: "Directo en la app" },
+  },
+];
+
 const content: Record<Role, HeroContent> = {
   client: {
     eyebrow: "Para quien necesita un servicio",
@@ -44,7 +88,7 @@ const content: Record<Role, HeroContent> = {
     secondary: { label: "Ver cómo funciona", href: "#como-funciona" },
     note: "Disponible en Santa Cruz de la Sierra",
     phone: {
-      image: "/images/app-screens/cliente_01_inicio.png",
+      image: "/images/app-screens/v2/cliente-inicio.webp",
       alt: "Pantalla de inicio de Chamba para clientes",
       top: { icon: <Mic className="w-4 h-4" />, title: "Pide por voz o escribe", subtitle: "Tú pones el precio en Bs" },
       bottom: { icon: <CheckCircle2 className="w-4 h-4" />, title: "Oferta aceptada", subtitle: "El trabajador va en camino" },
@@ -65,7 +109,7 @@ const content: Record<Role, HeroContent> = {
     secondary: { label: "Descargar la app", href: "#descargar" },
     note: "Registro gratis · Sin horarios obligatorios",
     phone: {
-      image: "/images/app-screens/worker_01_inicio.png",
+      image: "/images/app-screens/v2/trabajador-disponible.webp",
       alt: "Pantalla de inicio de Chamba para trabajadores con el interruptor Disponible",
       top: { icon: <Radio className="w-4 h-4" />, title: "Estado: Disponible", subtitle: "Un toque para recibir chambas" },
       bottom: { icon: <Wallet className="w-4 h-4" />, title: "Cobras el 100%", subtitle: "Pago directo del cliente" },
@@ -134,10 +178,10 @@ export default function Hero({ activeRole }: HeroProps) {
             <div className={`${activeRole === "worker" ? "lg:col-span-6" : "lg:col-span-5"} flex justify-center`}>
               {activeRole === "worker" ? <WorkerRegistrationForm /> : <div className="relative w-full max-w-[340px] px-8">
                 <AppPhoneMockup
-                  imageSrc={c.phone.image}
-                  alt={c.phone.alt}
-                  floatingBadgeTop={c.phone.top}
-                  floatingBadgeBottom={c.phone.bottom}
+                  slides={clientSlides}
+                  alt="Recorrido de la app Chamba para clientes"
+                  float
+                  priority
                 />
               </div>}
             </div>
