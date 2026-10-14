@@ -28,6 +28,8 @@ interface AppPhoneMockupProps {
   interval?: number;
   /** Contenido dibujado en lugar de una captura (se muestra dentro del mismo marco). */
   children?: React.ReactNode;
+  /** Capa encima de la captura, dentro de la pantalla (p. ej. el toque animado de "Cómo funciona"). */
+  overlay?: React.ReactNode;
   floatingBadgeTop?: FloatingBadge;
   floatingBadgeBottom?: FloatingBadge;
   /** Flotación suave del teléfono (solo hero). */
@@ -76,6 +78,7 @@ export default function AppPhoneMockup({
   floatingBadgeTop,
   floatingBadgeBottom,
   children,
+  overlay,
   float = false,
   className = "",
   priority = false,
@@ -151,6 +154,7 @@ export default function AppPhoneMockup({
                   decoding="async"
                 />
               ))}
+            {overlay}
             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black rounded-full z-40" aria-hidden="true" />
           </div>
         </motion.div>
@@ -182,7 +186,8 @@ export default function AppPhoneMockup({
                 <motion.span
                   key={`${index}-${paused}-${reduce}`}
                   className="absolute inset-y-0 left-0 bg-accent rounded-full"
-                  initial={{ width: paused || reduce ? "100%" : "0%" }}
+                  // Sin depender de reduce: el servidor no lo conoce y la hidratación no coincidiría.
+                  initial={{ width: paused ? "100%" : "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: paused || reduce ? 0 : interval / 1000, ease: "linear" }}
                 />
