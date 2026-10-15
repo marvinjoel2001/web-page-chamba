@@ -146,6 +146,7 @@ export default function Footer() {
             <Link href="/terms" className={`${linkClass} !text-sm`}>{t("terms_footer")}</Link>
             <Link href="/privacy" className={`${linkClass} !text-sm`}>{t("privacy_footer")}</Link>
             <Link href="/help" className={`${linkClass} !text-sm`}>{t("help_footer")}</Link>
+            <Link href="/eliminar-cuenta" className="text-xs text-ink-soft/70 hover:text-ink-soft hover:underline">{t("delete_account")}</Link>
           </div>
         </div>
       </div>

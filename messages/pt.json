@@ -68,7 +68,8 @@
     "rights": "© {year} Chamba App Inc. Todos os direitos reservados.",
     "terms_footer": "Termos de serviço",
     "privacy_footer": "Políticas de privacidade",
-    "help_footer": "Ajuda"
+    "help_footer": "Ajuda",
+    "delete_account": "Excluir conta"
   },
   "Features": {
     "title_part1": "Pessoas reais.",
