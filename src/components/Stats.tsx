@@ -11,7 +11,7 @@ interface StatsProps {
 export default function Stats({ activeRole }: StatsProps) {
   const t = useTranslations("Stats");
   const statsList = [
-    { value: "+15.000", label: t("stat_1_label"), desc: t("stat_1_desc") },
+    { value: "+150", label: t("stat_1_label"), desc: t("stat_1_desc") },
     { value: "4,9 ★", label: t("stat_2_label"), desc: t("stat_2_desc") },
     { value: "< 5 min", label: t("stat_3_label"), desc: t("stat_3_desc") },
     activeRole === "client"
