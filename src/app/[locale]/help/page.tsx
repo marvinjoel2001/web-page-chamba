@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { MessageCircleQuestion, Mail, ShieldAlert } from "lucide-react";
+import { apiBase } from "@/lib/api-base";
 
 export default function HelpPage() {
   const faqs = [
@@ -23,17 +24,46 @@ export default function HelpPage() {
 
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [reportStatus, setReportStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [reportError, setReportError] = useState("");
 
-  const handleReportSubmit = (e: React.FormEvent) => {
+  // El reporte llega al admin (bandeja "Reportes web"); antes se simulaba y se perdía.
+  const handleReportSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const values = new FormData(form);
     setReportStatus("submitting");
-    setTimeout(() => {
+    setReportError("");
+    try {
+      const response = await fetch(`${apiBase()}/web/reports`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category: String(values.get("category") ?? ""),
+          email: String(values.get("email") ?? "").trim(),
+          message: String(values.get("message") ?? "").trim(),
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(
+          response.status === 400
+            ? "Revisa los datos: el correo debe ser válido y la descripción de al menos 10 caracteres."
+            : "No pudimos enviar el reporte. Inténtalo de nuevo o escríbenos a soporte@chamba.app.",
+        );
+      }
+      form.reset();
       setReportStatus("success");
       setTimeout(() => {
         setIsReportModalOpen(false);
         setReportStatus("idle");
       }, 3000);
-    }, 1500);
+    } catch (cause) {
+      setReportStatus("idle");
+      setReportError(
+        cause instanceof Error && cause.message !== "Failed to fetch"
+          ? cause.message
+          : "No pudimos enviar el reporte. Revisa tu conexión.",
+      );
+    }
   };
 
   return (
@@ -104,7 +134,7 @@ export default function HelpPage() {
                 
                 <div className="flex flex-col gap-1.5">
                   <label className="text-sm font-semibold text-slate-700">Tipo de Problema</label>
-                  <select required className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm">
+                  <select required name="category" className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm">
                     <option value="">Selecciona una opción</option>
                     <option value="usuario">Comportamiento inadecuado de un usuario</option>
                     <option value="estafa">Posible estafa o fraude</option>
@@ -115,13 +145,15 @@ export default function HelpPage() {
 
                 <div className="flex flex-col gap-1.5">
                   <label className="text-sm font-semibold text-slate-700">Tu correo electrónico</label>
-                  <input required type="email" placeholder="Para poder contactarte..." className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm" />
+                  <input required name="email" type="email" placeholder="Para poder contactarte..." className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm" />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
                   <label className="text-sm font-semibold text-slate-700">Descripción detallada</label>
-                  <textarea required rows={4} placeholder="Cuéntanos qué sucedió exactamente..." className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm resize-none" />
+                  <textarea required name="message" minLength={10} maxLength={2000} rows={4} placeholder="Cuéntanos qué sucedió exactamente..." className="bg-white border border-slate-200 rounded-xl p-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600 shadow-sm resize-none" />
                 </div>
+
+                {reportError && <p className="text-sm text-red-600">{reportError}</p>}
 
                 <button 
                   type="submit" 
