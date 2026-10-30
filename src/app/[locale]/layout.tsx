@@ -112,10 +112,29 @@ export async function generateMetadata({
       apple: [{ url: "/images/icon.png", sizes: "180x180", type: "image/png" }],
     },
     manifest: "/manifest.webmanifest",
+    // Solo se emiten las etiquetas de verificación si existe la variable de
+    // entorno correspondiente. No se inventan códigos: un token inválido hace
+    // que Search Console rechace la propiedad.
+    verification: buildVerification(),
     other: {
       ...GEO_METADATA,
       "format-detection": "telephone=no",
     },
+  };
+}
+
+function buildVerification(): Metadata["verification"] {
+  const google = process.env.GOOGLE_SITE_VERIFICATION;
+  const other: Record<string, string | string[]> = {};
+
+  const bing = process.env.BING_SITE_VERIFICATION;
+  if (bing) other["msvalidate.01"] = bing;
+
+  if (!google && Object.keys(other).length === 0) return undefined;
+
+  return {
+    ...(google ? { google } : {}),
+    ...(Object.keys(other).length > 0 ? { other } : {}),
   };
 }
 

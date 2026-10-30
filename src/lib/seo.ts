@@ -9,7 +9,7 @@ export const SITE_URL =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
-    : 'https://chamba.app');
+    : 'https://www.chambatrabajo.com');
 
 export const PLAY_STORE_URL =
   'https://play.google.com/store/apps/details?id=com.chambatrabajo.app';

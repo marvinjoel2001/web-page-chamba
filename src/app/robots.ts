@@ -7,27 +7,24 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/api/',
-          '/_next/',
-          '/static/',
-        ],
+        // Solo se bloquean endpoints internos. /_next/ y /static/ deben quedar
+        // accesibles: Googlebot necesita el CSS y el JS para renderizar la
+        // página y evaluar los Core Web Vitals.
+        disallow: ['/api/'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: [
-          '/api/',
-          '/_next/',
-        ],
+        disallow: ['/api/'],
       },
       {
         userAgent: 'Googlebot-Image',
-        allow: [
-          '/images/',
-          '/testimonials/',
-          '/',
-        ],
+        allow: ['/images/', '/'],
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: ['/api/'],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
