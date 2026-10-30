@@ -13,7 +13,7 @@ export default function ChatMockup() {
           <div className="flex items-center gap-2">
             <div className="relative">
               <div className="w-9 h-9 rounded-full bg-slate-200 overflow-hidden border border-slate-100">
-                <img src="https://i.pravatar.cc/150?img=11" alt="Worker" className="w-full h-full object-cover" />
+                <img src="https://i.pravatar.cc/150?img=11" alt="Trabajador independiente coordinando servicio en Santa Cruz" title="Trabajador independiente en Chamba Santa Cruz" className="w-full h-full object-cover" />
               </div>
               <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white"></div>
             </div>

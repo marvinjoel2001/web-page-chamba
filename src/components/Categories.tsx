@@ -334,7 +334,7 @@ export default function Categories() {
                 <div data-solid className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-[#e8e1d8]">
                   <img
                     src={category.image}
-                    alt=""
+                    alt={`Trabajos y Servicios de ${category.name} en Santa Cruz de la Sierra - Chamba Bolivia`} title={`Trabajos de ${category.name} en Santa Cruz de la Sierra`}
                     className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
@@ -396,7 +396,7 @@ export default function Categories() {
                 <X className="w-5 h-5" />
               </button>
 
-              <img src={selectedCategory.image} alt="" className="w-full h-40 object-cover shrink-0" />
+              <img src={selectedCategory.image} alt={`Ofertas de trabajo y servicios de ${selectedCategory.name} en Santa Cruz de la Sierra`} title={`Trabajo de ${selectedCategory.name} en Santa Cruz - Chamba`} className="w-full h-40 object-cover shrink-0" />
 
               <div className="p-6 overflow-y-auto">
                 <p className="flex flex-wrap items-center gap-1.5 text-sm font-semibold text-ink-soft">
@@ -437,7 +437,7 @@ export default function Categories() {
                     {selectedCategory.sampleWorkers.map((worker) => (
                       <li key={worker.name} className="py-3 flex items-center justify-between gap-3">
                         <div className="flex items-center gap-3 min-w-0">
-                          <img src={worker.avatar} alt="" className="w-11 h-11 rounded-full object-cover shrink-0" />
+                          <img src={worker.avatar} alt={`Trabajador independiente ${worker.name} - ${worker.specialty} en Santa Cruz de la Sierra`} title={`${worker.name} - ${worker.specialty} en Santa Cruz`} className="w-11 h-11 rounded-full object-cover shrink-0" />
                           <div className="min-w-0">
                             <p className="text-base font-bold text-ink truncate">{worker.name}</p>
                             <p className="text-sm text-ink-soft truncate">{worker.specialty}</p>

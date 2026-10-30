@@ -85,7 +85,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3 h-12">
           <Link href="/" className="focus-ring flex items-center gap-2.5 shrink-0 rounded-xl">
-            <img src="/images/icon.png" alt="" className="w-10 h-10 rounded-xl object-cover" />
+            <img src="/images/icon.png" alt="Chamba Bolivia — App de Trabajos y Servicios en Santa Cruz" title="Chamba Bolivia — Trabajos y Servicios" className="w-10 h-10 rounded-xl object-cover" />
             <span className="text-xl font-extrabold tracking-tight text-ink max-[380px]:hidden">Chamba</span>
           </Link>
 

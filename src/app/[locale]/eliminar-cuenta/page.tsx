@@ -1,21 +1,53 @@
-"use client";
-
-import React from "react";
+import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DeleteAccountForm from "@/components/DeleteAccountForm";
+import { BreadcrumbsJsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/lib/seo";
 
-/**
- * Página pública de eliminación de cuenta (requisito de Google Play: debe
- * existir fuera de la app). Explica el flujo dentro de la app y la vía por
- * correo para quien ya no tiene la app instalada.
- */
-export default function DeleteAccountPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isEs = locale === "es";
+
+  return {
+    title: isEs ? "Eliminar Cuenta y Datos — Chamba" : "Delete Account — Chamba",
+    description: isEs
+      ? "Solicitud pública para la eliminación de cuenta y datos personales de usuarios de Chamba App (requisito Google Play)."
+      : "Public page to request account and personal data deletion for Chamba App users.",
+    robots: {
+      index: false,
+      follow: true,
+    },
+    alternates: {
+      canonical: `${SITE_URL}/${locale}/eliminar-cuenta`,
+    },
+  };
+}
+
+export default async function DeleteAccountPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <div className="min-h-screen pt-24 text-slate-700">
+      <BreadcrumbsJsonLd
+        items={[
+          { name: "Inicio", url: `/${locale}` },
+          { name: "Eliminar Cuenta", url: `/${locale}/eliminar-cuenta` },
+        ]}
+      />
       <Navbar activeRole="client" />
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        <div className="bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] rounded-3xl p-8 sm:p-12 shadow-sm">
+      <main className="max-w-4xl mx-auto px-4 py-16">
+        <article className="bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] rounded-3xl p-8 sm:p-12 shadow-sm">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Eliminar tu cuenta de Chamba</h1>
           <p className="text-base leading-relaxed text-slate-600">
             Puedes pedir la eliminación de tu cuenta y de tus datos personales en cualquier momento. Para protegerte de
@@ -78,8 +110,8 @@ export default function DeleteAccountPage() {
 
             <p className="mt-10 text-xs text-slate-400">Última actualización: 14 de octubre de 2026</p>
           </div>
-        </div>
-      </div>
+        </article>
+      </main>
       <Footer />
     </div>
   );

@@ -57,7 +57,7 @@ export default function Testimonials({ activeRole }: TestimonialsProps) {
                   <figcaption className="mt-6 flex items-center gap-4">
                     <img
                       src={rev.photo}
-                      alt=""
+                      alt={`Opinión de ${t(`${rev.key}_name` as never)} sobre Chamba Santa Cruz`}
                       className="w-14 h-14 rounded-full object-cover"
                       loading="lazy"
                     />

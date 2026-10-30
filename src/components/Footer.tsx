@@ -50,7 +50,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
           <div className="md:col-span-4 flex flex-col items-start gap-4">
             <div className="flex items-center gap-2.5">
-              <img src="/images/icon.png" alt="" className="w-9 h-9 rounded-lg object-cover" />
+              <img src="/images/icon.png" alt="Chamba Bolivia — Plataforma de Trabajos y Servicios en Santa Cruz de la Sierra" title="Chamba Bolivia — Trabajos en Santa Cruz" className="w-9 h-9 rounded-lg object-cover" />
               <span className="text-xl font-extrabold tracking-tight text-ink">Chamba</span>
             </div>
             <p className="max-w-sm text-base leading-relaxed font-medium text-ink-soft">{t("desc")}</p>

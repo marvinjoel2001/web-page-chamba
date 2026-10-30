@@ -136,6 +136,7 @@ export default function AppPhoneMockup({
                     key={slide!.src}
                     src={slide!.src}
                     alt={slide!.alt}
+                    title={slide!.alt}
                     initial={{ opacity: 0, scale: reduce ? 1 : 1.04 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
@@ -149,6 +150,7 @@ export default function AppPhoneMockup({
                 <img
                   src={imageSrc}
                   alt={alt}
+                  title={alt}
                   className="w-full h-full object-cover object-top"
                   loading={priority ? "eager" : "lazy"}
                   decoding="async"
