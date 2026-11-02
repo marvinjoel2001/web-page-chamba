@@ -62,7 +62,7 @@ export default function ServiceLanding({
     description: content.description,
     url,
     image: `${SITE_URL}${content.image}`,
-    provider: {
+    broker: {
       '@type': 'Organization',
       name: 'Chamba',
       url: SITE_URL,
@@ -76,13 +76,6 @@ export default function ServiceLanding({
       '@type': 'Place',
       name: `${zone}, Santa Cruz de la Sierra, Bolivia`,
     })),
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'BOB',
-      description: content.priceRange,
-      availability: 'https://schema.org/InStock',
-      areaServed: 'BO',
-    },
   };
 
   const others = SERVICES.filter((service) => service.id !== currentId);

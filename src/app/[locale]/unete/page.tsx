@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import JoinUsClient from "@/components/JoinUsClient";
-import { BreadcrumbsJsonLd, JobPostingsJsonLd } from "@/components/seo/JsonLd";
+import { BreadcrumbsJsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -13,58 +13,20 @@ export async function generateMetadata({
   const isEs = locale === "es";
 
   const title = isEs
-    ? "Trabajos en Santa Cruz de la Sierra | Empleos y Oficios | Chamba Bolivia"
+    ? "Registro de trabajadores en Santa Cruz | Chamba"
     : locale === "pt"
-    ? "Vagas de Trabalho em Santa Cruz de la Sierra | Chamba Bolívia"
-    : "Jobs in Santa Cruz, Bolivia | Trade Work & Freelance Gigs | Chamba";
+    ? "Cadastro de trabalhadores em Santa Cruz | Chamba"
+    : "Worker registration in Santa Cruz, Bolivia | Chamba";
 
   const description = isEs
-    ? "¿Buscas trabajo en Santa Cruz de la Sierra o Bolivia? Únete a Chamba. Accede a cientos de trabajos diarios de plomería, electricidad, albañilería, limpieza, pintura y más. Recibe ofertas en tu celular, cobra directo en Bs y sé tu propio jefe."
+    ? "Crea gratis tu cuenta de trabajador en Chamba. Completa tu perfil, verifica tu identidad y ofrece tus servicios en Santa Cruz de la Sierra, Bolivia."
     : locale === "pt"
-    ? "Encontre trabalho em Santa Cruz de la Sierra com a Chamba. Receba pedidos diários de reformas, encanamento, eletricidade e limpeza direto no celular. Pagamentos em Bs sem burocracia."
-    : "Looking for jobs in Santa Cruz, Bolivia? Join Chamba. Get daily local gigs for plumbers, electricians, handymen, painters, and cleaners. Direct pay in Bs and flexible hours.";
+    ? "Crie sua conta grátis no Chamba. Complete seu perfil e verifique sua identidade para oferecer serviços em Santa Cruz de la Sierra, Bolívia."
+    : "Create your free Chamba worker account, complete your profile and verify your identity to offer services in Santa Cruz de la Sierra, Bolivia.";
 
   return {
     title,
     description,
-    keywords: [
-      // Búsquedas directas de trabajo
-      "trabajo",
-      "trabajos",
-      "trabajo bolivia",
-      "trabajos en bolivia",
-      "trabajo santa cruz",
-      "trabajos en santa cruz",
-      "trabajos en santa cruz de la sierra",
-      "empleo santa cruz",
-      "empleos santa cruz",
-      "empleos santa cruz bolivia",
-      "bolsa de trabajo santa cruz",
-      "bolsa de trabajo bolivia",
-      "ofertas de trabajo santa cruz",
-      "ofertas laborales santa cruz",
-      "buscar trabajo en santa cruz",
-      "buscar trabajo bolivia",
-      "conseguir trabajo santa cruz",
-      "trabajo urgente santa cruz",
-      "trabajo hoy santa cruz",
-      "trabajos medio tiempo santa cruz",
-      "trabajos independientes bolivia",
-      "chambas bolivia",
-      "chamba santa cruz",
-      // Oficios
-      "trabajo plomero santa cruz",
-      "trabajo electricista santa cruz",
-      "trabajo albañil santa cruz",
-      "trabajo construccion santa cruz",
-      "trabajo pintor santa cruz",
-      "trabajo limpieza santa cruz",
-      "trabajo chofer fletes santa cruz",
-      "trabajo mecanico santa cruz",
-      "trabajo jardineria santa cruz",
-      "conseguir clientes santa cruz",
-      "registro trabajadores chamba",
-    ],
     alternates: {
       canonical: `${SITE_URL}/${locale}/unete`,
       languages: {
@@ -112,7 +74,6 @@ export default async function JoinUsPage({
           { name: "Trabajos y Empleos en Santa Cruz", url: `/${locale}/unete` },
         ]}
       />
-      <JobPostingsJsonLd />
       <JoinUsClient />
     </>
   );

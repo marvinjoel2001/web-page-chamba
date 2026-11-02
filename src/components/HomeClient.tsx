@@ -14,7 +14,7 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import type { Role } from "@/lib/role";
 
-export default function HomeClient() {
+export default function HomeClient({ children }: { children: React.ReactNode }) {
   const [activeRole, setActiveRole] = useState<Role>("client");
 
   // El modo vive en <html data-role> para que el velo del video (en el layout)
@@ -59,6 +59,7 @@ export default function HomeClient() {
         <Stats activeRole={activeRole} />
         <Testimonials activeRole={activeRole} />
         <AboutUs />
+        {children}
         <AgencyBanner />
         <CTA activeRole={activeRole} />
       </main>

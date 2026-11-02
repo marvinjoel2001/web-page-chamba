@@ -27,9 +27,10 @@ export default function VideoBackground() {
     // Obligatorio para las políticas de autoplay de Chrome, Safari y Edge
     video.muted = true;
     video.defaultMuted = true;
+    let ready = false;
 
     const playVideo = () => {
-      if (video.paused) {
+      if (ready && video.paused) {
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
@@ -39,8 +40,21 @@ export default function VideoBackground() {
       }
     };
 
-    // Intentar reproducción inmediata
-    playVideo();
+    // El video decorativo (~10 MB) no compite con el contenido inicial.
+    // En conexiones con ahorro de datos o movimiento reducido queda el fondo sólido.
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const startVideo = () => {
+      if (connection?.saveData || reducedMotion.matches) return;
+      timer = setTimeout(() => {
+        ready = true;
+        video.src = "/videos/chamba-bg.mp4";
+        playVideo();
+      }, 1500);
+    };
+    if (document.readyState === "complete") startVideo();
+    else window.addEventListener("load", startVideo, { once: true });
 
     // Monitorear el corte antes de la placa oscura final
     const onTimeUpdate = () => {
@@ -80,6 +94,8 @@ export default function VideoBackground() {
     window.addEventListener("resize", onScroll);
 
     return () => {
+      window.removeEventListener("load", startVideo);
+      if (timer) clearTimeout(timer);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("ended", onEnded);
       window.removeEventListener("focus", playVideo);
@@ -99,12 +115,10 @@ export default function VideoBackground() {
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
-        src="/videos/chamba-bg.mp4"
-        autoPlay
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         disablePictureInPicture
       />
       {/* Velo de un solo color (cambia de tono con el modo cliente/trabajador). */}

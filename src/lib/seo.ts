@@ -1,15 +1,23 @@
 /**
  * Configuración centralizada de SEO para Chamba Web.
- * Optimizado para indexación rápida en Google, Google for Jobs, Google Images y SEO local en Bolivia.
+ * Metadatos de la plataforma y sus páginas públicas en Bolivia.
  */
 
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://www.chambatrabajo.com');
+// The public domain is stable even when building on a Vercel preview hostname.
+const configuredSiteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'https://www.chambatrabajo.com');
+if (configuredSiteUrl.protocol !== 'https:' || configuredSiteUrl.pathname !== '/' || configuredSiteUrl.search || configuredSiteUrl.hash || configuredSiteUrl.username || configuredSiteUrl.password) {
+  throw new Error('NEXT_PUBLIC_SITE_URL must be the public HTTPS origin without a path, query, fragment or credentials.');
+}
+export const SITE_URL = configuredSiteUrl.origin;
+
+export type Locale = 'es' | 'en' | 'pt';
+export type PageParams = { params: Promise<{ locale: string }> };
+export function getLocale(value: string): Locale {
+  return value === 'en' || value === 'pt' ? value : 'es';
+}
+export function localizedUrl(locale: Locale, path = ''): string {
+  return `${SITE_URL}/${locale}${path}`;
+}
 
 export const PLAY_STORE_URL =
   'https://play.google.com/store/apps/details?id=com.chambatrabajo.app';
@@ -21,132 +29,21 @@ export const CONTACT_EMAIL = 'soporte@chamba.app';
 export const SEO_DATA = {
   es: {
     siteName: 'Chamba',
-    title: 'Trabajos en Santa Cruz y Servicios en Bolivia | Chamba App',
-    titleTemplate: '%s | Chamba Bolivia',
+    title: 'Trabajo en Bolivia y servicios en Santa Cruz | Chamba',
     description:
-      'Encuentra trabajo en Santa Cruz de la Sierra o contrata plomeros, electricistas, albañiles, pintores y limpieza en Bolivia. Ofertas de trabajo diario, oficios independientes y servicios al instante en Bs.',
-    keywords: [
-      // Búsquedas principales de trabajo y empleo en Bolivia y Santa Cruz
-      'trabajo',
-      'trabajos',
-      'trabajo bolivia',
-      'trabajos en bolivia',
-      'trabajo santa cruz',
-      'trabajos en santa cruz',
-      'trabajos en santa cruz de la sierra',
-      'empleo santa cruz',
-      'empleos en santa cruz',
-      'empleos bolivia',
-      'empleo santa cruz bolivia',
-      'bolsa de trabajo santa cruz',
-      'bolsa de trabajo bolivia',
-      'ofertas de trabajo santa cruz',
-      'ofertas laborales santa cruz',
-      'ofertas laborales bolivia',
-      'buscar trabajo en santa cruz',
-      'buscar trabajo bolivia',
-      'conseguir trabajo santa cruz',
-      'conseguir trabajo en santa cruz de la sierra',
-      'trabajo hoy santa cruz',
-      'trabajo urgente santa cruz',
-      'trabajos de medio tiempo santa cruz',
-      'trabajos sin experiencia santa cruz',
-      'trabajos para mujeres santa cruz',
-      'trabajos para hombres santa cruz',
-      'trabajo independiente bolivia',
-      'trabajadores independientes santa cruz',
-      'chambas bolivia',
-      'chamba santa cruz',
-      'chamba app',
-      'app de trabajo bolivia',
-      'app para encontrar trabajo bolivia',
-      'plataforma de empleo santa cruz',
-
-      // Oficios y trabajos específicos en Santa Cruz
-      'trabajo de plomero santa cruz',
-      'plomero santa cruz',
-      'plomeria santa cruz bolivia',
-      'trabajo de electricista santa cruz',
-      'electricista santa cruz',
-      'electricistas a domicilio santa cruz',
-      'trabajo de pintor santa cruz',
-      'pintor de casas santa cruz',
-      'pintores bolivia',
-      'trabajo de albañil santa cruz',
-      'albañil santa cruz de la sierra',
-      'construccion y albañileria santa cruz',
-      'trabajos de construccion santa cruz',
-      'trabajo de limpieza santa cruz',
-      'servicio de limpieza santa cruz',
-      'limpieza de casas y departamentos santa cruz',
-      'trabajo de jardineria santa cruz',
-      'mantenimiento de jardines santa cruz',
-      'trabajo de carpintero santa cruz',
-      'armado de muebles santa cruz',
-      'trabajos de fletes y mudanzas santa cruz',
-      'transporte de carga santa cruz',
-      'auxilio mecanico santa cruz',
-      'mecanico a domicilio santa cruz',
-      'instalacion de aire acondicionado santa cruz',
-      'mantenimiento de aire acondicionado santa cruz',
-
-      // Zonas clave de Santa Cruz de la Sierra
-      'trabajos equipetrol',
-      'trabajo plan 3000',
-      'trabajos villa 1ro de mayo',
-      'trabajo pampa de la isla',
-      'trabajos las palmas santa cruz',
-      'trabajo av banzer santa cruz',
-      'servicios equipetrol santa cruz',
-      'plomero plan 3000',
-      'electricista villa 1ro de mayo',
-
-      // Búsquedas transaccionales
-      'reparaciones del hogar santa cruz',
-      'servicios tecnicos en santa cruz',
-      'tecnicos a domicilio bolivia',
-      'mano de obra calificada bolivia',
-      'contratar personal de confianza santa cruz',
-      'cotizaciones de servicios santa cruz',
-      'conseguir clientes para oficios',
-      'ganar dinero con mi oficio bolivia',
-      'registro de trabajadores independientes',
-    ],
+      'Ofrece tu oficio o contrata servicios en Santa Cruz de la Sierra, Bolivia. Chamba conecta clientes y trabajadores de limpieza, plomería, electricidad y más.',
   },
   en: {
     siteName: 'Chamba',
     title: 'Jobs in Santa Cruz & Home Services in Bolivia | Chamba App',
-    titleTemplate: '%s | Chamba Bolivia',
     description:
-      'Find jobs in Santa Cruz, Bolivia or hire trusted local plumbers, electricians, painters, and cleaners. Instant job offers, freelance trades, and direct payments in Bs.',
-    keywords: [
-      'jobs in bolivia',
-      'jobs in santa cruz bolivia',
-      'find jobs santa cruz',
-      'chamba bolivia',
-      'home services santa cruz bolivia',
-      'local handymen bolivia',
-      'hire plumbers santa cruz',
-      'hire electricians santa cruz',
-      'home repairs bolivia',
-      'freelance jobs bolivia',
-    ],
+      'Offer your trade or hire services in Santa Cruz de la Sierra, Bolivia. Chamba connects clients with independent cleaners, plumbers, electricians and more.',
   },
   pt: {
     siteName: 'Chamba',
     title: 'Vagas de Trabalho em Santa Cruz e Serviços na Bolívia | Chamba',
-    titleTemplate: '%s | Chamba Bolívia',
     description:
-      'Encontre trabalho em Santa Cruz de la Sierra ou contrate encanadores, eletricistas, pedreiros e diaristas na Bolívia. Vagas diárias e pagamentos diretos.',
-    keywords: [
-      'trabalho na bolivia',
-      'vagas de emprego santa cruz bolivia',
-      'chamba bolivia',
-      'serviços residenciais santa cruz bolivia',
-      'encanador santa cruz bolivia',
-      'eletricista santa cruz bolivia',
-      'reformas e reparos bolivia',
-    ],
+      'Ofereça seu ofício ou contrate serviços em Santa Cruz de la Sierra, Bolívia. Chamba conecta clientes e trabalhadores de limpeza, encanamento, eletricidade e mais.',
   },
 };
 

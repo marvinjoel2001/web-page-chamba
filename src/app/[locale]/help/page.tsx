@@ -63,11 +63,9 @@ export async function generateMetadata({
       "atencion al cliente chamba",
     ],
     alternates: {
-      canonical: `${SITE_URL}/${locale}/help`,
+      canonical: `${SITE_URL}/es/help`,
       languages: {
         es: `${SITE_URL}/es/help`,
-        en: `${SITE_URL}/en/help`,
-        pt: `${SITE_URL}/pt/help`,
         "x-default": `${SITE_URL}/es/help`,
       },
     },

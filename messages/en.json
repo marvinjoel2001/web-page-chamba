@@ -15,7 +15,8 @@
     "menu_agencies": "Agencies",
     "portal_agencies": "Chamba Agencies",
     "role_client_long": "I need a service",
-    "role_worker_long": "I want to work"
+    "role_worker_long": "I want to work",
+    "menu_jobs": "Work in Santa Cruz"
   },
   "Hero": {
     "client_title_line1": "Find someone",
@@ -69,7 +70,10 @@
     "terms_footer": "Terms of service",
     "privacy_footer": "Privacy policies",
     "help_footer": "Help",
-    "delete_account": "Delete account"
+    "delete_account": "Delete account",
+    "jobs": "Work in Santa Cruz",
+    "work_with_us": "Work with Chamba",
+    "services": "Service guides"
   },
   "Features": {
     "title_part1": "Real people.",

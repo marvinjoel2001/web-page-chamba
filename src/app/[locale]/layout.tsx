@@ -41,12 +41,8 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: {
-      default: data.title,
-      template: data.titleTemplate,
-    },
+    title: data.title,
     description: data.description,
-    keywords: data.keywords,
     applicationName: "Chamba",
     authors: [{ name: "Chamba App", url: SITE_URL }],
     creator: "Chamba App",

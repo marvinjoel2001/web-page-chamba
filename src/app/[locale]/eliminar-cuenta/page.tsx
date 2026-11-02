@@ -22,6 +22,7 @@ export async function generateMetadata({
     robots: {
       index: false,
       follow: true,
+      googleBot: { index: false, follow: true },
     },
     alternates: {
       canonical: `${SITE_URL}/${locale}/eliminar-cuenta`,

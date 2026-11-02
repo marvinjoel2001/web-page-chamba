@@ -37,14 +37,21 @@ const routes: RouteConfig[] = [
     path: '',
     changeFrequency: 'daily',
     priority: 1.0,
-    lastModified: '2026-10-30',
+    lastModified: '2026-11-02',
     images: allImageUrls,
   },
   {
     path: '/unete',
     changeFrequency: 'daily',
     priority: 0.95,
-    lastModified: '2026-10-30',
+    lastModified: '2026-11-02',
+    images: workerImageUrls,
+  },
+  {
+    path: '/trabajo-santa-cruz',
+    changeFrequency: 'monthly',
+    priority: 0.9,
+    lastModified: '2026-11-02',
     images: workerImageUrls,
   },
   {
@@ -67,7 +74,7 @@ const routes: RouteConfig[] = [
     lastModified: '2026-06-15',
   },
   // `/eliminar-cuenta` queda fuera a propósito: la página lleva `noindex`
-  // (requisito de Google Play). Declarar en el sitemap una URL que pedimos
+  // por ser una página de gestión de cuenta. Declarar en el sitemap una URL que pedimos
   // no indexar envía señales contradictorias.
 ];
 
@@ -75,16 +82,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const route of routes) {
+    // Help and legal content are currently in Spanish in every locale.
+    // Their duplicate URLs canonicalize to Spanish until genuinely translated.
+    const locales = ['/help', '/terms', '/privacy'].includes(route.path) ? ['es'] : routing.locales;
     // Generar alternates con hreflang para cada idioma soportado
     const languages: Record<string, string> = {};
-    for (const loc of routing.locales) {
+    for (const loc of locales) {
       languages[loc] = `${SITE_URL}/${loc}${route.path}`;
     }
     languages['x-default'] = `${SITE_URL}/es${route.path}`;
 
     const lastModified = new Date(route.lastModified);
 
-    for (const locale of routing.locales) {
+    for (const locale of locales) {
       entries.push({
         url: `${SITE_URL}/${locale}${route.path}`,
         lastModified,

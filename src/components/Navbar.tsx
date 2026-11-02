@@ -68,6 +68,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
   }, []);
 
   const menuItems = [
+    { name: t("menu_jobs"), href: "/trabajo-santa-cruz", show: activeRole === "worker" },
     { name: activeRole === "worker" ? "Crear mi cuenta" : t("menu_how_it_works"), href: activeRole === "worker" ? (setActiveRole ? "#registro" : "/unete#registro") : "/#como-funciona", show: true },
     { name: t("menu_categories"), href: "/#categorias", show: activeRole === "client" },
     { name: t("menu_testimonials"), href: "/#testimonios", show: true },

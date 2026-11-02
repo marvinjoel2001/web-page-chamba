@@ -75,10 +75,10 @@ const clientSlides: PhoneSlide[] = [
 const content: Record<Role, HeroContent> = {
   client: {
     eyebrow: "Para quien necesita un servicio",
-    titleStart: "Encuentra a alguien que haga",
-    titleHighlight: "el trabajo.",
+    titleStart: "Encuentra trabajadores en",
+    titleHighlight: "Santa Cruz.",
     description:
-      "Dices lo que necesitas por voz o por texto, pones cuánto quieres pagar y un trabajador verificado de tu zona acepta tu oferta.",
+      "Consigue ayuda para limpieza, plomería, electricidad y otros servicios en Santa Cruz de la Sierra, Bolivia. Dices lo que necesitas, propones cuánto pagar y coordinas con un trabajador de tu zona.",
     points: [
       "Publicar tu pedido es gratis",
       "Trabajadores cerca de tu casa",
@@ -96,8 +96,8 @@ const content: Record<Role, HeroContent> = {
   },
   worker: {
     eyebrow: "Para quien quiere trabajar",
-    titleStart: "Crea tu cuenta y empieza",
-    titleHighlight: "en Chamba.",
+    titleStart: "Ofrece tu trabajo en",
+    titleHighlight: "Santa Cruz.",
     description:
       "Regístrate con tus datos básicos. Entra a la app, explora y completa tu perfil a tu ritmo. Nuestro equipo te acompañará con la verificación para empezar a trabajar.",
     points: [
@@ -123,7 +123,7 @@ export default function Hero({ activeRole }: HeroProps) {
   return (
     <section className={`relative pt-28 pb-16 md:pb-24 ${activeRole === "worker" ? "md:pt-28" : "md:pt-36"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeRole}
             initial={{ opacity: 0, y: 12 }}

@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { CheckCircle2, AlertCircle, Loader2, ExternalLink } from "lucide-react";
 import { subscribeEmail } from "../actions/subscribe";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 const linkClass = "focus-ring rounded text-base font-medium text-ink-soft hover:text-ink hover:underline decoration-accent decoration-2 underline-offset-4";
 
 export default function Footer() {
   const t = useTranslations("Footer");
+  const locale = useLocale();
+  const servicesPath = locale === "en" ? "/services" : locale === "pt" ? "/servicos" : "/trabajos";
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -74,6 +76,8 @@ export default function Footer() {
             <div>
               <h2 className="text-sm font-bold uppercase tracking-wider text-ink">{t("company")}</h2>
               <ul className="mt-4 flex flex-col gap-3">
+                <li><Link href="/trabajo-santa-cruz" className={linkClass}>{t("jobs")}</Link></li>
+                <li><Link href="/unete" className={linkClass}>{t("work_with_us")}</Link></li>
                 <li><Link href="/#nosotros" className={linkClass}>{t("about")}</Link></li>
                 <li><Link href="/#testimonios" className={linkClass}>{t("testimonials")}</Link></li>
                 <li><Link href="/#como-funciona" className={linkClass}>{t("how_it_works")}</Link></li>
@@ -88,6 +92,7 @@ export default function Footer() {
               <h2 className="text-sm font-bold uppercase tracking-wider text-ink">{t("resources")}</h2>
               <ul className="mt-4 flex flex-col gap-3">
                 <li><Link href="/help" className={linkClass}>{t("help")}</Link></li>
+                <li><Link href={servicesPath} className={linkClass}>{t("services")}</Link></li>
                 <li><Link href="/terms" className={linkClass}>{t("terms")}</Link></li>
                 <li><Link href="/privacy" className={linkClass}>{t("privacy")}</Link></li>
               </ul>

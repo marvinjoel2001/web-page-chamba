@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import HomeClient from "@/components/HomeClient";
-import { JobPostingsJsonLd } from "@/components/seo/JsonLd";
-import { SITE_URL, SEO_DATA } from "@/lib/seo";
+import EmploymentSection from "@/components/EmploymentSection";
+import { SITE_URL, SEO_DATA, getLocale } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,7 +16,6 @@ export async function generateMetadata({
   return {
     title: data.title,
     description: data.description,
-    keywords: data.keywords,
     alternates: {
       canonical: `${SITE_URL}/${loc}`,
       languages: {
@@ -58,8 +57,7 @@ export default async function HomePage({
 
   return (
     <>
-      <JobPostingsJsonLd />
-      <HomeClient />
+      <HomeClient><EmploymentSection locale={getLocale(locale)} /></HomeClient>
     </>
   );
 }
