@@ -68,6 +68,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
   }, []);
 
   const menuItems = [
+    { name: 'Publicar un trabajo', href: '/publicar-trabajo', show: activeRole === 'client' },
     { name: t("menu_jobs"), href: "/trabajo-santa-cruz", show: activeRole === "worker" },
     { name: activeRole === "worker" ? "Crear mi cuenta" : t("menu_how_it_works"), href: activeRole === "worker" ? (setActiveRole ? "#registro" : "/unete#registro") : "/#como-funciona", show: true },
     { name: t("menu_categories"), href: "/#categorias", show: activeRole === "client" },
@@ -104,9 +105,9 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
 
           <div className="hidden md:flex items-center gap-3">
             {setActiveRole && <RoleSwitch activeRole={activeRole} setActiveRole={setActiveRole} />}
-            <Link href="/#descargar" className="btn btn-primary !min-h-11 !px-5">
+            <Link href={activeRole === 'client' ? '/publicar-trabajo' : '/#descargar'} className="btn btn-primary !min-h-11 !px-5">
               <Download className="w-4 h-4" />
-              <span>{t("install_app")}</span>
+              <span>{activeRole === 'client' ? 'Publicar trabajo' : t("install_app")}</span>
             </Link>
           </div>
 

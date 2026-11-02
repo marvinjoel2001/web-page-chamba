@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, ArrowRight, ShieldCheck, HardHat, Eye, EyeOff } from "lucide-react";
 import { useTranslations } from "next-intl";
+import PhoneVerification from './PhoneVerification';
+import { bolivianPhone } from '@/lib/firebase-phone';
 
 export default function WorkerRegistrationForm() {
   const t = useTranslations("WorkerRegistrationForm");
@@ -10,6 +12,8 @@ export default function WorkerRegistrationForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [phoneToken, setPhoneToken] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
   const successHeadingRef = useRef<HTMLHeadingElement>(null);
 
@@ -28,6 +32,7 @@ export default function WorkerRegistrationForm() {
     setError("");
     setIsSubmitting(true);
     try {
+      if (!phoneToken) throw new Error('Verifica primero tu celular con el código SMS.');
       const configuredUrl = process.env.NEXT_PUBLIC_API_URL;
       if (!configuredUrl && process.env.NODE_ENV === "production") throw new Error(t("error_msg"));
       const base = (configuredUrl || "http://localhost:3001/api").replace(/\/+$/, "");
@@ -38,7 +43,7 @@ export default function WorkerRegistrationForm() {
         body: JSON.stringify({
           type: "worker", source: "web",
           firstName: String(values.get("firstName")).trim(),
-          phone: String(values.get("phone")).trim(),
+          phone: bolivianPhone(phone), phoneIdToken: phoneToken,
           email: String(values.get("email")).trim(),
           password: String(values.get("password")),
         }),
@@ -96,14 +101,17 @@ export default function WorkerRegistrationForm() {
                   maxLength={field.name === "password" ? 72 : field.name === "phone" ? 24 : 254}
                   pattern={field.name === "firstName" ? ".*\\S.*" : field.name === "phone" ? "[+0-9 ()\\-]{7,24}" : undefined}
                   placeholder={t(field.placeholder)} disabled={isSubmitting}
+                  value={field.name === 'phone' ? phone : undefined}
+                  onChange={field.name === 'phone' ? event => { setPhoneToken(''); setPhone(event.target.value); } : undefined}
                   className={`w-full rounded-xl border border-line bg-white px-4 py-3 text-ink placeholder:text-slate-400 focus:outline-none focus:border-accent-strong focus:ring-2 focus:ring-accent-tint disabled:opacity-60 ${field.name === "password" ? "pr-14" : ""}`} />
                 {field.name === "password" && <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={t(showPassword ? "hide_password" : "show_password")} aria-pressed={showPassword} className="focus-ring absolute right-1 top-1 flex h-10 w-10 items-center justify-center rounded-lg text-ink-soft">{showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}</button>}
                 </div>
               </div>
             ))}
             <p className="text-xs text-slate-600">{t("password_hint")}</p>
+            <PhoneVerification key={phone} phone={phone} onVerified={setPhoneToken} disabled={isSubmitting}/>
             {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
-            <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full !min-h-13 disabled:opacity-60">
+            <button type="submit" disabled={isSubmitting || !phoneToken} className="btn btn-primary w-full !min-h-13 disabled:opacity-60">
               {isSubmitting && <Loader2 aria-hidden="true" className="h-5 w-5 animate-spin" />}
               {t(isSubmitting ? "btn_sending" : "btn_submit")}
               {!isSubmitting && <ArrowRight aria-hidden="true" className="h-4 w-4" />}

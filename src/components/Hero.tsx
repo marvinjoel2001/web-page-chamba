@@ -7,7 +7,6 @@ import {
   Check,
   CheckCircle2,
   Clock,
-  Download,
   MapPin,
   MessageCircle,
   Mic,
@@ -19,6 +18,7 @@ import React from "react";
 import AppPhoneMockup, { type PhoneSlide } from "@/components/mockups/AppPhoneMockup";
 import WorkerRegistrationForm from "@/components/WorkerRegistrationForm";
 import type { Role } from "@/lib/role";
+import { Link } from '@/i18n/routing';
 
 interface HeroProps {
   activeRole: Role;
@@ -84,7 +84,7 @@ const content: Record<Role, HeroContent> = {
       "Trabajadores cerca de tu casa",
       "Hablas y pagas directo, sin intermediarios",
     ],
-    primary: { label: "Descargar la app", href: "#descargar" },
+    primary: { label: "Publicar un trabajo", href: "/publicar-trabajo" },
     secondary: { label: "Ver cómo funciona", href: "#como-funciona" },
     note: "Disponible en Santa Cruz de la Sierra",
     phone: {
@@ -162,11 +162,11 @@ export default function Hero({ activeRole }: HeroProps) {
               </ul>
 
               <div className={`${activeRole === "worker" ? "hidden lg:flex" : "flex"} mt-9 flex-wrap items-center gap-3`}>
-                <a href={c.primary.href} className="btn btn-primary">
-                  {activeRole === "client" && <Download className="w-4 h-4" />}
+                <Link href={c.primary.href} className="btn btn-primary">
+                  {activeRole === "client" && <ArrowRight className="w-4 h-4" />}
                   <span>{c.primary.label}</span>
                   {activeRole === "worker" && <ArrowRight className="w-4 h-4" />}
-                </a>
+                </Link>
                 <a href={c.secondary.href} className="btn btn-secondary">
                   {c.secondary.label}
                 </a>
