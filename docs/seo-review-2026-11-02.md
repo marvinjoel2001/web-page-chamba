@@ -1,6 +1,6 @@
 # Revisión SEO de Chamba — 2 de noviembre de 2026
 
-Dominio revisado: https://www.chambatrabajo.com. Los cambios de esta revisión están preparados en el proyecto local; todavía no se han publicado.
+Dominio revisado: https://www.chambatrabajo.com. Las correcciones se publicaron en Vercel desde el commit `039b4d3`. La comprobación SEO de las 45 URL pasó también contra el dominio público.
 
 ## Diagnóstico de la versión pública
 
@@ -18,9 +18,9 @@ Se comprobaron las respuestas HTTP de la portada, el registro, robots.txt, sitem
 | Idiomas | Ayuda, privacidad y términos tenían el mismo contenido principal en español bajo tres URL de idioma. |
 | Rendimiento | El video decorativo de fondo pesa 9.96 MB y se solicitaba durante la carga inicial. No se midieron Core Web Vitals de usuarios reales. |
 
-Las búsquedas públicas realizadas no permiten determinar la cobertura real de indexación. No se accedió a Search Console; no se puede afirmar que Google no haya indexado el sitio ni diagnosticar acciones manuales, impresiones o posiciones.
+En la revisión inicial no se tenía acceso a Search Console. Durante la publicación se verificó la propiedad de prefijo `https://www.chambatrabajo.com/` mediante el archivo HTML oficial de Google. Search Console confirmó que el sitemap se procesó correctamente y descubrió 45 páginas. La inspección de la portada `/es` mostró «Descubierta: actualmente sin indexar», sin rastreo previo registrado. El resto de los informes todavía está procesando datos; no hay evidencia suficiente para atribuir posiciones o acciones manuales.
 
-## Correcciones preparadas
+## Correcciones publicadas
 
 - Dominio canónico estable: `https://www.chambatrabajo.com`. Las URL temporales de Vercel ya no sustituyen el dominio cuando falta la variable de entorno.
 - Títulos sin marca duplicada y descripciones centradas en el producto real, sin prometer cientos de pedidos diarios.
@@ -37,11 +37,13 @@ Las búsquedas públicas realizadas no permiten determinar la cobertura real de 
 
 ## Validación
 
+La prueba en tiempo real de Google Search Console del 2 de noviembre de 2026 a las 13:06 (Bolivia) confirmó para `/es`: «La URL está disponible para Google» y «La página se puede indexar». Esto verifica el acceso y la posibilidad técnica de indexación; no equivale a estar ya indexada.
+
 La compilación de producción y la comprobación de TypeScript pasan. ESLint termina sin errores; quedan doce advertencias preexistentes sobre imágenes y símbolos sin uso.
 
 `npm run check:seo` comprueba por HTTP la versión de producción local: 45 URL del sitemap, títulos únicos, descripción, H1, canonical, hreflang, robots, JSON-LD parseable, ausencia de vacantes genéricas, exclusión de páginas noindex, consolidación del contenido español, enlaces iniciales y errores 404 de oficios inexistentes.
 
-Se abrió la guía en Chrome y se comprobó su contenido y geometría mediante el DOM. La captura gráfica del navegador agotó el tiempo de espera; no se presenta esta revisión como una auditoría visual o una medición de velocidad móvil.
+Se abrió la guía en Chrome y se comprobó su contenido y geometría mediante el DOM. La captura de la guía agotó el tiempo de espera; posteriormente se guardaron capturas de Search Console con el sitemap procesado y la prueba de acceso de Google. No se presenta esta revisión como una medición de velocidad móvil.
 
 Para reproducir:
 
@@ -52,11 +54,11 @@ npm run start -- --port 3100
 npm run check:seo
 ```
 
-## Pasos que faltan para que Google vea los cambios
+## Publicación, descubrimiento y seguimiento
 
-1. Publicar esta versión mediante el flujo habitual del proyecto. Mantener `NEXT_PUBLIC_SITE_URL=https://www.chambatrabajo.com` en el alojamiento.
-2. Abrir [Google Search Console](https://search.google.com/search-console), seleccionar o verificar la propiedad de `chambatrabajo.com`. Para verificar por etiqueta HTML, configurar el token real en `GOOGLE_SITE_VERIFICATION` y publicar; la verificación por DNS se configura en el proveedor del dominio.
-3. Enviar [sitemap.xml](https://www.chambatrabajo.com/sitemap.xml) y usar Inspección de URL para la portada, `/es/trabajo-santa-cruz`, `/es/unete` y las guías de oficio prioritarias. Revisar el HTML rastreado y solicitar indexación.
+1. Completado: correcciones publicadas y verificadas en producción. Mantener `NEXT_PUBLIC_SITE_URL=https://www.chambatrabajo.com` en el alojamiento.
+2. Completado: propiedad de prefijo `https://www.chambatrabajo.com/` verificada en [Google Search Console](https://search.google.com/search-console?resource_id=https%3A%2F%2Fwww.chambatrabajo.com%2F). Conservar `public/googlea3d44afce5340b9e.html` para mantener la verificación. La propiedad de dominio por DNS es diferente y no se modificó.
+3. Completado: [sitemap.xml](https://www.chambatrabajo.com/sitemap.xml) enviado y procesado por Google, con 45 páginas descubiertas. La solicitud manual adicional de la portada no se completó: Google mostró un error al enviar la solicitud y un aviso de conexión fallida con su servicio reCAPTCHA. No se sorteó esa comprobación ni se afirma que la solicitud manual haya quedado aceptada.
 4. Consultar en Search Console las páginas excluidas, canonical elegida por Google, acciones manuales, experiencia móvil e impresiones por consulta. No repetir solicitudes masivamente.
 5. Confirmar con datos reales los precios de referencia, zonas, testimonios y cifras comerciales existentes. Completar las traducciones pendientes de los componentes de portada y registro.
 6. Para búsquedas de vacantes concretas, publicar solicitudes reales con una URL por vacante, descripción visible, ubicación, fecha y forma de postular. Solo entonces añadir `JobPosting`; retirar o caducar las vacantes cerradas. La Indexing API se reserva para páginas admitidas por Google, no para indexar toda la web.
@@ -65,3 +67,7 @@ npm run check:seo
 Una campaña publicitaria en Google Ads puede dar visibilidad de pago cuando esté aprobada y activa; es una decisión aparte, con presupuesto. Las mejoras SEO no garantizan un primer puesto ni una fecha de indexación.
 
 Referencias oficiales: [reglas de JobPosting](https://developers.google.com/search/docs/appearance/structured-data/job-posting), [rastreo e indexación](https://developers.google.com/search/help/crawling-index-faq), [solicitar un nuevo rastreo](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl), [sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview).
+
+## Difusión externa
+
+Se encontró una conversación relevante de r/BOLIVIA sobre fuentes de trabajo. El usuario indicó después «Solo publicar las mejoras de la web por ahora»: no se publicó en Reddit, Facebook ni otros foros. No se compraron enlaces ni anuncios.
