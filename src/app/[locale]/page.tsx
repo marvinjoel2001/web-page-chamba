@@ -4,6 +4,9 @@ import HomeClient from "@/components/HomeClient";
 import EmploymentSection from "@/components/EmploymentSection";
 import { SITE_URL, SEO_DATA, getLocale } from "@/lib/seo";
 
+// La lista de trabajos publicados se renueva como mucho cada minuto.
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {
