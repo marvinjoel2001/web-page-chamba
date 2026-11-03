@@ -1,10 +1,14 @@
 import { setRequestLocale } from "next-intl/server";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PublishedJobs from "@/components/PublishedJobs";
 import { Link } from "@/i18n/routing";
 import { employmentContent } from "@/lib/employment-content";
 import { servicePrefix } from "@/lib/service-pages";
 import { getLocale, localizedUrl, SITE_URL, type PageParams } from "@/lib/seo";
+
+// La lista de trabajos publicados se renueva como mucho cada minuto.
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: PageParams) {
   const locale = getLocale((await params).locale);
@@ -48,6 +52,7 @@ export default async function SantaCruzJobs({ params }: PageParams) {
           <Link href="/unete#registro" locale={locale} className="btn btn-primary !whitespace-normal">{content.register}</Link>
           <a href="https://play.google.com/store/apps/details?id=com.chambatrabajo.app" className="btn btn-secondary !whitespace-normal" target="_blank" rel="noopener noreferrer">{content.download}</a>
         </div>
+        <PublishedJobs locale={locale} className="mt-16" />
         <section className="mt-16" aria-labelledby="oficios-title">
           <h2 id="oficios-title" className="text-3xl font-bold">{content.tradesTitle}</h2>
           <div className="mt-7 grid sm:grid-cols-2 gap-6">

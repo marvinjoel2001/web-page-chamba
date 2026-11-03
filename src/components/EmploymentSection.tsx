@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/routing";
+import PublishedJobs from "@/components/PublishedJobs";
 import { employmentContent } from "@/lib/employment-content";
 import type { Locale } from "@/lib/seo";
 import { servicePrefix } from "@/lib/service-pages";
@@ -17,6 +18,7 @@ export default function EmploymentSection({ locale }: { locale: Locale }) {
           <Link href="/unete" locale={locale} className="focus-ring font-bold underline decoration-accent decoration-2 underline-offset-4">{content.register}</Link>
           <Link href={`/${servicePrefix(locale)}`} locale={locale} className="focus-ring font-bold underline decoration-accent decoration-2 underline-offset-4">{content.servicesLink}</Link>
         </div>
+        <PublishedJobs locale={locale} limit={6} headingLevel={3} className="mt-12" />
       </div>
     </section>
   );
