@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Download, ExternalLink, Search, HardHat, Plus } from "lucide-react";
+import { Menu, X, Download, ExternalLink, Search, HardHat } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, usePathname } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
+import FloatingActions from "./FloatingActions";
 import { useTranslations } from "next-intl";
 import type { Role } from "@/lib/role";
 
@@ -61,7 +62,6 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   // El botón flotante aparece al dejar atrás el hero (ahí ya está el botón grande).
   const [pastHero, setPastHero] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -173,20 +173,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
         )}
       </AnimatePresence>
 
-      {/* Acción principal flotante: publicar (cliente) o descargar la app (trabajador). */}
-      {!pathname.startsWith("/publicar-trabajo") && !pathname.startsWith("/eliminar-cuenta") && (
-        <Link
-          href={activeRole === "client" ? "/publicar-trabajo" : "/#descargar"}
-          aria-hidden={!pastHero || isOpen}
-          tabIndex={pastHero && !isOpen ? undefined : -1}
-          className={`btn btn-primary fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-40 !min-h-13 !px-6 ring-4 ring-[rgb(var(--veil)/0.85)] shadow-[0_16px_36px_-12px_color-mix(in_srgb,var(--accent)_75%,transparent)] transition-[opacity,translate,background-color] duration-300 motion-reduce:transition-none ${
-            pastHero && !isOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
-          }`}
-        >
-          {activeRole === "client" ? <Plus className="w-5 h-5" /> : <Download className="w-5 h-5" />}
-          <span>{activeRole === "client" ? "Publicar trabajo" : t("install_app")}</span>
-        </Link>
-      )}
+      <FloatingActions visible={pastHero && !isOpen} />
     </nav>
   );
 }
