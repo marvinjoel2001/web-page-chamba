@@ -195,3 +195,110 @@ body {
     linear-gradient(to right, rgba(77, 64, 56, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(77, 64, 56, 0.08) 1px, transparent 1px);
 }
+
+/*
+ * Botones flotantes (Publicar trabajo / Instalar app): píldora con brillo de
+ * vidrio, aro translúcido, halo del mismo color y el destello de tres rayitas
+ * de los títulos. Los colores son fijos (no cambian con el modo).
+ */
+.fab {
+  --fab-from: #7c3aed;
+  --fab-to: #5b21b6;
+  --fab-ink: #ffffff;
+  --fab-glow: rgba(109, 40, 217, 0.55);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  border-radius: 9999px;
+  color: var(--fab-ink);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  background: linear-gradient(180deg, var(--fab-from), var(--fab-to));
+  /* Sin el halo del texto sobre el video: dentro del botón se ve borroso. */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.55),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.08),
+    0 14px 32px -10px var(--fab-glow),
+    0 0 28px -6px var(--fab-glow);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s, translate 0.3s;
+}
+.fab:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.7),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.08),
+    0 18px 36px -10px var(--fab-glow),
+    0 0 34px -4px var(--fab-glow);
+}
+.fab:active {
+  transform: translateY(0) scale(0.98);
+}
+.fab:focus-visible {
+  outline: 3px solid var(--fab-to);
+  outline-offset: 6px;
+}
+.fab-install {
+  text-shadow: none;
+  --fab-from: #fcd34d;
+  --fab-to: #f2b01e;
+  --fab-ink: #2b211a;
+  --fab-glow: rgba(242, 176, 30, 0.6);
+}
+.fab-divider {
+  width: 1.5px;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0.3;
+}
+.fab-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 0.25rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.24);
+}
+.fab-install .fab-arrow {
+  background: rgba(255, 255, 255, 0.55);
+}
+/* Destello de tres rayitas arriba a la izquierda (mismo trazo que los títulos). */
+.fab::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: -0.85rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  background-color: var(--fab-to);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4.6' stroke-linecap='round'%3E%3Cpath d='M17.5 12 16.2 2.5'/%3E%3Cpath d='M13 15.5 5 7.8'/%3E%3Cpath d='M11.2 21.5 2 19.6'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4.6' stroke-linecap='round'%3E%3Cpath d='M17.5 12 16.2 2.5'/%3E%3Cpath d='M13 15.5 5 7.8'/%3E%3Cpath d='M11.2 21.5 2 19.6'/%3E%3C/svg%3E") no-repeat center / contain;
+  pointer-events: none;
+}
+@media (max-width: 639px) {
+  .fab {
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.375rem 0.375rem 0.375rem 1rem;
+    font-size: 0.9375rem;
+  }
+  .fab-arrow {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fab {
+    transition: none;
+  }
+}
