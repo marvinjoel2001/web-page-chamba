@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Download, ExternalLink, Search, HardHat } from "lucide-react";
+import { Menu, X, Download, ExternalLink, Search, HardHat, Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import type { Role } from "@/lib/role";
 
@@ -59,16 +59,21 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
   const t = useTranslations("Navbar");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // El botón flotante aparece al dejar atrás el hero (ahí ya está el botón grande).
+  const [pastHero, setPastHero] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      setPastHero(window.scrollY > window.innerHeight * 0.55);
+    };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const menuItems = [
-    { name: 'Publicar un trabajo', href: '/publicar-trabajo', show: activeRole === 'client' },
     { name: t("menu_jobs"), href: "/trabajo-santa-cruz", show: activeRole === "worker" },
     { name: activeRole === "worker" ? "Crear mi cuenta" : t("menu_how_it_works"), href: activeRole === "worker" ? (setActiveRole ? "#registro" : "/unete#registro") : "/#como-funciona", show: true },
     { name: t("menu_categories"), href: "/#categorias", show: activeRole === "client" },
@@ -96,7 +101,7 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="focus-ring rounded text-[15px] font-semibold text-ink-soft hover:text-ink hover:underline decoration-accent decoration-2 underline-offset-8 transition-colors"
+                className="focus-ring rounded whitespace-nowrap text-[15px] font-semibold text-ink-soft hover:text-ink hover:underline decoration-accent decoration-2 underline-offset-8 transition-colors"
               >
                 {item.name}
               </Link>
@@ -105,10 +110,6 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
 
           <div className="hidden md:flex items-center gap-3">
             {setActiveRole && <RoleSwitch activeRole={activeRole} setActiveRole={setActiveRole} />}
-            <Link href={activeRole === 'client' ? '/publicar-trabajo' : '/#descargar'} className="btn btn-primary !min-h-11 !px-5">
-              <Download className="w-4 h-4" />
-              <span>{activeRole === 'client' ? 'Publicar trabajo' : t("install_app")}</span>
-            </Link>
           </div>
 
           <div className="flex md:hidden items-center gap-2">
@@ -171,6 +172,21 @@ export default function Navbar({ activeRole, setActiveRole }: NavbarProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Acción principal flotante: publicar (cliente) o descargar la app (trabajador). */}
+      {!pathname.startsWith("/publicar-trabajo") && !pathname.startsWith("/eliminar-cuenta") && (
+        <Link
+          href={activeRole === "client" ? "/publicar-trabajo" : "/#descargar"}
+          aria-hidden={!pastHero || isOpen}
+          tabIndex={pastHero && !isOpen ? undefined : -1}
+          className={`btn btn-primary fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-40 !min-h-13 !px-6 ring-4 ring-[rgb(var(--veil)/0.85)] shadow-[0_16px_36px_-12px_color-mix(in_srgb,var(--accent)_75%,transparent)] transition-[opacity,translate,background-color] duration-300 motion-reduce:transition-none ${
+            pastHero && !isOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
+          }`}
+        >
+          {activeRole === "client" ? <Plus className="w-5 h-5" /> : <Download className="w-5 h-5" />}
+          <span>{activeRole === "client" ? "Publicar trabajo" : t("install_app")}</span>
+        </Link>
+      )}
     </nav>
   );
 }
