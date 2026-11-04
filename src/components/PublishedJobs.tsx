@@ -57,13 +57,13 @@ export default async function PublishedJobs({ locale, limit = 12, headingLevel =
       <Heading id="trabajos-publicados-title" className={headingLevel === 2 ? 'text-3xl font-bold' : 'text-2xl font-bold'}>{t.title}</Heading>
       <p className="mt-3 leading-relaxed text-ink-soft">{t.intro}</p>
       {!data || data.jobs.length === 0 ? (
-        <p data-solid className="mt-6 rounded-2xl border border-line bg-[#fffdf9] p-5 text-ink">{data ? t.empty : t.unavailable}</p>
+        <p data-solid className="mt-6 rounded-2xl bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] p-5 text-ink">{data ? t.empty : t.unavailable}</p>
       ) : (
         <>
           <p className="mt-2 text-sm font-semibold text-ink-soft">{t.count(data.total)}</p>
           <ul data-solid className="mt-5 grid gap-3 sm:grid-cols-2">
             {data.jobs.map((job, index) => (
-              <li key={`${job.createdAt}-${index}`} className="flex flex-col rounded-2xl border border-line bg-[#fffdf9] p-4 text-ink shadow-sm">
+              <li key={`${job.createdAt}-${index}`} className="flex flex-col rounded-2xl bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] p-4 text-ink">
                 <p className="font-bold leading-snug break-words">{job.title}</p>
                 <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-soft">
                   <span className="rounded-full bg-accent-tint px-2.5 py-0.5 font-semibold text-ink">{job.category}</span>
