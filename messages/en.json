@@ -207,7 +207,11 @@
     "worker_title": "Ready to earn more with your trade?",
     "client_desc": "Download Chamba App today. Post your first request for free and connect with verified workers in your neighborhood instantly.",
     "worker_desc": "Already created your account? Download Chamba and sign in. Complete your profile and verify your identity before accepting jobs.",
-    "scan_to_download": "Scan to download"
+    "scan_to_download": "Scan to download",
+    "google_play_btn": "Download on Google Play",
+    "app_store_btn": "Download on App Store",
+    "in_development": "In development",
+    "ios_tooltip": "iPhone (iOS) app in development. Coming soon to App Store."
   },
   "WorkerRegistrationForm": {
     "error_msg": "We could not create your account. Please try again.",

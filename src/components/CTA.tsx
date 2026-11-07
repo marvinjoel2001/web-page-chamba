@@ -3,14 +3,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { Role } from "@/lib/role";
+import { PLAY_STORE_URL } from "@/lib/seo";
 
 interface CTAProps {
   activeRole: Role;
 }
-
-const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.chambatrabajo.app";
-// TODO: reemplazar por el enlace real de App Store cuando la app esté publicada en iOS.
-const APP_STORE_URL = "#";
 
 function AppleIcon() {
   return (
@@ -51,14 +48,28 @@ export default function CTA({ activeRole }: CTAProps) {
         </AnimatePresence>
 
         <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full sm:w-auto">
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary w-full sm:w-auto"
+          >
             <PlayIcon />
-            Descargar en Google Play
+            {t("google_play_btn")}
           </a>
-          <a href={APP_STORE_URL} className="btn btn-secondary w-full sm:w-auto">
+          <button
+            type="button"
+            disabled
+            aria-disabled="true"
+            className="btn btn-secondary w-full sm:w-auto cursor-not-allowed opacity-75 border-dashed border-line inline-flex items-center justify-center gap-2.5"
+            title={t("ios_tooltip")}
+          >
             <AppleIcon />
-            Descargar en App Store
-          </a>
+            <span>{t("app_store_btn")}</span>
+            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-900 border border-amber-500/30">
+              {t("in_development")}
+            </span>
+          </button>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import { CheckCircle2, AlertCircle, Loader2, ExternalLink } from "lucide-react";
 import { subscribeEmail } from "../actions/subscribe";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { PLAY_STORE_URL } from "@/lib/seo";
 
 const linkClass = "focus-ring rounded text-base font-medium text-ink-soft hover:text-ink hover:underline decoration-accent decoration-2 underline-offset-4";
 
@@ -91,6 +92,11 @@ export default function Footer() {
             <div>
               <h2 className="text-sm font-bold uppercase tracking-wider text-ink">{t("resources")}</h2>
               <ul className="mt-4 flex flex-col gap-3">
+                <li>
+                  <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-1.5`}>
+                    Chamba en Google Play <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </li>
                 <li><Link href="/help" className={linkClass}>{t("help")}</Link></li>
                 <li><Link href={servicesPath} className={linkClass}>{t("services")}</Link></li>
                 <li><Link href="/terms" className={linkClass}>{t("terms")}</Link></li>

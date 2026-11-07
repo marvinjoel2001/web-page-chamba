@@ -207,7 +207,11 @@
     "worker_title": "Pronto para ganhar mais com seu ofício?",
     "client_desc": "Baixe o Chamba App hoje. Publique sua primeira solicitação gratuitamente e conecte-se instantaneamente a trabalhadores verificados no seu bairro.",
     "worker_desc": "Já criou sua conta? Baixe o Chamba e entre. Complete seu perfil e verifique sua identidade para começar a aceitar trabalhos.",
-    "scan_to_download": "Escaneie para baixar"
+    "scan_to_download": "Escaneie para baixar",
+    "google_play_btn": "Baixar no Google Play",
+    "app_store_btn": "Baixar na App Store",
+    "in_development": "Em desenvolvimento",
+    "ios_tooltip": "App para iPhone (iOS) em desenvolvimento. Em breve na App Store."
   },
   "WorkerRegistrationForm": {
     "error_msg": "Não foi possível criar sua conta. Tente novamente.",

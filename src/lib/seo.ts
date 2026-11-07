@@ -20,7 +20,7 @@ export function localizedUrl(locale: Locale, path = ''): string {
 }
 
 export const PLAY_STORE_URL =
-  'https://play.google.com/store/apps/details?id=com.chambatrabajo.app';
+  'https://play.google.com/store/apps/details?id=com.chambatrabajo.app&pcampaignid=web_share';
 
 export const AGENCY_PORTAL_URL = 'https://agency-chamba.vercel.app/';
 

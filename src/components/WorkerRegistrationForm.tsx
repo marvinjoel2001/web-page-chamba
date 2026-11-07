@@ -5,6 +5,7 @@ import { CheckCircle2, Loader2, ArrowRight, ShieldCheck, HardHat, Eye, EyeOff } 
 import { useTranslations } from "next-intl";
 import PhoneVerification from './PhoneVerification';
 import { bolivianPhone } from '@/lib/firebase-phone';
+import { PLAY_STORE_URL } from '@/lib/seo';
 
 export default function WorkerRegistrationForm() {
   const t = useTranslations("WorkerRegistrationForm");
@@ -79,7 +80,7 @@ export default function WorkerRegistrationForm() {
           <h2 ref={successHeadingRef} tabIndex={-1} className="mt-4 text-2xl font-bold outline-none">{t("success_title")}</h2>
           <p className="mt-4 text-slate-600">{t("success_msg")}</p>
           <p className="mt-4 text-slate-600">{t("success_contact")}</p>
-          <a className="btn btn-primary mt-6 w-full !whitespace-normal" href="https://play.google.com/store/apps/details?id=com.chambatrabajo.app" target="_blank" rel="noopener noreferrer">{t("download_app")}<ArrowRight className="h-4 w-4 shrink-0" /></a>
+          <a className="btn btn-primary mt-6 w-full !whitespace-normal" href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">{t("download_app")}<ArrowRight className="h-4 w-4 shrink-0" /></a>
           <p className="mt-4 text-sm text-slate-600">{t("success_login")}</p>
           <button type="button" onClick={() => setIsSuccess(false)} className="mt-6 text-sm font-semibold underline focus-ring">{t("btn_register_another")}</button>
         </div>

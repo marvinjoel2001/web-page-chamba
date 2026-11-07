@@ -207,7 +207,11 @@
     "worker_title": "¿Listo para ganar más con tu oficio?",
     "client_desc": "Descarga Chamba, publica tu pedido gratis y recibe ofertas de trabajadores verificados de tu zona.",
     "worker_desc": "¿Ya creaste tu cuenta? Descarga Chamba e inicia sesión. Completa tu perfil y verifica tu identidad para empezar a aceptar trabajos.",
-    "scan_to_download": "Escanea para descargar"
+    "scan_to_download": "Escanea para descargar",
+    "google_play_btn": "Descargar en Google Play",
+    "app_store_btn": "Descargar en App Store",
+    "in_development": "En desarrollo",
+    "ios_tooltip": "App para iPhone (iOS) en desarrollo. Muy pronto en App Store."
   },
   "WorkerRegistrationForm": {
     "error_msg": "No pudimos crear tu cuenta. Inténtalo de nuevo.",
