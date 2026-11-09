@@ -100,6 +100,29 @@ test('hourly and daily totals are computed on the server from units and rate',as
   assert.equal(sent.budget,300);assert.equal(sent.days,2);assert.equal(sent.dailyRate,150);assert.equal(sent.startDate,start);assert.equal(sent.priceType,'Por día');
 });
 
+test('materials choice and start time reach the backend in the app format',async()=>{
+  const f=fixture();f.jar.set('chamba_session','session-token');
+  assert.equal((await f.jobs.POST(req('jobs',{...job,budget:80}))).status,200);
+  assert.equal(sentJob(f).body.materialsMode,'client');
+  assert.equal((await f.jobs.POST(req('jobs',{...job,budget:80,materialsMode:'worker'}))).status,200);
+  assert.equal(sentJob(f).body.materialsMode,'worker');
+  const start=boliviaDay(1);
+  assert.equal((await f.jobs.POST(req('jobs',{...job,modality:'daily',days:1,dailyRate:150,startDate:start,startTime:'08:00'}))).status,200);
+  assert.equal(sentJob(f).body.startDate,`${start}T08:00:00`);
+  assert.equal((await f.jobs.POST(req('jobs',{...job,modality:'daily',days:1,dailyRate:150,startDate:start}))).status,200);
+  assert.equal(sentJob(f).body.startDate,start);
+});
+
+test('bad materials choices and start times never reach the job service',async()=>{
+  const f=fixture();f.jar.set('chamba_session','session-token');
+  const daily={...job,modality:'daily',days:1,dailyRate:150};
+  const cases=[{...job,budget:80,materialsMode:'discuss'},{...job,budget:80,materialsMode:7},
+    {...daily,startTime:'08:00'},{...daily,startDate:boliviaDay(1),startTime:'25:00'},{...daily,startDate:boliviaDay(1),startTime:'8am'},
+    {...daily,startDate:boliviaDay(0),startTime:'00:00'}];
+  for(const body of cases) assert.equal((await f.jobs.POST(req('jobs',body))).status,400,JSON.stringify(body));
+  assert.ok(f.requests.every(r=>!r.url.endsWith('/mobile/requests')));
+});
+
 test('unknown categories, invalid modalities and bad amounts never reach the job service',async()=>{
   const f=fixture();f.jar.set('chamba_session','session-token');
   const cases=[{...job,category:'Mudanzas',budget:80},{...job,category:'vieja',budget:80},{...job,modality:'weekly',budget:80},

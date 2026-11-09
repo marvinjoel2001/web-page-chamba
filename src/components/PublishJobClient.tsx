@@ -6,6 +6,7 @@ import Footer from './Footer';
 import PhoneVerification from './PhoneVerification';
 import JobLocationPicker,{type JobPoint} from './JobLocationPicker';
 import {bolivianPhone} from '@/lib/firebase-phone';
+import {PLAY_STORE_URL} from '@/lib/seo';
 
 type User={id:string;type:'client'|'worker';firstName:string};
 type Job={id:string;title:string;budget:number;status:string;createdAt:string};
@@ -18,6 +19,13 @@ const MODALITIES:{key:Modality;label:string;hint:string}[]=[
   {key:'fixed',label:'Por trabajo',hint:'Un precio por todo el trabajo.'},
   {key:'hourly',label:'Por hora',hint:'Tarifa por hora × horas estimadas.'},
   {key:'daily',label:'Por día',hint:'Tarifa por día × días de trabajo.'},
+];
+// Igual que la app: el cliente no sabe qué materiales hacen falta, solo
+// elige si le cotizan el trabajo o el trabajo con los materiales.
+type Materials='client'|'worker';
+const MATERIALS:{key:Materials;label:string;hint:string}[]=[
+  {key:'client',label:'Solo mano de obra',hint:'Ya tienes los materiales. Te ofertan solo por el trabajo.'},
+  {key:'worker',label:'Mano de obra + materiales',hint:'El trabajador ve lo que hace falta y te cotiza los materiales aparte.'},
 ];
 const bs=(value:number)=>`Bs ${value.toLocaleString('es-BO',{maximumFractionDigits:2})}`;
 const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/La_Paz'}).format(new Date());
@@ -35,6 +43,7 @@ export default function PublishJobClient(){
   const [point,setPoint]=useState<JobPoint|null>(null),[jobs,setJobs]=useState<Job[]>([]);
   const [catalog,setCatalog]=useState<Catalog|null>(null),[catalogError,setCatalogError]=useState('');
   const [modality,setModality]=useState<Modality>('fixed');
+  const [materials,setMaterials]=useState<Materials>('client'),[startDate,setStartDate]=useState('');
   const [hours,setHours]=useState('2'),[hourlyRate,setHourlyRate]=useState(''),[days,setDays]=useState('1'),[dailyRate,setDailyRate]=useState('');
   const working=useRef(false);
   const loadJobs=useCallback(async()=>{const result=await call('jobs');setJobs(result.jobs??[]);},[]);
@@ -68,12 +77,12 @@ export default function PublishJobClient(){
     try{
       if(!point)throw new Error('Marca en el mapa dónde se hará el trabajo.');
       const price=modality==='hourly'?{estimatedHours:Number(hours),hourlyRate:Number(hourlyRate)}
-        :modality==='daily'?{days:Number(days),dailyRate:Number(dailyRate),startDate:form.get('startDate')||undefined}
+        :modality==='daily'?{days:Number(days),dailyRate:Number(dailyRate),startDate:startDate||undefined,startTime:(startDate&&form.get('startTime'))||undefined}
         :{budget:Number(form.get('budget'))};
-      const result=await call('jobs','POST',{title:form.get('title'),description:form.get('description'),category:form.get('category'),address:form.get('address'),modality,...price,...point});
+      const result=await call('jobs','POST',{title:form.get('title'),description:form.get('description'),category:form.get('category'),address:form.get('address'),modality,materialsMode:materials,...price,...point});
       if(!result.request?.id)throw new Error('No se pudo confirmar la publicación. Revisa tus trabajos antes de reintentar.');
       setSuccess('Tu trabajo ya está publicado en Chamba. Entra a la app con esta misma cuenta para revisar ofertas y coordinar con el trabajador.');
-      element.reset();setPoint(null);setHours('2');setHourlyRate('');setDays('1');setDailyRate('');await loadJobs();
+      element.reset();setPoint(null);setHours('2');setHourlyRate('');setDays('1');setDailyRate('');setMaterials('client');setStartDate('');await loadJobs();
     }catch(e){
       setError(e instanceof Error?e.message:'No se pudo publicar.');void loadJobs().catch(()=>{});
       // Si el admin apagó la modalidad mientras se llenaba el formulario.
@@ -85,7 +94,7 @@ export default function PublishJobClient(){
 
   return <div className="on-video min-h-screen text-ink"><Navbar activeRole="client"/><main className="mx-auto max-w-4xl px-4 pb-16 pt-32"><div className="mb-7"><Link href="/" className="text-sm font-semibold text-ink-soft">← Volver a Chamba</Link><h1 className="mt-4 text-3xl font-extrabold sm:text-4xl">Publica tu trabajo en Chamba</h1><p className="mt-3 text-ink-soft">Cuéntanos qué necesitas, marca el lugar y ofrece tu presupuesto en bolivianos.</p></div>
     {error&&<p role="alert" className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-red-800">{error}</p>}
-    {success&&<p role="status" className="mb-5 rounded-xl border border-green-200 bg-green-50 p-4 text-green-800">{success}</p>}
+    {success&&<div role="status" className="mb-5 rounded-xl border border-green-200 bg-green-50 p-4 text-green-800"><p>{success}</p><a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-3 !whitespace-normal">Descargar Chamba</a></div>}
     {loading?<p role="status">Comprobando tu cuenta…</p>:!user?<section data-solid className="mx-auto max-w-lg rounded-3xl bg-white/72 backdrop-blur-xl backdrop-saturate-150 border border-white/70 shadow-[0_12px_40px_-8px_rgba(31,38,135,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] p-6 text-ink sm:p-8"><h2 className="text-xl font-bold">{mode==='register'?'Primero, crea tu cuenta de cliente':'Entra con tu cuenta de Chamba'}</h2><p className="mt-2 text-sm text-ink-soft">{mode==='register'?'Tu número se verifica una vez. Después entrarás con tu contraseña.':'Usa el mismo correo o celular y contraseña que en la app.'}</p>
       <div className="my-5 flex rounded-xl bg-white/60 p-1">{(['register','login'] as const).map(value=><button key={value} type="button" disabled={busy} onClick={()=>{setMode(value);setError('');setPhoneToken('');}} className={`flex-1 rounded-lg p-2 text-sm font-bold ${mode===value?'bg-white shadow-sm':''}`}>{value==='register'?'Crear cuenta':'Ya tengo cuenta'}</button>)}</div>
       <form className="space-y-4" onSubmit={authenticate}>{mode==='register'?<><label className="block text-sm font-bold">Tu nombre<input className={field} name="firstName" autoComplete="name" required maxLength={80} disabled={busy}/></label><label className="block text-sm font-bold">Correo electrónico<input className={field} type="email" name="email" autoComplete="email" required disabled={busy}/></label><label className="block text-sm font-bold">Celular<input className={field} type="tel" autoComplete="tel" placeholder="+591 7XXXXXXX" required value={phone} onChange={e=>{setPhoneToken('');setPhone(e.target.value);}} disabled={busy}/></label><PhoneVerification key={phone} phone={phone} onVerified={setPhoneToken} disabled={busy}/></>:<label className="block text-sm font-bold">Correo o celular<input className={field} name="identifier" autoComplete="username" required disabled={busy}/></label>}
@@ -99,12 +108,15 @@ export default function PublishJobClient(){
         <label className="block text-sm font-bold">Título del trabajo<input className={field} name="title" placeholder="Por ejemplo: reparar una fuga en el baño" required maxLength={120} disabled={busy}/></label>
         <label className="block text-sm font-bold">Describe el trabajo<textarea className={field} name="description" rows={4} placeholder="Explica qué hay que hacer y qué debe saber el trabajador." required minLength={10} maxLength={3000} disabled={busy}/></label>
         <label className="block text-sm font-bold">Categoría<select className={field} name="category" required defaultValue="" disabled={busy||!catalog}><option value="" disabled>{catalog?'Elige la categoría':'Cargando categorías…'}</option>{catalog?.categories.map(item=><option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+        <fieldset disabled={busy}><legend className="text-sm font-bold">¿Qué quieres que te coticen?</legend>
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">{MATERIALS.map(item=><label key={item.key} className={`cursor-pointer rounded-xl border p-3 text-sm ${materials===item.key?'border-accent bg-accent-tint':'border-line bg-white'}`}><span className="flex items-center gap-2 font-bold"><input type="radio" name="materialsMode" value={item.key} checked={materials===item.key} onChange={()=>setMaterials(item.key)}/>{item.label}</span><span className="mt-1 block text-ink-soft">{item.hint}</span></label>)}</div>
+        </fieldset>
         <fieldset disabled={busy||!catalog}><legend className="text-sm font-bold">¿Cómo quieres pagar?</legend>
           <div className="mt-2 grid gap-2 sm:grid-cols-3">{modalities.map(item=><label key={item.key} className={`cursor-pointer rounded-xl border p-3 text-sm ${modality===item.key?'border-accent bg-accent-tint':'border-line bg-white'}`}><span className="flex items-center gap-2 font-bold"><input type="radio" name="modality" value={item.key} checked={modality===item.key} onChange={()=>setModality(item.key)}/>{item.label}</span><span className="mt-1 block text-ink-soft">{item.hint}</span></label>)}</div>
         </fieldset>
         {modality==='fixed'?<label className="block text-sm font-bold">Tu presupuesto (Bs)<input className={field} name="budget" type="number" min="1" max="100000" step="0.01" required disabled={busy}/></label>
           :modality==='hourly'?<div className="grid gap-4 sm:grid-cols-2"><label className="block text-sm font-bold">Horas estimadas<input className={field} type="number" min="1" max="100" step="1" required value={hours} onChange={e=>setHours(e.target.value)} disabled={busy}/></label><label className="block text-sm font-bold">Tarifa por hora (Bs)<input className={field} type="number" min="1" max="5000" step="0.01" required value={hourlyRate} onChange={e=>setHourlyRate(e.target.value)} disabled={busy}/></label></div>
-          :<div className="grid gap-4 sm:grid-cols-3"><label className="block text-sm font-bold">Días de trabajo<input className={field} type="number" min="1" max="60" step="1" required value={days} onChange={e=>setDays(e.target.value)} disabled={busy}/></label><label className="block text-sm font-bold">Tarifa por día (Bs)<input className={field} type="number" min="1" max="20000" step="0.01" required value={dailyRate} onChange={e=>setDailyRate(e.target.value)} disabled={busy}/></label><label className="block text-sm font-bold">Fecha de inicio (opcional)<input className={field} name="startDate" type="date" min={today()} disabled={busy}/></label></div>}
+          :<div className="grid gap-4 sm:grid-cols-2"><label className="block text-sm font-bold">Días de trabajo<input className={field} type="number" min="1" max="60" step="1" required value={days} onChange={e=>setDays(e.target.value)} disabled={busy}/></label><label className="block text-sm font-bold">Tarifa por día (Bs)<input className={field} type="number" min="1" max="20000" step="0.01" required value={dailyRate} onChange={e=>setDailyRate(e.target.value)} disabled={busy}/></label><label className="block text-sm font-bold">Fecha de inicio (opcional)<input className={field} name="startDate" type="date" min={today()} value={startDate} onChange={e=>setStartDate(e.target.value)} disabled={busy}/></label><label className="block text-sm font-bold">Hora de inicio (opcional)<input className={field} name="startTime" type="time" step="300" disabled={busy||!startDate}/>{!startDate&&<span className="mt-1 block text-xs font-normal text-ink-soft">Primero elige la fecha.</span>}</label></div>}
         {modality!=='fixed'&&total>0&&<p className="text-sm font-semibold">Total a ofrecer: {bs(Math.round(total*100)/100)}</p>}
         <label className="block text-sm font-bold">Dirección y referencia<input className={field} name="address" placeholder="Barrio, calle y una referencia para llegar" required maxLength={300} disabled={busy}/></label>
         <JobLocationPicker value={point} onChange={setPoint} disabled={busy}/>

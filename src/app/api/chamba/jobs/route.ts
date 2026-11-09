@@ -35,6 +35,25 @@ function startDateOk(value: string) {
 }
 
 /**
+ * Hora 'HH:mm' para una fecha de inicio. Si el trabajo es hoy, tiene que
+ * faltar al menos una hora: más cerca, el backend lo cancela solo.
+ */
+function startTimeOk(date: string, time: string) {
+  const match = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(time);
+  if (!match) return false;
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: 'America/La_Paz', hourCycle: 'h23',
+    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+    .formatToParts(new Date()).map((part) => [part.type, part.value]));
+  if (date !== `${parts.year}-${parts.month}-${parts.day}`) return true;
+  const nowMinutes = Number(parts.hour) * 60 + Number(parts.minute);
+  return Number(match[1]) * 60 + Number(match[2]) >= nowMinutes + 60;
+}
+
+// Igual que en la app: el cliente dice si cotizan solo la mano de obra
+// ('client': él tiene los materiales) o también los materiales ('worker').
+const MATERIALS_MODES = ['client', 'worker'] as const;
+
+/**
  * Modalidad y monto. El total por hora o por día se calcula aquí (unidades ×
  * tarifa); nunca se toma un total del navegador. Si el admin apagó la
  * modalidad, el backend rechaza la publicación con un mensaje claro.
@@ -59,9 +78,17 @@ function pricing(input: Record<string, unknown>): { error: string } | { price: R
     if ((input.startDate != null && typeof input.startDate !== 'string') || (startDate && !startDateOk(startDate))) {
       return { error: 'La fecha de inicio debe ser desde hoy y dentro de un año.' };
     }
+    const startTime = typeof input.startTime === 'string' ? input.startTime.trim() : '';
+    if (input.startTime != null && typeof input.startTime !== 'string') return { error: 'La hora de inicio no es válida.' };
+    if (startTime && !startDate) return { error: 'Elige la fecha de inicio para indicar la hora.' };
+    if (startTime && !startTimeOk(startDate, startTime)) {
+      return { error: 'La hora de inicio no es válida. Si el trabajo es hoy, tiene que faltar al menos una hora.' };
+    }
     const budget = Math.round(days * rate * 100) / 100;
     if (budget > MAX_TOTAL) return { error: 'El total no puede pasar de Bs 100.000.' };
-    return { price: { modality, priceType: PRICE_TYPE.daily, budget, days, dailyRate: rate, ...(startDate ? { startDate } : {}) } };
+    // Mismo formato que la app: 'AAAA-MM-DD' o 'AAAA-MM-DDTHH:mm:00' (hora de Bolivia).
+    const start = startDate && startTime ? `${startDate}T${startTime}:00` : startDate;
+    return { price: { modality, priceType: PRICE_TYPE.daily, budget, days, dailyRate: rate, ...(start ? { startDate: start } : {}) } };
   }
   return { error: 'Elige cómo quieres pagar: por trabajo, por hora o por día.' };
 }
@@ -83,6 +110,10 @@ export async function POST(request: Request) {
     }
     const priced = pricing(input);
     if ('error' in priced) return privateJson({message:priced.error},400);
+    const materialsMode = input.materialsMode ?? 'client';
+    if (!MATERIALS_MODES.includes(materialsMode as typeof MATERIALS_MODES[number])) {
+      return privateJson({message:'Elige si te cotizan solo la mano de obra o también los materiales.'},400);
+    }
     // Solo categorías activas del backend (las mismas que eligen los
     // trabajadores como oficio), por id o por nombre sin tildes.
     let categories;
@@ -94,7 +125,7 @@ export async function POST(request: Request) {
     // client ID or payment instruction from the browser.
     const response = await backend('/mobile/requests',session.token,{clientUserId:session.user.id,title,description,address,
       latitude,longitude,category:category.name,aiCategories:[{id:category.id,name:category.name,confidence:1}],
-      paymentMethod:'Efectivo',paymentMethodCode:'cash',...priced.price});
+      paymentMethod:'Efectivo',paymentMethodCode:'cash',materialsMode,...priced.price});
     return privateJson(await response.json(),response.status);
   } catch { return privateJson({message:'No se pudo publicar. Revisa tu historial antes de volver a intentar.'},503); }
 }
