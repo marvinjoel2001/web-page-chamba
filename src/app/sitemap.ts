@@ -48,8 +48,15 @@ const routes: RouteConfig[] = [
     images: workerImageUrls,
   },
   {
+    path: '/publicar-trabajo',
+    changeFrequency: 'daily',
+    priority: 0.95,
+    lastModified: '2026-11-09',
+    images: allImageUrls,
+  },
+  {
     path: '/trabajo-santa-cruz',
-    changeFrequency: 'monthly',
+    changeFrequency: 'daily',
     priority: 0.9,
     lastModified: '2026-11-02',
     images: workerImageUrls,
@@ -73,9 +80,8 @@ const routes: RouteConfig[] = [
     priority: 0.4,
     lastModified: '2026-06-15',
   },
-  // `/eliminar-cuenta` queda fuera a propósito: la página lleva `noindex`
-  // por ser una página de gestión de cuenta. Declarar en el sitemap una URL que pedimos
-  // no indexar envía señales contradictorias.
+  // `/eliminar-cuenta` queda fuera a propósito: lleva `noindex` para cumplir
+  // con la política de Google Play sin competir en resultados de búsqueda orgánica.
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
