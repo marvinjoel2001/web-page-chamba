@@ -3,7 +3,14 @@ import { apiBase } from './api-base';
 import type { JobModality } from './job-catalog';
 
 export type { JobModality };
-export type PublicJob = { title: string; category: string; budget: number; modality: JobModality; createdAt: string };
+export type PublicJob = {
+  title: string; category: string; budget: number; modality: JobModality;
+  /** true si el cliente pidió que también coticen los materiales. */
+  withMaterials: boolean;
+  /** Inicio programado 'AAAA-MM-DD' o 'AAAA-MM-DDTHH:mm' (hora de Bolivia), o null. */
+  startDate: string | null;
+  createdAt: string;
+};
 export type PublicJobs = { total: number; jobs: PublicJob[] };
 
 const MODALITIES: readonly string[] = ['fixed', 'hourly', 'daily'];
@@ -22,6 +29,8 @@ function publicJob(value: unknown): PublicJob | null {
     category: category.slice(0, 60) || 'General',
     budget: Number.isFinite(budget) && budget > 0 ? budget : 0,
     modality: typeof job.modality === 'string' && MODALITIES.includes(job.modality) ? job.modality as JobModality : 'fixed',
+    withMaterials: job.materialsMode === 'worker',
+    startDate: typeof job.startDate === 'string' && /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(job.startDate) ? job.startDate : null,
     createdAt,
   };
 }

@@ -7,6 +7,7 @@ const intlLocale: Record<Locale, string> = { es: 'es-BO', en: 'en-US', pt: 'pt-B
 const copy: Record<Locale, {
   title: string; intro: string; count: (total: number) => string; empty: string; unavailable: string;
   privacy: string; cta: string; modality: Record<JobModality, string>;
+  materials: string; today: string; tomorrow: string; starts: (when: string) => string;
 }> = {
   es: {
     title: 'Trabajos publicados recientemente',
@@ -17,6 +18,7 @@ const copy: Record<Locale, {
     privacy: 'Por privacidad no mostramos la dirección, la descripción ni los datos del cliente.',
     cta: 'Ofertar desde la app',
     modality: { fixed: 'Por trabajo', hourly: 'Por hora', daily: 'Por día' },
+    materials: 'Mano de obra + materiales', today: 'hoy', tomorrow: 'mañana', starts: (when) => `Empieza ${when}`,
   },
   en: {
     title: 'Recently posted jobs',
@@ -27,6 +29,7 @@ const copy: Record<Locale, {
     privacy: "For privacy, we don't show the address, the description or the client's details.",
     cta: 'Make an offer in the app',
     modality: { fixed: 'Per job', hourly: 'Per hour', daily: 'Per day' },
+    materials: 'Labor + materials', today: 'today', tomorrow: 'tomorrow', starts: (when) => `Starts ${when}`,
   },
   pt: {
     title: 'Trabalhos publicados recentemente',
@@ -37,12 +40,25 @@ const copy: Record<Locale, {
     privacy: 'Por privacidade, não mostramos o endereço, a descrição nem os dados do cliente.',
     cta: 'Fazer oferta pelo app',
     modality: { fixed: 'Por trabalho', hourly: 'Por hora', daily: 'Por dia' },
+    materials: 'Mão de obra + materiais', today: 'hoje', tomorrow: 'amanhã', starts: (when) => `Começa ${when}`,
   },
 };
 
+/** "Empieza mañana 08:00" / "Empieza 14 nov · 08:00", con el día de Bolivia. */
+function startLabel(locale: Locale, startDate: string): string {
+  const t = copy[locale];
+  const [day, time] = startDate.split('T');
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/La_Paz' }).format(new Date());
+  const diff = Math.round((Date.parse(`${day}T00:00:00Z`) - Date.parse(`${today}T00:00:00Z`)) / 86400000);
+  const date = diff === 0 ? t.today : diff === 1 ? t.tomorrow
+    : new Intl.DateTimeFormat(intlLocale[locale], { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${day}T00:00:00Z`));
+  const separator = diff === 0 || diff === 1 ? ' ' : ' · ';
+  return t.starts(time ? `${date}${separator}${time}` : date);
+}
+
 /**
  * Lista pública de trabajos abiertos: título corto, categoría, modalidad,
- * presupuesto y hace cuánto se publicó. Para ofertar hay que entrar a la app.
+ * si incluye materiales, cuándo empieza, presupuesto y hace cuánto se publicó. Para ofertar hay que entrar a la app.
  */
 export default async function PublishedJobs({ locale, limit = 12, headingLevel = 2, className = '' }: {
   locale: Locale; limit?: number; headingLevel?: 2 | 3; className?: string;
@@ -68,7 +84,10 @@ export default async function PublishedJobs({ locale, limit = 12, headingLevel =
                 <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-soft">
                   <span className="rounded-full bg-accent-tint px-2.5 py-0.5 font-semibold text-ink">{job.category}</span>
                   <span>{t.modality[job.modality]}</span>
+                  {/* Solo cuando el trabajo incluye materiales; solo mano de obra queda como antes. */}
+                  {job.withMaterials && <span className="rounded-full bg-[#FAEEDA] px-2.5 py-0.5 font-semibold text-[#854F0B]">{t.materials}</span>}
                 </p>
+                {job.startDate && <p className="mt-1.5 text-sm font-semibold text-accent-strong">{startLabel(locale, job.startDate)}</p>}
                 <div className="mt-auto flex items-baseline justify-between gap-3 pt-3">
                   {job.budget > 0 ? <strong className="text-lg">Bs {money.format(job.budget)}</strong> : <span />}
                   <span className="text-sm text-ink-soft">

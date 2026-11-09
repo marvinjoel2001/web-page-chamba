@@ -149,11 +149,11 @@ test('the publish form gets active categories and only the enabled modalities',a
 
 test('the public job list keeps only public fields and is cached for a minute',async()=>{
   const f=fixture();
-  f.state.publicJobs={total:9,jobs:[{title:'Pintar la sala',category:'Pintura',budget:300,modality:'daily',createdAt:'2026-11-03T12:00:00.000Z',
-    address:'Calle secreta 123',description:'Texto privado',clientName:'Ana',latitude:-17.8},{title:'Sin fecha'},{title:'Otro',modality:'semanal',createdAt:'2026-11-03T10:00:00.000Z'}]};
+  f.state.publicJobs={total:9,jobs:[{title:'Pintar la sala',category:'Pintura',budget:300,modality:'daily',materialsMode:'worker',startDate:'2026-11-10T08:00',createdAt:'2026-11-03T12:00:00.000Z',
+    address:'Calle secreta 123',description:'Texto privado',clientName:'Ana',latitude:-17.8},{title:'Sin fecha'},{title:'Otro',modality:'semanal',materialsMode:'discuss',startDate:'<b>mañana</b>',createdAt:'2026-11-03T10:00:00.000Z'}]};
   const value=await f.publicJobs.fetchPublicJobs(6);
-  assert.deepEqual(JSON.parse(JSON.stringify(value)),{total:9,jobs:[{title:'Pintar la sala',category:'Pintura',budget:300,modality:'daily',createdAt:'2026-11-03T12:00:00.000Z'},
-    {title:'Otro',category:'General',budget:0,modality:'fixed',createdAt:'2026-11-03T10:00:00.000Z'}]});
+  assert.deepEqual(JSON.parse(JSON.stringify(value)),{total:9,jobs:[{title:'Pintar la sala',category:'Pintura',budget:300,modality:'daily',withMaterials:true,startDate:'2026-11-10T08:00',createdAt:'2026-11-03T12:00:00.000Z'},
+    {title:'Otro',category:'General',budget:0,modality:'fixed',withMaterials:false,startDate:null,createdAt:'2026-11-03T10:00:00.000Z'}]});
   const call=f.requests.find(r=>r.url.includes('/web/jobs?'));
   assert.equal(call.url,'https://isolated-backend.test/api/web/jobs?limit=6');assert.equal(call.options.next.revalidate,60);
   assert.equal(call.options.headers,undefined);
